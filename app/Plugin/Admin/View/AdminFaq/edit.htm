@@ -1,0 +1,58 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> FAq</span>
+    {{ _view.end() }}
+
+    <style>
+        .properties{
+            margin-bottom: 70px;
+        }
+
+        .properties div{
+            width: auto; float: left; margin: 0 20px; border: 0;
+        }
+    </style>
+    <div class="boxtitle min"><i class="fa fa-pencil"></i>edit FAQ</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/faq" class="uibutton special"><i class="fa fa-arrow-left"></i>Back</a></li>
+    </ul>
+        {{ form.create({'class' : 'form', }) }}
+            {{ form.hidden('id',{'value' : faq.id} ) }}
+
+        <div class="section">
+            <label>Active</label>
+            <div>{{ form.checkbox('active', {'checked': faq.active})}}</div>
+        </div>
+
+        <div class="section">
+            <label>Question</label>
+            <div>{{ form.input('question', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Sub Title', 'value': faq.question}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Answer</label>
+            <div>{{ form.input('answer', {'type':'textarea', 'label' : false, 'class': 'edit_faq','required' : 'required', 'placeholder':'Title', 'value': faq.answer}) }}</div>
+        </div>
+
+        <div class="section">
+            <div>
+                {{ form.submit('Save', {'class' : 'uibutton loading product_button'}) }}
+            </div>
+        </div>
+
+        {{ form.end() }}
+
+
+<style>
+    .dimensions input {
+        width: 10%;
+        min-width: 80px;
+    }
+</style>
+
+<script type="text/javascript">
+
+        $('.edit_faq').elrte(opts);
+
+</script>

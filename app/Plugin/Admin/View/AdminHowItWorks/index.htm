@@ -1,0 +1,43 @@
+{{ _view.start('script') }}
+<script type="text/javascript" src="/admin/components/datatables/dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/components/datatables/ColVis.js"></script>
+{{ _view.end() }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> How it works</span>
+    {{ _view.end() }}
+
+    <!-- title box -->
+    <div class="boxtitle min">How it works</div>
+
+    <div class="tableName">
+
+        <br/>
+        <table class="display static " id="staticPages">
+            <thead>
+            <tr>
+                <th width="">Title</th>
+                <th width="">Subtitle</th>
+                <th width="">Management</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in infoWorks %}
+            <tr>
+                <td >{{ item.title }}</td>
+                <td >
+                    {{ item.subtitle }}
+                </td>
+                <td>
+                    <span class="tip">
+                        <a class="edit_link" title="Edit" href="/admin/how_it_works/edit/{{ item.id }}"><i class="fa fa-pencil"></i></a>
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+

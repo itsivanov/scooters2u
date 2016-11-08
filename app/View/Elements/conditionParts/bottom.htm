@@ -1,0 +1,28 @@
+{% if showInfoBlock %}
+    <div class="infoBlock left fullWidth">
+        <div class="title">
+            {{ parts.bottom.HomePart.title }}
+        </div>
+        <div class="callText go_product">{{ parts.bottom.HomePart.content }}</div>
+        <a href="/get-started" class="button btnRed go_product">make reservation now!</a>
+    </div>
+{% endif %}
+{% if showPreFooter %}
+<div class="preFooter left fullWidth">
+    <div class="wrapper">
+        <a href="" class="footerLogo">
+            <img src="/img/logo.png" alt="" title="">
+        </a>
+        <div class="half left">
+            <div class="title textRight whiteColor">{{ showPreFooter.0.HomePart.title }}</div>
+            <div class="text">
+                {{ showPreFooter.0.HomePart.content }}
+            </div>
+        </div>
+        <div class="half right">
+            <div class="title textLeft blackColor">YOUR MIAMI VACATION!</div>
+            <a href="/get-started" class="right button btnRed">get started</a>
+        </div>
+    </div>
+</div>
+{% endif %}

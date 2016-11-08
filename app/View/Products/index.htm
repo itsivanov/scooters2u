@@ -1,0 +1,84 @@
+{{ _view.assign('fullHeightBackground', 'yes') }}
+
+{{ _view.assign('hdrBgImage', category.Category.background) }}
+
+{{ _view.assign('hdrCustomTitleElement', _view.element('products/icon')) }}
+
+{{ _view.assign('hdrCustomHeaderControl', '<span class="categoryLink"><img src="'~ category.Category.arrow_icon ~'"></span>') }} <!-- arrow_icon -->
+
+<div class="aboutSection left fullWidth backgroundImage" style="background-color:#e0e0e0;">
+    <div class="container">
+        <div class="aboutVideo left half">
+            {{ category.Category.video }}
+        </div>
+        <div class="aboutText right half">
+            <div class="simpleText">
+                <h2>{{ category.Category.name }}</h2>
+                <p>{{ category.Category.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="storeItems left fullWidth" id="products-list" name="products-list">
+    {% for item in products %}
+    <a href="{% if item.Product.url %}/product{{ item.Product.url }}{% else %}/products/view/{{ item.Product.id }}{% endif %}" class="storeItem">
+        <div class="storePhoto left fullWidth backgroundImage"
+             style="background-image:url('/thumbs/600x350{{ item.Product.img }}');">
+            <img src="/img/store-mask.png" alt="" title="">
+            <div class="hoverBlock"></div>
+        </div>
+        <div class="storeDescription left fullWidth textCenter">
+            <div>{{ item.Product.title }}</div>
+            <div class="price">${{ item.Product.price }}</div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% if _view.Paginator.hasNext() %}
+<div class="moreBlogs white left fullWidth">
+    <div class="tableDiv">
+        <div class="tableCell" id="more_category">
+            <div>show more</div>
+            <div><i class="fa fa-angle-down"></i></div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="slideUp"><i class="fa fa-angle-up"></i></div>
+<script>
+    $(document).ready(function () {
+        var counter = parseInt('{{ _view.Paginator.counter('{:pages}') }}');
+
+        if (counter <= 1) {
+            $('.moreBlogs').remove();
+        }
+
+        $('#more_category').attr('data-value', 2);
+        var ajax= true;
+        $('#more_category').on('click',function(){
+            if (ajax && counter > 1) {
+                ajax = false;
+                var page = parseInt($('#more_category').attr('data-value'));
+                $.ajax({
+                    url: ('/products/collection/{{ category.Category.key }}/page:'+page),
+                    cache: false,
+                    type: 'GET',
+                    dataType: 'HTML',
+                    success: function (data) {
+                        $('#more_category').attr('data-value',(parseInt($('#more_category').attr('data-value'))+1));
+                        $('.storeItems').append(data);
+                        ajax = true;
+                        counter--;
+                        if (counter <= 1) {
+                            $('.moreBlogs').remove();
+                        }
+                    }
+                });
+            }
+
+            return false;
+        });
+
+    });
+</script>

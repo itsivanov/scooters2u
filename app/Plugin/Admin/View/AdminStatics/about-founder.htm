@@ -1,0 +1,65 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-file-text"></i> About the Founder: Founder</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit content</div>
+
+    {{ form.create({'class' : 'form'}) }}
+        <div class="section">
+            <label>Title</label>
+            <div>{{ form.input('title', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Title'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Subtitle</label>
+            <div>{{ form.input('subtitle', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Subtitle'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Image</label>
+            <div>
+                {{ form.hidden('media', {'div': false, 'label': false, 'id':'imageInput'}) }}
+                <img src="{{ data.Static.media|default('/img/no_image/default.png') }}" width="70" id="imageId"/>
+            </div>
+        </div>
+
+        <div class="section">
+            <label>Text</label>
+            <div>
+                <div>{{ form.input('text', {'type':'textarea', 'id' : 'wysiwyg', 'label' : false}) }}</div>
+            </div>
+        </div>
+
+        <div class="section last">
+            <div>
+              {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+            </div>
+        </div>
+    {{ form.end() }}
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+    });
+</script>

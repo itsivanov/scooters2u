@@ -1,0 +1,46 @@
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-bars"></i> Menu</span></div>
+    {{ _view.end() }}
+
+<div class="boxtitle min"><i class="fa fa-pencil"></i> Menu event</div>
+<ul class="uibutton-group">
+    <li><a href="/admin/footer" class="uibutton special"><i class="fa fa-list-ol"></i> Menu</a></li>
+</ul>
+<!--{{item|var_dump}}-->
+    {{ form.create('Menu', {'class': 'block-content form'}) }}
+
+        <div class="section">
+            <label>Title</label>
+            <div>{{ form.input('Menu.name', {'div': false, 'label': false, 'required':'required', 'placeholder':'Title', 'value': item.Menu.name})  }}</div>
+        </div>
+
+        <div class="section">
+            <label>Link (<i>OR Select Page</i>)</label>
+            <div>
+                {{ form.input('Menu.url', {'div': false, 'label': false, 'required':'required', 'placeholder':'Link or Select page', 'value': item.Menu.url}) }}
+            </div>
+        </div>
+
+        <div class="section">
+            <label>Page</label>
+            <div>{{ form.select('page', pages) }}</div>
+        </div>
+
+        {{ form.hidden('Menu.id', {'value': item.Menu.id?item.Menu.id:''}) }}
+        {{ form.hidden("site_menu_id", { "value" : actionId }) }}
+        {{ form.hidden("key", { "id": item.Menu.key ? item.Menu.key : ''}) }}
+
+        <div class="section last">
+            <div>
+                {{ form.submit('Save', {'class' : 'uibutton loading wide200'}) }}
+            </div>
+        </div>
+{{ form.end() }}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.selectBox-options li').click(function(){
+            $('#MenuUrl').val($(this).children('a').attr('rel'));
+        });
+    });
+</script>

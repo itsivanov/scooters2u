@@ -1,0 +1,76 @@
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-home"></i> Dashboard</span></div>
+{{ _view.end() }}
+
+<div class="boxtitle min">Sales reporting system
+    <br>
+    <br>
+    <form action="/admin" id="filterForArtists" method="GET" class="filters">
+        <div class="boxtitle">
+            <label for="filterPeriods">Select period for filter:</label>
+            <select name="period" class="styled">
+                {% for key, value in filterPeriods %}
+                    <option value="{{ key }}" {% if period == key %} selected {% endif %}>{{ value }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Filter" class="uibutton confirm loading">
+        </div>
+    </form>
+</div>
+
+<div class="widgets">
+    <div class="tableName">
+        <br/>
+        <h4>Orders statistic</h4>
+        <br/>
+        <table class="display static">
+            <thead>
+            <tr>
+                <th>Total orders</th>
+                <th>Total ordered items</th>
+                <th>Total Amount</th>
+                <th>Used POTG</th>
+                <th>Statuses</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ orderStatistic.total }}</td>
+                    <td>{{ orderStatistic.orders }}</td>
+                    <td>${{ orderStatistic.amount }}</td>
+                    <td>{{ orderStatistic.used_poins }}</td>
+                    <td>
+                        <ul>
+                            {% for key, value in  orderStatistic.statuses %}
+                                <li>{{ key }} => {{ value }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br/>
+        <h4>Users statistic</h4>
+        <br/>
+        <table class="display static">
+            <thead>
+            <tr>
+                <th>Total registered</th>
+                <th>Total orders of new users</th>
+                <th>Total Amount</th>
+                <th>Used POTG</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ userStatistic.total }}</td>
+                    <td>{{ userStatistic.orders }}</td>
+                    <td>${{ userStatistic.amount }}</td>
+                    <td>{{ userStatistic.userPoints }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

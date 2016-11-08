@@ -1,0 +1,66 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-file-text"></i> Testimonials</span>
+    {{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit service</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/services" class="uibutton special"><i class="fa fa-list-ol"></i> Testimonials list</a></li>
+    </ul>
+
+    {{ form.create({'class' : 'form'}) }}
+
+    <div class="section">
+        <label>Title</label>
+        <div>{{ form.input('title', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Title'}) }}</div>
+    </div>
+
+    <div class="section">
+        <label>Rating</label>
+        <div>{{ form.input('rating', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Rating'}) }}</div>
+    </div>
+    <div class="section">
+        <label>Date</label>
+        <div>{{ form.input('date', {'div' : false, 'type': 'text', 'label' : false, 'required' : 'required', 'placeholder':'Date'}) }}</div>
+    </div>
+
+
+    <div class="section">
+        <label>Text</label>
+        <div>
+            <div>{{ form.input('description', {'type':'textarea', 'id' : 'wysiwyg', 'label' : false}) }}</div>
+        </div>
+    </div>
+
+    <div class="section last">
+        <div>
+            {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+        </div>
+    </div>
+    {{ form.end() }}
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+    });
+</script>

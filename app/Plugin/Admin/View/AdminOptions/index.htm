@@ -1,0 +1,37 @@
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-cogs"></i> Options </span>
+{{ _view.end() }}
+
+<ul class="uibutton-group float-r" style="margin-top: -47px;">
+    <li><a href="/admin/options/clear_cache" class="uibutton special" title="Clear cache after you do something in admin panel"><i class="fa fa-paint-brush"></i> Clear Cache</a></li>
+</ul>
+
+<div class="boxtitle min"><i class="fa fa-list-ol"></i> Options list</div>
+
+<div class="tableName">
+    <br/>
+    <table class="display static">
+        <thead>
+        <tr>
+            <th width="20%">Key</th>
+            <th width="45%">Value</th>
+            <th width="10%">Manage</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in list %}
+            <tr id="rowItem_{{ item.Option.id }}">
+                <td><strong>{{ item.Option.key }}</strong>  </td>
+                <td>{{ item.Option.value|striptags|truncate(140) }}</td>
+                <td>
+            <span class="tip">
+                <a class="edit_link Delete" title="Edit" href="/admin/options/edit/{{ item.Option.id }}">
+                    <i class="fa fa-pencil"></i>
+                </a>
+            </span>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,50 @@
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-diamond" aria-hidden="true"></i> Discounts</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Discounts list</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/discounts/add" class="uibutton special"><i class="fa fa-plus" aria-hidden="true"></i> New discount</a></li>
+    </ul>
+
+
+    <div class="tableName">
+    <br/>
+        <table class="display static">
+            <thead>
+              <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>To</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Management</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+            <tr>
+                <td>{{ item.Discount.key_word }}</td>
+                <td>{{ item.Discount.type }}</td>
+                <td>{{ item.Discount.value }} {{ item.Discount.type == 'percent' ? '%'  : 'USD'}}</td>
+                <td>{{ item.Discount.to_date|date('M d, Y') }}</td>
+                <td>{{ item.Discount.active ? 'Active' : 'Closed' }}</td>
+                <td>{{ item.Discount.created|date('M d, Y') }}</td>
+                <td>
+                    <span class="tip">
+                        <a class="edit_link" title="Edit"
+                           href="/admin/discounts/edit/{{ item.Discount.id }}"><i class="fa fa-pencil"></i></a>
+                    </span>
+                    <span class="tip">
+                        <a class="delete_link delete" title="Delete"
+                           href="/admin/discounts/delete/{{ item.Discount.id }}"><i class="fa fa-trash"></i></a>
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ _view.element('paginator') }}
+    </div>
+</div>

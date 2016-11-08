@@ -1,0 +1,36 @@
+<style>
+    .calendar-event{
+        padding: 5px 7px;
+        width: 250px;
+    }
+
+    .calendar-event ul li{
+        padding: 7px 10px;
+    }
+</style>
+
+<div class="calendar-event">
+    <center> <h4 class="red">Date {{ data.day }} </h4> </center>
+
+    {% if events == null %}
+        <h4>For this day no events</h4>
+    {% else %}
+        {% for event in events %}
+        <h5>Event {{ loop.index }}</h5>
+        <ul class="calendar-event">
+            <li>Location: {{ event.location }}</li>
+            <li>Duration: {{ event.duration||capitalize }}</li>
+            <li>Availability: {{ availabilities[event.availability] }}</li>
+            <li>Venue: {{ event.explication }}</li>
+            {% if event.active %}
+                <li class="green notification"><i class="fa fa-check"></i> Confirmed event</li>
+            {% else %}
+                <li class="red notification"><i class="fa fa-exclamation-triangle"></i> Unconfirmed event</li>
+            {% endif %}
+            {% if event.to_delete == 1 %}
+                <li class="blue notification confirmed-event"><i class="fa fa-trash"></i> Request to delete</li>
+            {% endif %}
+        </ul>
+        {% endfor %}
+    {% endif %}
+</div>

@@ -1,0 +1,450 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-user"></i> Users</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit user</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/users" class="uibutton special"><i class="fa fa-list-ol"></i> All users</a></li>
+    </ul>
+
+    <div id="tabs">
+        <ul>
+            <li><a href="#data">User data</a></li>
+            <li><a href="#shipping">Shipping</a></li>
+            <li><a href="#billing">Billing</a></li>
+            <li><a href="#order">Orders</a></li>
+        </ul>
+
+        <div id="data">
+            <section class="section">
+                <h4>User data</h4>
+
+                {{ form.create({'class' : 'form'}) }}
+                {{ form.input('User.id', {'type':'hidden'}) }}
+                {{ form.input('UserInfo.id', {'type':'hidden'}) }}
+                <div class="section">
+                    <label>Active</label>
+                    <div>{{ form.checkbox('User.active') }}</div>
+                </div>
+                <div class="section">
+                    <label>First name</label>
+                    <div>
+                        {{ form.input('UserInfo.first_name', {'div' : false, 'label' : false, 'class' : 'current-data', 'placeholder':'First name'}) }}
+                    </div>
+                </div>
+                <div class="section">
+                    <label>Last name</label>
+                    <div>
+                        {{ form.input('UserInfo.last_name', {'div' : false, 'label' : false, 'class' : 'current-data', 'placeholder':'Last name'}) }}
+                    </div>
+                </div>
+                <div class="section">
+                    <label>Email</label>
+                    <div>{{ form.input('User.email', {'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section">
+                    <label>POTG balance</label>
+                    <div>{{ form.input('User.point_balance', {'div' : false, 'label' : false}) }}</div>
+                </div>
+
+                <div class="section">
+                    <label>Phone</label>
+                    <div>{{ form.input('UserInfo.phone', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section last">
+                    <div>
+                        {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+                    </div>
+                </div>
+                {{ form.end() }}
+            </section>
+        </div>
+
+        <div id="shipping">
+            <section class="section">
+                <h4>User Shipping data</h4>
+
+                {{ form.create({'class' : 'form'}) }}
+                {{ form.input('User.id', {'type':'hidden'}) }}
+                {{ form.input('UserShippingInfo.id', {'type':'hidden'}) }}
+                <div class="section">
+                    <label>First name</label>
+                    <div>
+                        {{ form.input('UserShippingInfo.first_name', {'div' : false, 'label' : false, 'class' : 'current-data', 'placeholder':'First name'}) }}
+                    </div>
+                </div>
+                <div class="section">
+                    <label>Last name</label>
+                    <div>
+                        {{ form.input('UserShippingInfo.last_name', {'div' : false, 'label' : false, 'class' : 'current-data', 'placeholder':'Last name'}) }}
+                    </div>
+                </div>
+                <div class="section">
+                    <label>Email</label>
+                    <div>{{ form.input('UserShippingInfo.email', {'div' : false, 'label' : false}) }}</div>
+                </div>
+
+                <div class="section">
+                    <label>State</label>
+                    <div>{{ form.select('UserShippingInfo.state', states) }}</div>
+                </div>
+
+                <div class="section">
+                    <label>City</label>
+                    <div>{{ form.input('UserShippingInfo.city', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section">
+                    <label>Zip</label>
+                    <div>{{ form.input('UserShippingInfo.zip', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section">
+                    <label>Phone</label>
+                    <div>{{ form.input('UserShippingInfo.phone', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section">
+                    <label>address 1</label>
+                    <div>{{ form.input('UserShippingInfo.address_1', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section">
+                    <label>address 2</label>
+                    <div>{{ form.input('UserShippingInfo.address_2', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section last">
+                    <div>
+                        {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+                    </div>
+                </div>
+                {{ form.end() }}
+            </section>
+        </div>
+
+        <div id="billing">
+            <section class="section">
+                <h4>User Billing data</h4>
+
+                {{ form.create({'class' : 'form'}) }}
+                {{ form.input('User.id', {'type':'hidden'}) }}
+                {{ form.input('UserBillingInfo.id', {'type':'hidden'}) }}
+                <div class="section">
+                    <label>First name</label>
+                    <div>
+                        {{ form.input('UserBillingInfo.first_name', {'div' : false, 'label' : false, 'class' : 'current-data', 'placeholder':'First name'}) }}
+                    </div>
+                </div>
+                <div class="section">
+                    <label>Last name</label>
+                    <div>
+                        {{ form.input('UserBillingInfo.last_name', {'div' : false, 'label' : false, 'class' : 'current-data', 'placeholder':'Last name'}) }}
+                    </div>
+                </div>
+                <div class="section">
+                    <label>Email</label>
+                    <div>{{ form.input('UserBillingInfo.email', {'div' : false, 'label' : false}) }}</div>
+                </div>
+
+                <div class="section">
+                    <label>State</label>
+                    <div>{{ form.select('UserBillingInfo.state', states) }}</div>
+                </div>
+
+                <div class="section">
+                    <label>City</label>
+                    <div>{{ form.input('UserBillingInfo.city', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section">
+                    <label>Zip</label>
+                    <div>{{ form.input('UserBillingInfo.zip', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section">
+                    <label>Phone</label>
+                    <div>{{ form.input('UserBillingInfo.phone', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section">
+                    <label>address 1</label>
+                    <div>{{ form.input('UserBillingInfo.address_1', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section">
+                    <label>address 2</label>
+                    <div>{{ form.input('UserBillingInfo.address_2', {'type': 'text', 'div' : false, 'label' : false}) }}</div>
+                </div>
+                <div class="section last">
+                    <div>
+                        {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+                    </div>
+                </div>
+                {{ form.end() }}
+            </section>
+        </div>
+
+
+        <div id="order">
+            <h3>Orders</h3>
+
+            <div class="tableName">
+                <table class="display static">
+                    <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Items</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in orderList %}
+                        <tr>
+                            <td>${{ item.Order.amount }}</td>
+                            <td>{{ item.OrderItem|length }}</td>
+                            <td>{{ item.OrderStatus.status }}</td>
+                            <td>{{ item.Order.created }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    <div class="section last">
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        var user_id = {{ user.User.id }};
+        var sending = false;
+
+        $(document).on('click','.edit-member', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+            $.post('/admin/users/getMember/'+id,
+                function(data){
+                    if (data.status == 'ok'){
+
+                        $.each( data.member.Member, function( key, value ) {
+                            $("#memberForm input[name='data[Member]["+ key +"]'").val(value);
+                        });
+                    }else{
+                        showError('Member not found');
+                    }
+                },'json');
+        });
+
+        $(document).on('click','.remove-member', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+            $.post('/admin/users/removeMember/'+id,
+                function(data){
+                    $(a).closest('ul.member').remove();
+                    showSuccess('Member removed', 500);
+                },'json');
+        });
+
+        $(document).on('submit','#searchArtists', function(e){
+            e.preventDefault();
+
+            $.post('/admin/users/searchArtists',
+                $('#searchArtists').serialize(),
+                function(data){
+                    $('#searchResults').html(data.content);
+                },'json');
+        });
+
+        $(document).on('click','.add-artist', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+
+            $.post('/admin/users/addArtistFromClientList/?artist='+ id +'&client='+ user_id,
+                function(data){
+                    if (data.name){
+                        $('#availableArtists').append('<div class="section"><div><label>'+ data.name +'</label>'+
+                        '<a style="font-size: 1.5em;" class="red remove-artist" id="'+ id +'" href="javascript:"><i class="fa fa-times"></i></a>'+
+                        '</div></div>');
+
+                        $(a).closest('div.section').remove();
+                        showSuccess('Artist added', 500);
+                    }else{
+                        showError(data.msg, 500);
+                    }
+                },'json');
+        });
+
+        $(document).on('click','.remove-artist', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+
+            $.post('/admin/users/removeArtistFromClientList/?artist='+ id +'&client='+ user_id,
+                function(data){
+                    $(a).closest('div.section').remove();
+                    showSuccess('Artist removed', 500);
+                },'json');
+        });
+
+        $(document).on('submit','#UserUniqueEditForm', function(e){
+            e.preventDefault();
+
+            if ($('#savedUniqueData').val() == 1){
+                showError('To edit reload page please', 1500);
+                return false;
+            }
+
+            $.post('/admin/users/saveUserUniqueData/'+user_id,
+                $('#UserUniqueEditForm').serialize(),
+                function(data){
+                    $('#savedUniqueData').val(1);
+                    showSuccess(data.msg, 500);
+                },'json');
+        });
+
+        $(document).on('submit','#uploadVideo', function(e){
+            e.preventDefault();
+
+            if ($('#UserIframe').val() == ''){
+                showError('Wrong Iframe', 700);
+                return false;
+            }
+
+            $.post('/admin/users/uploadVideo',
+                $('#uploadVideo').serialize(),
+                function(data){
+                    if ( data.status == 'ok') {
+                        $('.videoList').append('<li class="clearfix user-video">'+
+                            '<div class="dottedFrame"><iframe width="300" height="150" '+ data.video.link +' frameborder="0" allowfullscreen></iframe></div>'+
+                            '<div class="text-center">'+
+                                '<a href="javascript:" id="'+ data.video.id + '" class="uibutton loading activate-video"><i class="fa fa-check"></i></a>'+
+                                '<a href="javascript:" id="'+ data.video.id +'" class="uibutton special loading remove-video"><i class="fa fa-trash"></i></a>'+
+                            '</div></li>');
+
+                        $('#UserIframe').val('');
+                        showSuccess(data.msg, 500);
+                    }else{
+                        showError(data.msg, 700);
+                    }
+                },'json');
+        });
+
+        $(document).on('click', '#uploadImage', function() {
+            var a = $(this);
+
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+
+                    $.post('/admin/users/uploadImage',
+                    {
+                        img : url,
+                        user_id : user_id
+                    },
+                    function(data){
+                        $('.userImagesList').append('<li class="clearfix user-image"><div class="dottedFrame">'+
+                        '<span><img src="/thumbs/130x100'+ url +'"></span></div>'+
+                        '<div class="text-center">'+
+                        '<a href="javascript:" id="'+ data.id +'" class="uibutton loading activate-img"><i class="fa fa-check"></i></a>'+
+                        '<a href="javascript:" id="'+ data.id +'" class="uibutton special loading remove-img"><i class="fa fa-trash"></i></a>'+
+                        '</div></li>');
+
+                        showSuccess('Image uploaded successfully', 500);
+                    },'json');
+                }
+            });
+        });
+
+        $(document).on('click','.remove-category', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+
+            $.post('/admin/users/removeCategory/'+id,
+                function(data){
+                    $(a).closest('div.section').remove();
+                    showSuccess('Category removed', 500);
+                },'json');
+        });
+
+        $(document).on('click','.remove-location', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+
+            $.post('/admin/users/removeLocation/'+id,
+                function(data){
+                    $(a).closest('div.section').remove();
+                    showSuccess('Location removed', 500);
+                },'json');
+        });
+
+        $(document).on('click','.activate-video', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+
+            $.post('/admin/users/activateVideo/'+id,
+                function(data){
+                    if ( data.status == 'ok') {
+                        if (data.active){
+                            $(a).removeClass('normal').html('<i class="fa fa-check"></i>');
+                        }else{
+                            $(a).addClass('normal').html('<i class="fa fa-clock-o"></i>');
+                        }
+                        showSuccess('Changes saved', 500);
+                    }
+                },'json');
+        });
+
+        $(document).on('click','.remove-video', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+
+            $.post('/admin/users/removeVideo/'+id,
+                function(data){
+                    if ( data.status == 'ok') {
+                        $(a).closest('li.user-video').remove();
+                        showSuccess('Video removed', 500);
+                    }
+                },'json');
+        });
+
+        $(document).on('click','.activate-img', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+
+            $.post('/admin/users/activateImage/'+id,
+                function(data){
+                    if ( data.status == 'ok') {
+                        if (data.active){
+                            $(a).removeClass('normal').html('<i class="fa fa-check"></i>');
+                        }else{
+                            $(a).addClass('normal').html('<i class="fa fa-clock-o"></i>');
+                        }
+                        showSuccess('Changes saved', 500);
+                    }
+                },'json');
+        });
+
+        $(document).on('click','.remove-img', function(){
+            var id = $(this).attr('id');
+            var a = $(this);
+
+            $.post('/admin/users/removeImage/'+id,
+                function(data){
+                    if ( data.status == 'ok') {
+                        $(a).closest('li.user-image').remove();
+                        showSuccess('Image removed', 500);
+                    }
+                },'json');
+        });
+    });
+</script>

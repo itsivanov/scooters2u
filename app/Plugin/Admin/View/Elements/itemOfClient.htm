@@ -1,0 +1,20 @@
+{{ extTree.addItemAttribute('id', 'list_' ~ data.Client.id ) }}
+
+<div class="itemOfClient">
+    <table width="100%" style="text-align: center;">
+        <tr>
+            <td width="25%"> <img src="{{ data.Client.img|thumb(150) }}" /></td>
+            <td width="25%"> <strong>{{ data.Client.title }}</strong> </td>
+
+            <td width="25%"><div calss="date"><strong>Modified:</strong> {{ data.Client.modified | date('m/d/Y') }}</div></td>
+            <td width="25%" class="manage-col">
+                <span class="tip tip-r">
+                    <a title="Edit" class="green" href="/admin/partners/edit/{{ data.Client.id }}"><i class="fa fa-pencil"></i></a>
+                </span>
+                <span class="tip tip-l">
+                    <a id="1" class="delete red" title="Delete" href="/admin/partners/delete/{{ data.Client.id }}"><i class="fa fa-trash"></i></a>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>

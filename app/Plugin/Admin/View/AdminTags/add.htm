@@ -1,0 +1,31 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('script') }}
+<script type="text/javascript" src="/admin/components/datatables/dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/components/datatables/ColVis.js"></script>
+{{ _view.end() }}
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><span class="ico gray pencil"></span> Tag </span>
+{{ _view.end() }}
+<!-- title box -->
+<div id="tabs">
+    {{ form.create({'class' : 'form'}) }}
+    <div id="tabs-1">
+        <div class="section">
+            <label>Title</label>
+            <div>{{ form.input('title', {'div' : false, 'label' : false}) }}</div>
+        </div>
+        <div class="section">
+            <label>Active</label>
+            {{ form.checkbox('active',{'checked': data.Tag.active }) }}
+        </div>
+    </div>
+    <div class="section last">
+        <div>
+            {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+        </div>
+    </div>
+    {{ form.end() }}
+</div>
+</div>

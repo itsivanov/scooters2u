@@ -1,0 +1,212 @@
+{{ _view.assign('hdrPageTitle', 'Shipping & Billing') }}
+{{ _view.assign('hdrBgImage', '/img/inner-header.jpg') }}
+
+<div class="cartSection left fullWidth">
+    <div class="containerSmall">
+        <div class="palmPayTabs left fullWidth">
+
+            {{ _view.element('cartMenu') }}
+
+            <div class="palmPayTabContent left fullWidth">
+            {{ form.create('Order', {'class':'form'}) }}
+                <div class="billingField">
+                    <div class="perHalf left">
+                        <div class="fieldTitle left fullWidth">Billing Information</div>
+                        <div class="billingArrow left fullWidth"></div>
+                        <div class="fieldsBlock left fullWidth">
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderBillingInfo.first_name', {'div' : false, 'label':false, 'autocomplete': 'on', 'placeholder':'First Name', 'required':true }) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderBillingInfo.last_name', {'div' : false, 'label':false, 'autocomplete': 'on', 'placeholder':'Last Name', 'required':true}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderBillingInfo.address_1', {'div' : false, 'label':false, 'autocomplete': 'on', 'type':'text', 'placeholder':'Address 1', 'required':true }) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth">
+                                {{ form.input('OrderBillingInfo.address_2', {'div' : false, 'label':false, 'autocomplete': 'on', 'type':'text', 'placeholder':'Address 2'}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderBillingInfo.city', {'div' : false, 'label':false, 'placeholder':'City', 'required':true}) }}
+                            </div>
+                            <div class="palmCustomSimpleSelect left fullWidth require">
+                                {{ form.select('OrderBillingInfo.state', states, {'default':'Alabama'}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderBillingInfo.zip', {'div' : false, 'label':false, 'autocomplete': 'on', 'type':'text', 'placeholder':'ZIP'}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderBillingInfo.phone', {'div' : false, 'label':false,  'autocomplete': 'on', 'placeholder':'Phone Number', 'required':true }) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderBillingInfo.email', {'div' : false, 'label':false,  'autocomplete': 'on', 'placeholder':'Email' , 'required':true}) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="perHalf right shippingInfo">
+                        <div class="fieldTitle left fullWidth">Shipping Information</div>
+                        <div class="sameInfo left fullWidth">
+                            <div class="palmCustomCheck left fullWidth">
+                                <input type="checkbox" {{ userInfo ? '' : 'checked' }} id="sameInfo">
+                                <label for="sameInfo">Billing and Shipping Information are the same.</label>
+                            </div>
+                        </div>
+                        <div class="fieldsBlock left fullWidth">
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderShippingInfo.first_name', {'div' : false, 'label':false, 'autocomplete': 'on', 'type':'text', 'placeholder':'First Name', 'required':true, 'class':'shipping-group'}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderShippingInfo.last_name', {'div' : false, 'label':false,  'autocomplete': 'on', 'type':'text', 'placeholder':'Last Name', 'required':true, 'class':'shipping-group'}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderShippingInfo.address_1', {'div' : false, 'label':false, 'autocomplete': 'on', 'type':'text', 'placeholder':'Address 1', 'required':true, 'class':'shipping-group'}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth">
+                                {{ form.input('OrderShippingInfo.address_2', {'div' : false, 'label':false, 'autocomplete': 'on', 'type':'text', 'placeholder':'Address 2', 'class':'shipping-group'}) }}
+                            </div>
+
+
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderShippingInfo.city', {'div' : false, 'label':false, 'autocomplete': 'on', 'placeholder':'City', 'required':true, 'class':'shipping-group'}) }}
+                            </div>
+                            <div class="palmCustomSimpleSelect left fullWidth require">
+                                {{ form.select('OrderShippingInfo.state', states, {'default':'Alabama'}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderShippingInfo.zip', {'div' : false, 'label':false, 'autocomplete': 'on', 'type':'text', 'placeholder':'ZIP', 'class':'shipping-group'}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderShippingInfo.phone', {'div' : false, 'label':false, 'autocomplete': 'on', 'placeholder':'Phone Number', 'required':true, 'class':'shipping-group'}) }}
+                            </div>
+                            <div class="palmCustomInput left fullWidth require">
+                                {{ form.input('OrderShippingInfo.email', {'div' : false, 'label':false, 'autocomplete': 'on', 'placeholder':'Email', 'required':true, 'class':'shipping-group'}) }}
+                            </div>
+                        </div>
+                        {{ form.submit('Continue', {'class' : 'button btnBlack upper right shippingFormButton'}) }}
+                    </div>
+                </div>
+            {{ form.end() }}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        var sending = false;
+
+        $(document).on('change','#sameInfo', function(e){
+
+            if ($(this).is(':checked')){
+//                console.log(1);
+            }else{
+                $('.shipping-group').each(function(){
+                    $(this).val($(this).prop("defaultValue"));
+                });
+//                $('.shippingInfo input[type="text"]').val('');
+            }
+        });
+
+        $(document).on('click','.change-quantity', function(e){
+            e.preventDefault();
+            if (sending) return false;
+            sending  = true;
+
+            var id = $(this).parents('.itemBlock').attr('data-id');
+            var d = $(this).hasClass('plus') ? 'plus' : 'minus';
+            var el = $(this);
+
+            $.post('/products/changeQuantity/?id='+id+'&d='+d,
+                function(data){
+                    if ( data.newQuantity) {
+                        $(el).parents('.itemBlock').find('.quantity-input').val(data.newQuantity);
+                    }
+                    sending = false;
+                },'json');
+        });
+
+        /*FillFieldsOnCheckout*/
+        (function () {
+            var $checkbox = $('#sameInfo');
+
+            //console.log($checkbox);
+
+            if (!$checkbox.length) {
+                return;
+            }
+
+            var input = [
+                ['first_name', 'first_name'],
+                ['last_name', 'last_name'],
+                ['address_1', 'address_1'],
+                ['address_2', 'address_2'],
+                ['city', 'city'],
+                ['phone', 'phone'],
+                ['email', 'email'],
+                ['zip', 'zip']
+            ];
+
+            var select = [
+                ['OrderBillingInfoState', 'OrderShippingInfoState'],
+            ];
+
+            var $form = $('#OrderCheckoutForm');
+
+            input.map(function (item) {
+                var $from = $form.find("input[name='data[OrderBillingInfo][" + item[0] + "]']"),
+                    $to = $form.find("input[name='data[OrderShippingInfo][" + item[1] + "]']");
+
+                $from
+                    .on('keyup', function (e) {
+                        if ($checkbox.is(':checked')) {
+                            $to.val($from.val());
+                        }
+                    })
+                    .trigger('keyup');
+
+                $to.on('focus', function (e) {
+                    $checkbox.prop('checked', false);
+                });
+
+                $checkbox.on('change', function (e) {
+                    $from.trigger('keyup');
+                });
+
+            });
+
+            select.map(function (item) {
+                var $from = $('#' + item[0]),
+                    $to = $('#' + item[1]);
+
+                function clone() {
+                    if ($checkbox.is(':checked')) {
+                        $to.html($from.html());
+                        $to.trigger('refresh');
+                        //$to.val($from.val());
+                    }
+                }
+
+                $from
+                    .on('change', function (e) {
+                        clone();
+                    });
+
+                $to.on('change', function (e) {
+                    $checkbox.prop('checked', false);
+                });
+
+                $checkbox.on('change', function (e) {
+                    clone();
+                });
+
+                clone();
+            });
+
+            $checkbox.trigger('change');
+
+        })();
+        /*End*/
+    });
+</script>

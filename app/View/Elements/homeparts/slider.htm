@@ -1,0 +1,20 @@
+<div class="section firstSection" style="background-image: url('{{ parts.slider.HomePart.image }}');" id="section0">
+    {% for slide in slides %}
+    <div class="slide" id="slide{{ loop.index }}">
+        <div class="intro">
+            <img src="{{ slide.Slider.image }}" alt="" title="">
+            <div class="flagContent">
+                <div class="skewContent">
+                    <div class="inFlagText">
+                        <div class="whiteColor firstLine">{{ slide.Slider.title }}</div>
+                        <div class="blackColor secondLine">{{ slide.Slider.subtitle }}</div>
+                    </div>
+                    <div class="underFlagText">
+                        {{ slide.Slider.content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

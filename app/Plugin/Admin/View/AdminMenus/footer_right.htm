@@ -1,0 +1,115 @@
+<style type="text/css">
+    ol li div {
+        background: #E3E5E7;
+        margin-top: 5px;
+        padding: 10px;
+    }
+</style>
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-bars"></i> Menu Items </span></div>
+{{ _view.end() }}
+
+<ul class="uibutton-group">
+    <li><a href="/admin/footer_right/add_item/{{ menu_id }}" class="uibutton" title="Add claim"><i class="fa fa-plus-square"></i> Add Item</a></li>
+</ul>
+
+<div class="tableName">
+    <br/>
+    <table class="display static" id="staticPages">
+        <thead>
+        <tr>
+            <th width="" >Link</th>
+            <th width="" >Navigation</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in menu %}
+        <tr>
+            <td>{{item.Menu.name}}</td>
+            <td>
+                <span class="tip">
+                    <a class="edit_link" title="Edit" href="/admin/footer_right/edit_item/{{ item.Menu.id }}"><i class="fa fa-pencil"></i></a>
+                </span>
+                <span class="tip">
+                    <a class="delete_link delete" title="Delete" href="/admin/footer_right/delete_item/{{ item.Menu.id }}"><i class="fa fa-trash"></i></a>
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+<!--{{ extTree.adddata({'menu_id': menu_id}) }}-->
+<!--{{ extTree.generate(menu, {'type': 'ol', 'model': 'Menu', 'element': 'itemOfMenu', 'class': 'sortable'}) }}-->
+
+{{ _view.Html.script('jquery.json-2.3.min') }}
+{{ _view.Html.script('nestedSortable/jquery.mjs.nestedSortable') }}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('.sortable').nestedSortable({
+            disableNesting: 'no-nest',
+            forcePlaceholderSize: true,
+            handle: 'div',
+            helper:	'clone',
+            items: 'li',
+            maxLevels: 2,
+            opacity: .6,
+            placeholder: 'placeholder',
+            revert: 250,
+            tabSize: 25,
+            tolerance: 'pointer',
+            toleranceElement: '> div',
+            update: function(e){
+                $.post("/admin/menus/saveSorting/Menu", {'items' : $.toJSON($('ol.sortable').nestedSortable('toArray', {startDepthCount: 0}))},
+                        function(data) {
+                            if(!data.error) {
+                                showSuccess('Changes saved', 500);
+                            } else {
+                                window.alert(data.err_desc);
+                            }
+                        },
+                        "json"
+                );
+            }
+        });
+
+        $(".delete-link").click(function(event) {
+            event.preventDefault();
+            var link = $(this).attr("href");
+
+            $("#dialog-confirm").dialog({
+                resizable: false,
+                position: "center",
+                height:140,
+                modal: true,
+                buttons: {
+                    "Delete": function() {
+                        $(this).dialog("close");
+                        $.get("/admin/menus/ajaxDelete/Menu/" + link,
+                                function(data){
+                                    if (data == "okey") {
+                                        $("#list_" + link).remove();
+                                        showSuccess('Item deleted', 500);
+                                    }
+                                }
+                        );
+                    },
+                    "Cancel": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
+
+    });
+</script>
+
+<div id="dialog-confirm" title="Delete?" style="display: none">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 5px 20px 0;"></span>Delete item?</p>
+</div>

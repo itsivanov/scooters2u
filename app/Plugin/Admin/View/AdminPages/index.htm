@@ -1,0 +1,47 @@
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-font"></i> Static pages </span></div>
+{{ _view.end() }}
+
+<div class="boxtitle min"><i class="fa fa-list-ol"></i> List of static pages</div>
+<ul class="uibutton-group">
+    <li><a href="/admin/pages/add" class="uibutton" title="Add claim"><i class="fa fa-plus-square"></i> New page</a></li>
+</ul>
+
+<div class="tableName">
+<br/>
+    <table class="display static " id="staticPages">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Key</th>
+            <th>Background</th>
+            <th>Created</th>
+            <th>Management</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in list %}
+        <tr>
+            <td>{{ item.AdminPage.title }}</td>
+            <td>{{ item.AdminPage.key }}</td>
+            <td><img src="{{ item.AdminPage.img| thumb(120, 70)}}" width="120"/></td>
+            <td>{{ item.AdminPage.created|date('d M, Y') }}</td>
+            <td>
+                <span class="tip">
+                    <a class="edit_link" title="Edit" href="/admin/pages/edit/{{ item.AdminPage.id }}">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </span>
+                {% if not item.AdminPage.undeleted %}
+                <span class="tip">
+                    <a class="delete_link delete" title="Delete" href="/admin/pages/delete/{{ item.AdminPage.id }}">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </span>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>

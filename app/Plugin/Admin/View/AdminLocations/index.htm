@@ -1,0 +1,106 @@
+<style type="text/css">
+    ol li div {
+        background: #E3E5E7;
+        margin-top: 5px;
+        padding: 10px;
+    }
+</style>
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-globe"></i> Locations</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-list-ol"></i> Locations list</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/locations/add" class="uibutton"><i class="fa fa-plus-square"></i> New location</a></li>
+    </ul>
+
+    <div class="tableName">
+        <br/>
+        <table class="display static">
+            <thead>
+            <tr>
+                <th>Locations tree</th>
+            </tr>
+            </thead>
+        </table>
+
+        {{ extTree.generate(list, {'type': 'ol', 'model': 'Location', 'element': 'itemOfLocation', 'class': 'sortable'}) }}
+
+        {{ _view.Html.script('jquery.json-2.3.min') }}
+        {{ _view.Html.script('nestedSortable/jquery.mjs.nestedSortable') }}
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.sortable').nestedSortable({
+            disableNesting: 'no-nest',
+            forcePlaceholderSize: true,
+            handle: 'div',
+            helper:	'clone',
+            items: 'li',
+            maxLevels: 1,
+            opacity: .6,
+            placeholder: 'placeholder',
+            revert: 250,
+            tabSize: 25,
+            tolerance: 'pointer',
+            toleranceElement: '> div',
+            update: function(e){
+                $.post("/admin/locations/saveSorting/Location", {'items' : $.toJSON($('ol.sortable').nestedSortable('toArray', {startDepthCount: 0}))},
+                    function(data) {
+                        if(!data.error) {
+                            showSuccess('Changes saved', 500);
+                        } else {
+                            showError(data.err_desc , 500);
+                        }
+                    },
+                    "json"
+                );
+            }
+        });
+    });
+</script>
+
+{#{{ _view.start('captionHeader') }}#}
+    {#<div class="header"><span><i class="fa fa-globe"></i> Locations</span>#}
+{#{{ _view.end() }}#}
+
+    {#<div class="boxtitle min"><i class="fa fa-list-ol"></i> Locations list</div>#}
+    {#<ul class="uibutton-group">#}
+        {#<li><a href="/admin/locations/add" class="uibutton"><i class="fa fa-plus-square"></i> New location</a></li>#}
+    {#</ul>#}
+    {#<div class="tableName">#}
+    {#<br/>#}
+        {#<table class="display static">#}
+            {#<thead>#}
+              {#<tr>#}
+                {#<th class="filter">{{ paginator.sort('id', 'ID') }}</th>#}
+                {#<th>{{ paginator.sort('name', 'Location') }}</th>#}
+                {#<th class="filter">{{ paginator.sort('created', 'Created') }}</th>#}
+                {#<th>Management</th>#}
+              {#</tr>#}
+            {#</thead>#}
+            {#<tbody>#}
+            {#{% for item in list %}#}
+            {#<tr>#}
+                {#<td>{{ item.Location.id }}</td>#}
+                {#<td>{{ item.Location.name }}</td>#}
+                {#<td>{{ item.Location.created|date('d M, Y') }}</td>#}
+                {#<td>#}
+                {#<span class="tip">#}
+                    {#<a class="edit_link" title="Edit" href="/admin/locations/edit/{{ item.Location.id }}"><i class="fa fa-pencil"></i></a>#}
+                {#</span>#}
+                {#<span class="tip">#}
+                    {#<a class="delete_link delete" title="Delete" href="/admin/locations/delete/{{ item.Location.id }}"><i class="fa fa-trash"></i></a>#}
+                {#</span>#}
+                {#</td>#}
+            {#</tr>#}
+            {#{% endfor %}#}
+            {#</tbody>#}
+        {#</table>#}
+        {#{{ _view.element('paginator') }}#}
+    {#</div>#}
+{#</div>#}

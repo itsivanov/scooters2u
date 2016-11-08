@@ -1,0 +1,77 @@
+{{ _view.start('script') }}
+    <script type="text/javascript" src="/admin/components/datatables/dataTables.min.js"></script>
+    <script type="text/javascript" src="/admin/components/datatables/ColVis.js"></script>
+{{ _view.end() }}
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><span class="ico gray document"></span>Comments for <a  href="/admin/news/edit/{{ list.0.Tiding.id }}">{{ list.0.Tiding.title }}</a></span>
+{{ _view.end() }}
+
+    <table class="display static " id="staticPages">
+        <thead>
+          <tr>
+              <th width="20" align="left">Active</th>
+            <th width="150" align="left">Name</th>
+            <th width="100" align="left">Email</th>
+            <th width="500" align="left">Content</th>
+
+            {#<th width="174">Slug</th>#}
+            <th width="100">Created</th>
+            <th width="50">Management</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in list %}
+        <tr>
+            <td>
+                <a href="/admin/news/activate_comments/{{ item.TidComment.id }}">
+                    {% if  item.TidComment.active %}
+                        <img src="/admin/images/icon/bullet_green.png"/>
+                    {% else %}
+                        <img src="/admin/images/icon/bullet_red.png"/>
+                    {% endif %}
+                </a>
+            </td>
+
+            <td>{{ item.TidComment.name }}</td>
+            <td>{{ item.TidComment.email }}</td>
+            <td>{{ item.TidComment.content }}</td>
+
+
+            {#<td>{{ item.Tiding.slug }}</td>#}
+            <td>{{ item.TidComment.created }}</td>
+            <td>
+                <span class="tip">
+                    <a class="delete_link delete" title="Delete" href="/admin/news/delete_comment/{{ item.TidComment.id }}"><i class="fa fa-trash"></i></a>
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+      </table>
+        </div>
+        </div>
+
+<script type="text/javascript">
+
+    $(function() {
+
+        $('#staticPages').dataTable({
+            "sDom": 'fCl<"clear">rtip',
+            "sPaginationType": "full_numbers" ,
+            "aaSorting": [],
+             "aoColumns": [
+                    null,
+                    null,
+                    null,
+                    { "bSortable": false }
+              ]
+        });
+
+
+    });
+
+
+
+</script>

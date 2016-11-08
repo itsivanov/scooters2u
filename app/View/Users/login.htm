@@ -1,0 +1,42 @@
+{{ _view.assign('hdrPageTitle', 'User Login') }}
+{{ _view.assign('hdrBgImage', '/img/inner-header.jpg') }}
+
+<div class="cartSection left fullWidth">
+    <div class="containerSmall">
+
+        <div class="left fullWidth">
+            <div class="wrapper">
+                <div class="form-holder login clearfix">
+                    <span class="title-top">Please log into the website with your email and password below.</span>
+
+                    {% if logError %}
+                        <center class="errorMsg">{{ logError }}</center>
+                    {% endif %}
+
+                    {{ form.create('User', {'class' : 'form'})}}
+                    <div class="wrapp-field">
+                        <fieldset>
+                            <div class="form-box">
+                                <div class="row">
+                                    {{ form.input('email', {'div' : false, 'class' : 'txt', 'label' : false, 'placeholder':'Email'}) }}
+                                </div>
+                                <div class="row">
+                                    {{ form.input('password', {'div' : false, 'class' : 'txt', 'label' : false, 'placeholder':'Password'}) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="btn-holder">
+                                    {{ form.submit('Login', {'class' : 'sbm'}) }}
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    {{ form.end() }}
+                </div>
+            </div>
+            </section>
+        </div>
+
+    </div>
+</div>

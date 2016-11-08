@@ -1,0 +1,279 @@
+{{ _view.assign('hdrPageTitle', 'Shopping cart') }}
+{{ _view.assign('hdrBgImage', '/img/inner-header.jpg') }}
+
+<div class="cartSection left fullWidth">
+    <div class="containerSmall">
+        <div class="palmPayTabs left fullWidth">
+            {#{% if cart.items %}#}
+
+            {{ _view.element('cartMenu') }}
+
+            {#{% if cart.items %}#}
+            <div class="palmPayTabContent left fullWidth">
+                <div class="billingField">
+
+                    <div class="palmWaitTable palmScreenTable left fullWidth">
+                        <div class="tableDiv">
+                            <div class="tableRow">
+                                <div class="tableCell textLeft"></div>
+                                <div class="tableCell textLeft"><strong>Item</strong></div>
+                                <div class="tableCell"><strong>Quantity</strong></div>
+                                <div class="tableCell"><strong>price</strong></div>
+                                <div class="tableCell"></div>
+                            </div>
+                            {% for item in cart.items %}
+                            <div class="tableRow itemBlock" data-id="{{ item.product.Product.id }}">
+                                <div class="tableCell textLeft">
+                                    <div class="palmWaitImage">
+                                        <div class="tableDiv">
+                                            <div class="tableCell">
+                                                <img src="{{ item.product.Product.img|thumb(90,69) }}" alt="" title="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tableCell textLeft">
+                                    <div class="">{{ item.product.Product.title }}</div>
+                                </div>
+                                <div class="tableCell">
+                                    <div class="palmWaitNumber">
+                                        <div class="minus change-quantity"><i class="fa fa-minus"></i></div>
+                                        <input type="text"
+                                               class="quantity-input" placeholder=""
+                                               value="{{ item.quantity }}" readonly>
+                                        <div class="plus change-quantity"><i class="fa fa-plus"></i></div>
+                                    </div>
+                                </div>
+                                <div class="tableCell">$
+                                    <span class="price-by-item-{{ item.product.Product.id }}" data-price="{{ item.product.Product.price }}">
+                                        {{ ( item.quantity * item.product.Product.price ) }}
+                                    </span>
+                                </div>
+                                <div class="tableCell">
+                                    <a href="/products/deleteFromCart/{{ item.product.Product.id }}" class="remove">
+                                        <img src="/img/remove.png" alt="" title="">
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {#{% else %}#}
+                            {#<div class="tableRow itemBlock" data-id="{{ item.product.Product.id }}">#}
+                                {#<h3>No items.</h3>#}
+                            {#</div>#}
+{##}
+                            {#{% endif %}#}
+                            <div class="tableRow">
+                                <div class="tableCell textLeft">
+                                </div>
+                                <div class="tableCell textLeft">
+                                </div>
+                                <div class="tableCell">
+                                    <strong class="upper">subtotal:</strong>
+                                </div>
+                                <div class="tableCell">
+                                    $ <strong class="upper subtotalValue">{{ cart.subtotal }}</strong>
+                                </div>
+                                <div class="tableCell">
+                                </div>
+                            </div>
+
+                            <div class="tableRow">
+                                <div class="tableCell textLeft">
+
+                                </div>
+                                <div class="tableCell textLeft">
+
+                                </div>
+                                <div class="tableCell">
+                                    <div class="promoInput">
+                                        <form action="/products/useCouponCode" class="couponCodeForm" method="POST">
+                                            <input type="text" name="data[Coupon][code]" required placeholder="Coupon Code" class="half">
+                                            <input type="submit" value=">" class="half useCouponCodeButton">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tableCell">
+                                    <span class="color">Discount: $<span class="discountValue">{{ cart.subtotal - cart.total }}</span></span>
+                                </div>
+                                <div class="tableCell">
+                                </div>
+                            </div>
+
+                            <div class="tableRow">
+                                <div class="tableCell textLeft">
+                                </div>
+                                <div class="tableCell textLeft">
+                                </div>
+                                <div class="tableCell">
+                                    <strong class="upper">total:</strong>
+                                </div>
+                                <div class="tableCell">
+                                    $ <strong class="upper totalValue">{{ cart.total }}</strong>
+                                </div>
+                                <div class="tableCell">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {#================================= MOB =================================#}
+
+                    <div class="palmWaitTable palmMobileTable left fullWidth">
+                        <div class="tableDiv">
+
+                            {% for item in cart.items %}
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">Photo</div>
+                                    <div class="tableCell textLeft">
+                                        <div class="palmWaitImage">
+                                            <div class="tableDiv">
+                                                <div class="tableCell">
+                                                    <img src="{{ item.product.Product.img|thumb(90,69) }}" alt="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">Item</div>
+                                    <div class="tableCell textLeft">
+                                        <div class="">{{ item.product.Product.title }}</div>
+                                    </div>
+                                </div>
+                                <div class="tableRow itemBlock" data-id="{{ item.product.Product.id }}">
+                                    <div class="tableCell textLeft">Quantity</div>
+                                    <div class="tableCell textLeft">
+                                        <div class="palmWaitNumber">
+                                            <div class="minus change-quantity"><i class="fa fa-minus"></i></div>
+                                            <input type="text"
+                                                   class="quantity-input" placeholder=""
+                                                   value="{{ item.quantity }}" readonly>
+                                            <div class="plus change-quantity"><i class="fa fa-plus"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">price</div>
+                                    <div class="tableCell textLeft">$
+                                        <span class="price-by-item-{{ item.product.Product.id }}" data-price="{{ item.product.Product.price }}">
+                                            {{ ( item.quantity * item.product.Product.price ) }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">Remove</div>
+                                    <div class="tableCell textLeft">
+                                        <a href="/products/deleteFromCart/{{ item.product.Product.id }}" class="remove">
+                                            <img src="/img/remove.png" alt="" title="">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            <div class="tableRow">
+                                <div class="tableCell textLeft">
+                                    <strong class="upper">subtotal:</strong>
+                                </div>
+                                <div class="tableCell textLeft">
+                                    $ <strong class="upper subtotalValue">{{ cart.subtotal }}</strong>
+                                </div>
+                            </div>
+
+                            <div class="tableRow">
+                                <div class="tableCell">
+                                    <div class="promoInput textLeft">
+                                        <form action="/products/useCouponCode" class="couponCodeForm" method="POST">
+                                            <input type="text" name="data[Coupon][code]" required placeholder="Coupon Code" class="half">
+                                            <input type="submit" value=">" class="half useCouponCodeButton">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tableCell textLeft">
+                                    <span class="color">Discount: $<span class="discountValue">{{ cart.subtotal - cart.total }}</span></span>
+                                </div>
+                            </div>
+
+                            <div class="tableRow">
+                                <div class="tableCell textLeft">
+                                    <strong class="upper">total: </strong>
+                                </div>
+                                <div class="tableCell textLeft">
+                                    $ <strong class="upper totalValue">{{ cart.total }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="{{ lastPage and not (lastPage == '/')  ? lastPage : '/products/sales' }}" class="backLink left">
+                        <i class="fa fa-angle-left"></i>
+                        Continue Shopping
+                    </a>
+                    <a href="/products/checkout" class="button btnBlack upper right">proceed to checkout</a>
+                </div>
+            </div>
+            {#{% else %}#}
+                {#<h3>Empty cart.</h3>#}
+            {#{% endif %}#}
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        var sending = false;
+
+        $(document).on('click','.change-quantity', function(e){
+            e.preventDefault();
+            if (sending) return false;
+            sending  = true;
+
+            var id = $(this).parents('.itemBlock').attr('data-id');
+            var d = $(this).hasClass('plus') ? 'plus' : 'minus';
+            var el = $(this);
+
+            $.post('/products/changeQuantity/?id='+id+'&d='+d,
+                function(data){
+                    if ( data.newQuantity) {
+                        $(el).parents('.itemBlock').find('.quantity-input').val(data.newQuantity);
+
+
+
+                        var discountValue = data.cart['subtotal'] - data.cart['total'];
+                        var itemPriceBlock = $('.price-by-item-' + id),
+                                itemPrice = itemPriceBlock.data('price');
+
+                        itemPriceBlock.html(itemPrice*data.newQuantity);
+
+                        $('.discountValue').text(discountValue.toFixed(2));
+                        $('.totalValue').text(data.cart['total']);
+                        $('.subtotalValue').text(data.cart['subtotal']);
+                    }
+                    sending = false;
+                },'json');
+        });
+
+        $(document).on('submit','.couponCodeForm', function(e){
+            e.preventDefault();
+            if (sending) return false;
+            sending  = true;
+
+            var formEl = $(this);
+
+            $.post('/products/applyDiscountCode',
+                $(formEl).serialize(),
+                function(data){
+                    console.log(data);
+
+                    if (!data.error){
+                        var discountValue = data.cart['subtotal'] - data.cart['total'];
+                        $('.discountValue').text(discountValue.toFixed(2));
+                        $('.totalValue').text(data.cart['total']);
+                    }
+
+                    $.pnotify({ text: data.msg, type: data.error ? 'error' : 'success'});
+                    sending = false;
+                },'json');
+        });
+    });
+</script>

@@ -1,0 +1,150 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> Edit positions</span>
+    {{ _view.end() }}
+
+    <style>
+        .properties{
+            margin-bottom: 70px;
+        }
+
+        .properties div{
+            width: auto; float: left; margin: 0 20px; border: 0;
+        }
+    </style>
+    <div class="boxtitle min"><i class="fa fa-pencil"></i>Edit positions</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/section_second" class="uibutton special"><i class="fa fa-list-ol"></i> Product list</a></li>
+    </ul>
+        <form id="sect_1" method="post">
+
+            <div class="section">
+                <label>Name Product</label>
+                <!--{{ form.input('title', {'div' : false, 'class' : 'section_second_name', 'label' : false, 'required' : 'required', 'placeholder':'Name', 'value': product.Product.title}) }}-->
+                <input type="text" name="productName[title]" class="" placeholder="Name" required value="{{product.Product.title}}"/>
+                <input type="hidden" name="productName[id]" class="" placeholder="Name" required value="{{product.Product.id}}"/>
+            </div>
+
+            <table class="static " id="staticPages">
+                <thead>
+                <tr>
+                    <th width="" align="left">Name</th>
+                    <th width="" align="left">Number</th>
+                    <th width="" align="left">Title</th>
+                    <th width="">Price</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for item in allInfoProductRent %}
+                    <tr>
+                        <input type="hidden" name="productRentals[{{item.ProductRental.id}}][id]" value="{{item.ProductRental.id}}"/>
+                        <input type="hidden" name="productRentals[{{item.ProductRental.id}}][product_id]" value="{{item.ProductRental.product_id}}"/>
+                        <td></td>
+                        <td>
+                            <input type="text" name="productRentals[{{item.ProductRental.id}}][number]" class="section_second_position" placeholder="Number" required value="{{item.ProductRental.number}}"/>
+                        </td>
+                        <td>
+                            <input type="text" name="productRentals[{{item.ProductRental.id}}][title]" class="section_second_position" placeholder="Title" required value="{{item.ProductRental.title}}"/>
+                        </td>
+                        <td>
+                            <input type="text" name="productRentals[{{item.ProductRental.id}}][value]" class="section_second_position" placeholder="Price" required value="{{item.ProductRental.value}}"/>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="section last">
+                <div>
+                    <button type="submit" class="uibutton loading secttion_second_button">Save</button>
+                </div>
+            </div>
+        </form>
+</div>
+
+
+
+
+<style>
+    .dimensions input {
+        width: 10%;
+        min-width: 80px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+
+        $('.wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+
+        var i = '{{ data.ProductImages[(data.ProductImages | length-1)].id }}';
+
+        $('.listPhotos').sortable({
+            update: function(){
+                $('.listPhotos li').each(function(index){
+                    $(this).find('.hidden-priority').val(index);
+                });
+            }
+        });
+
+        $(document).on('click', '#uploadImage', function() {
+            var a = $(this);
+
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+
+                getFileCallback: function (url) {
+
+                    var ii = i++;
+
+                    $('.listPhotos').append('' +
+                            '<li class="clearfix imageBlock">' +
+                            '<div class="dottedFrame" style="position: relative">'+
+                            '<span><img src="/thumbs/130x100'+ url +'"></span>' +
+                            '<input type="hidden" name="data[ProductImages][' +ii+ '][img]" value="'+ url +'">' +
+                            '<input type="hidden" class="hidden-priority" name="data[ProductImages][' +ii+ '][priority]" value="'+ii+'">' +
+                            '</div>'+
+                            '<div class="text-center">'+
+                            '<a href="javascript:" class="uibutton special loading remove-img"><i class="fa fa-trash"></i></a>'+
+                            '</div>' +
+                            '</li>');
+
+                    showSuccess('Image uploaded successfully', 500);
+                }
+            });
+        });
+
+        $(document).on('click', '.remove-img', function(e) {
+            e.preventDefault();
+            $(this).parents('.imageBlock').remove();
+        });
+
+    });
+</script>

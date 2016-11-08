@@ -1,0 +1,52 @@
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-envelope"></i> List of Contacts </span>
+{{ _view.end() }}
+
+<div class="boxtitle min"><i class="fa fa-list-ol"></i> List of Contacts</div>
+
+    <div class="tableName">
+        <br/>
+        <table class="display static">
+            <thead>
+            <tr>
+                <th>Full Name</th>
+                <th class="filter">{{ paginator.sort('email', 'Email') }}</th>
+                <th class="filter">{{ paginator.sort('phone', 'Phone') }}</th>
+                <th width="400">Text</th>
+                <th class="filter">{{ paginator.sort('created', 'Created') }}</th>
+                <th class="filter">{{ paginator.sort('viewed', 'Status') }}</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+                <tr>
+                    <td>{{ item.Contact.first_name~' '~item.Contact.last_name }}</td>
+                    <td>{{ item.Contact.email }}</td>
+                    <td>{{ item.Contact.phone }}</td>
+                    <td>{{ item.Contact.msg|truncate(200) }}</td>
+
+                    <td>{{ item.Contact.created|date('d M, Y G:i') }}</td>
+                    <td style="font-size: 1.2em;">
+                        <span class="{{ item.Contact.viewed ? 'green' : 'red' }}">
+                            <i class="fa {{ item.Contact.viewed ? 'fa-folder-open' : 'fa-envelope' }}"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="tip">
+                            <a class="activate_link" title="Activate" href="/admin/contacts/activate/{{ item.Contact.id }}"><i class="fa fa-refresh"></i></a>
+                        </span>
+                        <span class="tip">
+                            <a class="edit_link" title="Edit" href="/admin/contacts/view/{{ item.Contact.id }}"><i class="fa fa-search-plus"></i></a>
+                        </span>
+                        <span class="tip">
+                            <a class="delete_link delete" title="Delete" href="/admin/contacts/delete/{{ item.Contact.id }}"><i class="fa fa-trash"></i></a>
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ _view.element('paginator') }}
+    </div>
+</div>

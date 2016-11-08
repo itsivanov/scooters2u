@@ -1,0 +1,58 @@
+{{ _view.assign('hdrPageTitle', 'Rewards') }}
+{{ _view.assign('hdrBgImage', '/img/inner-header.jpg') }}
+
+<div class="cartSection left fullWidth">
+    <div class="containerSmall">
+        <div class="palmPayTabs left fullWidth">
+
+            {{ _view.element('accountMenu') }}
+
+            <div class="palmPayTabContent left fullWidth">
+                <div class="billingField">
+                    <div class="rewardTitle left fullWidth">
+                        <img src="/img/reward-ico.png" alt="" title="">Rewards
+                    </div>
+                    <div class="rewardTable">
+                        <table>
+                            <tr>
+                                <td>
+                                    Current point balance
+                                </td>
+                                <td>
+                                    {{ user.User.point_balance }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Dollar Reward
+                                </td>
+                                <td>
+                                    ${{ user.User.point_balance }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="rewardInfoTable left fullWidth">
+                        <div class="tableDiv">
+                            <div class="tableCell" style="text-align: left">
+                                <img src="/img/openWinner.png" alt="" title="">
+                                <div class="points">
+                                    100<div>points</div>
+                                </div>
+                                <img src="/img/closeWinner.png" alt="" title="">
+                                <span class="lines">=</span>
+                                <span class="dollars">${{ 100 * potgCoefficient }}</span>
+                            </div>
+                            <div class="tableCell infoReward">
+                                <p>
+                                    {#Every 100 points equals  {{ 100 * potgCoefficient }}$#}
+                                </p>
+                                {#<p>For any purchase</p>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

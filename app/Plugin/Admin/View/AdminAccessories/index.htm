@@ -1,0 +1,67 @@
+
+
+{{ _view.start('script') }}
+<script type="text/javascript" src="/admin/components/datatables/dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/components/datatables/ColVis.js"></script>
+{{ _view.end() }}
+
+
+    <ul class="uibutton-group">
+        <li><a href="/admin/accessories/add" class="uibutton icon add" title="Add news">Add Accessory</a></li>
+    </ul>
+
+    <!-- title box -->
+    <div class="boxtitle min">List of posts</div>
+
+    <div class="tableName">
+        <br/>
+        <table class="display static " id="staticPages">
+            <thead>
+            <tr>
+                <th width="" >Image</th>
+                <th width="" >Title</th>
+                <th width="" >Price</th>
+                <th width="" ></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in product %}
+            <tr>
+                <td><img src="/thumbs/50x{{ item.Accessory.image|default("/img/no_image.jpg") }}"/></td>
+                <td>{{ item.Accessory.title }}</td>
+                <td>{%if (item.Accessory.price)%}{{ item.Accessory.price }}${%else%}0{%endif%}</td>
+                <td>
+                    <span class="tip">
+                        <a class="edit_link" title="Edit" href="/admin/accessories/edit/{{ item.Accessory.id }}"><i class="fa fa-pencil"></i></a>
+                    </span>
+                    <span class="tip">
+                        <a class="delete_link delete" title="Delete" href="/admin/accessories/delete/{{ item.Accessory.id }}"><i class="fa fa-trash"></i></a>
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+<script type="text/javascript">
+
+    $(function() {
+
+        $('#staticPages').dataTable({
+            "sDom": 'fCl<"clear">rtip',
+            "sPaginationType": "full_numbers" ,
+            "aaSorting": [],
+            "aoColumns": [
+                null,
+                null,
+                null,
+                { "bSortable": false }
+            ]
+        });
+
+
+    });
+
+</script>

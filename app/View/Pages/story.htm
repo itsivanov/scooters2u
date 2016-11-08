@@ -1,0 +1,48 @@
+{{ _view.assign('hdrPageTitle', 'Our story') }}
+{{ _view.assign('hdrBgImage', '/img/story-header.jpg') }}
+
+<div class="aboutSection left fullWidth backgroundImage">
+    <div class="simpleText left fullWidth">
+        <div class="container">
+            <h3 class="custom-h3 left fullWidth"><span>{{ page.title }}</span></h3>
+            {{ page.content }}
+        </div>
+    </div>
+    {% if video %}
+        <div class="container">
+            <div class="aboutVideo left half">
+                {{ video.Static.media }}
+            </div>
+            <div class="aboutText right half">
+                <div class="simpleText">
+                    <h2>{{ video.Static.title }}</h2>
+                    <p>{{ video.Static.text }}</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+
+<div class="storyTabs left tabsSection fullWidth backgroundImage" data-content="tabs" style="background-image:url('img/contact-bg.jpg');">
+    <div class="layer"></div>
+    <div class="container">
+        <div class="tabsNavigation">
+            {% for storytab in storytabs %}
+            <div class="item{{ loop.index == 1 ? ' active' : '' }}" data-tab="{{ loop.index }}">
+                <div class="tabImage" style="background-image:url('{{ storytab.Storytab.img }}');">
+                    <img src="img/story-mask.png" alt="" title="">
+                </div>
+                <div class="tabText upper">{{ storytab.Storytab.title }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="tabsContent left fullWidth">
+            {% for storytab in storytabs %}
+            <div class="item open" data-tab="{{ loop.index }}"  style="display:{{ loop.index == 1 or isMobile ? ' block' : 'none' }}">
+                <div class="tabText textJustify">{{ storytab.Storytab.text }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

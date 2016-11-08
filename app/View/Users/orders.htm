@@ -1,0 +1,193 @@
+{{ _view.assign('hdrPageTitle', 'Orders') }}
+{{ _view.assign('hdrBgImage', '/img/inner-header.jpg') }}
+
+<div class="cartSection left fullWidth">
+    <div class="containerSmall">
+        <div class="palmPayTabs left fullWidth">
+
+            {{ _view.element('accountMenu') }}
+
+            <div class="palmPayTabContent left fullWidth">
+                <div class="billingField">
+                    <div class="palmWaitTable palmScreenTable left fullWidth">
+                        <div class="tableDiv">
+                            <div class="tableRow">
+                                <div class="tableCell"></div>
+                                <div class="tableCell"><strong>Items</strong></div>
+                                <div class="tableCell"><strong>Number</strong></div>
+                                <div class="tableCell"><strong>Date</strong></div>
+                                <div class="tableCell"><strong>price</strong></div>
+                                <div class="tableCell"><strong>status</strong></div>
+                                <div class="tableCell"><strong>tracking number</strong></div>
+                                <div class="tableCell"></div>
+                            </div>
+                            {% for item in list %}
+                            <div class="tableRow">
+                                <div class="tableCell">
+                                    <a href="javascript:" class="greenText re-add" order-id="{{ item.Order.id }}" title="re-add this items to current cart">
+                                        <strong><i class="fa fa-repeat"></i></strong>
+                                    </a>
+                                </div>
+                                <div class="tableCell">
+                                    <div class="">{{ item.OrderItem|length }}</div>
+                                </div>
+                                <div class="tableCell greyBG">
+                                    {{ item.Order.id }}
+                                </div>
+                                <div class="tableCell greyText">
+                                    {{ item.Order.created|date('M d,Y') }}
+                                </div>
+                                <div class="tableCell greyBG">
+                                    ${{ item.Order.amount }}
+                                </div>
+                                <div class="tableCell">
+                                    <span class="greenText">
+                                        {{ item.OrderStatus.status }}
+                                    </span>
+                                    {% if item.OrderStatus.id == 3 %}<span class="greyText">{{ item.Order.cancel_reason }}</span>{% endif %}
+                                </div>
+                                <div class="tableCell greyBG">
+                                    {{ item.Order.tracking_number|default('<i>not set</i>') }}
+                                </div>
+                                <div class="tableCell">
+                                    {% if not item.OrderStatus or item.OrderStatus.cancellable %}
+                                    <a href="javascript:" class="greyText order-cancel toggle-order-cancel toggle-order-button" order-id="{{ item.Order.id }}" title="cancel this order">
+                                        <strong><i class="fa fa-close"></i></strong>
+                                    </a>
+                                    <div class="toggle-order-cancel cancel-reason-popup" style="display:none" order-id="{{ item.Order.id }}">
+                                        <div class="palmCustomTextarea fullWidth">
+                                            <textarea class="cancel-reason txt-input" type="text" order-id="{{ item.Order.id }}" rows="4" placeholder="Please enter a reason"></textarea>
+                                        </div>
+                                        <div class="palmCustomInput perHalf pull-left">
+                                            <input type="button" class="toggle-order-button ok-button button btnBlack" order-id="{{ item.Order.id }}" value="ok">
+                                        </div>
+                                        <div class="palmCustomInput perHalf pull-right">
+                                            <input type="button" class="toggle-order-button button btnBlack" order-id="{{ item.Order.id }}" value="cancel"/>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="palmWaitTable palmMobileTable left fullWidth">
+                        <div class="tableDiv">
+                            {% for item in list %}
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">Items</div>
+                                    <div class="tableCell textLeft">
+                                        <div class="pull-left">{{ item.OrderItem|length }}
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="javascript:" class="greenText re-add textRight" order-id="{{ item.Order.id }}">
+                                                <strong><i class="fa fa-repeat"></i></strong> re-add
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">Number</div>
+                                    <div class="tableCell textLeft">{{ item.Order.id }}</div>
+                                </div>
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">Date</div>
+                                    <div class="tableCell textLeft">{{ item.Order.created|date('M d,Y') }}</div>
+                                </div>
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">price</div>
+                                    <div class="tableCell textLeft">${{ item.Order.amount }}</div>
+                                </div>
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">Status</div>
+                                    <div class="tableCell textLeft">
+                                        <span class="greenText">{{ item.OrderStatus.status }}</span>
+                                        {% if item.OrderStatus.id == 3 %}<span class="greyText">{{ item.Order.cancel_reason }}</span>{% endif %}
+                                    </div>
+                                </div>
+                                <div class="tableRow">
+                                    <div class="tableCell textLeft">Tracking number</div>
+                                    <div class="tableCell textLeft">${{ item.Order.tracking_number|default('<i>not set</i>') }}</div>
+                                </div>
+                                {% if not item.OrderStatus or item.OrderStatus.cancellable %}
+                                <div class="tableRow toggle-order-cancel" order-id="{{ item.Order.id }}">
+                                    <div class="tableCell textLeft">
+                                    </div>
+                                    <div class="tableCell textLeft">
+                                        <a href="javascript:" class="greyText order-cancel toggle-order-button" order-id="{{ item.Order.id }}">
+                                            <strong><i class="fa fa-close"></i> CANCEL</strong>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="tableRow toggle-order-cancel" style="display:none" order-id="{{ item.Order.id }}">
+                                    <div class="tableCell textLeft">
+                                        <div class="palmCustomTextarea fullWidth">
+                                            <textarea class="cancel-reason txt-input" type="text" order-id="{{ item.Order.id }}" rows="4" placeholder="Please enter a reason"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="tableCell textLeft">
+                                        <div class="palmCustomInput perHalf pull-left">
+                                            <input type="button" class="toggle-order-button ok-button button btnBlack" order-id="{{ item.Order.id }}" value="ok">
+                                        </div>
+                                        <div class="palmCustomInput perHalf pull-right">
+                                            <input type="button" class="toggle-order-button button btnBlack" order-id="{{ item.Order.id }}" value="cancel"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <br>
+                                <br>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('click', '.re-add', function(e) {
+            e.preventDefault();
+            $.post(
+                    '/products/re/' + $(this).attr('order-id'),
+                    {},
+                    function(response) {
+                        if (!response.error) {
+                            window.location.href = '/products/cart';
+                        } else {
+                            $.pnotify({ text: response.errorDesc || 'Cant re-add', type: 'warning', title: 'Warning'});
+                        }
+                    },
+                    'json'
+            );
+        });
+
+        $(document).on('click', '.toggle-order-button', function(e) {
+            e.preventDefault();
+            var orderId = $(this).attr('order-id');
+            $('.toggle-order-cancel[order-id="'+orderId+'"]').toggle();
+            if ($(this).hasClass('ok-button')) {
+                var reason = $('.cancel-reason[order-id="'+orderId+'"]').val();
+                $.post(
+                        '/products/cancel',
+                        {
+                            id : orderId,
+                            cancel_reason: reason
+                        },
+                        function(response) {
+                            if (!response.error) {
+                                window.location.reload();
+                            } else {
+                                $.pnotify({ text: response.errorDesc || 'Cant cancel', type: 'warning', title: 'Warning'});
+                            }
+                        },
+                        'json'
+                );
+            }
+            $('.cancel-reason[order-id="'+orderId+'"]').val('');
+        });
+    });
+</script>

@@ -1,0 +1,12 @@
+{% for product in products %}
+    <li class="product-item">
+        <a href="{{ '/products/view/'~product.Product.id }}">
+            <span class="wrapp-img">
+                <span class="fix-img">
+                    <img src="{{ product.Product.img|thumb(260,172) }}" alt="{{ product.Product.title }}" />
+                </span>
+            </span>
+            <span class="link">{{ product.Product.title }}</span>
+        </a>
+    </li>
+{% endfor %}

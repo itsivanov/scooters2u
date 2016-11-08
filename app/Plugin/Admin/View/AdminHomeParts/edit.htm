@@ -1,0 +1,53 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> Products</span>
+    {{ _view.end() }}
+
+    <style>
+        .properties{
+            margin-bottom: 70px;
+        }
+
+        .properties div{
+            width: auto; float: left; margin: 0 20px; border: 0;
+        }
+
+        .homepart_sec{
+            margin-top: 10px;
+        }
+    </style>
+    <!--{{partsOnId|var_dump}}-->
+    <ul class="uibutton-group">
+        <li><a href="/admin/home_parts" class="uibutton special"><i class="fa fa-list-ol"></i> Back</a></li>
+    </ul>
+
+        {{ form.create({'class' : 'form'}) }}
+
+    <input type="hidden" name="id" value="{{partsOnId.HomePart.id}}"/>
+        <div class="section homepart_sec">
+            <label>Title</label>
+            <input type="text" name="title" class="" placeholder="Number" required value="{{partsOnId.HomePart.title}}"/>
+        </div>
+        <div class="section homepart_sec">
+            <label>Content</label>
+            <div>{{ form.input('content', {'type':'textarea',  'class' : 'tst',  'value': partsOnId.HomePart.content}) }}</div>
+        </div>
+        <div class="section last">
+            <div>
+                {{ form.submit('Save', {'class' : 'uibutton loading '}) }}
+            </div>
+        </div>
+        {{ form.end() }}
+
+</div>
+
+<style>
+    .dimensions input {
+        width: 10%;
+        min-width: 80px;
+    }
+</style>
+<script>
+    $('.tst').elrte(opts);
+</script>

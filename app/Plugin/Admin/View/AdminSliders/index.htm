@@ -1,0 +1,67 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-caret-square-o-right"></i> Sliders</span>
+    {{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-list-ol"></i> Sliders list</div>
+
+    <div class="tableName">
+        <br/>
+        <table class="display static">
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Management</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+                <tr>
+                    <td><img src="{{ item.Slider.img|thumb(120, 70)}}"/></td>
+                <td>
+                    <span class="tip">
+                        <a class="delete_link delete" title="Delete" href="/admin/sliders/delete/{{ item.Slider.id }}"><i class="fa fa-trash"></i></a>
+                    </span>
+                </td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                <td>
+                    {{ form.create({'class' : 'form', 'id' : 'addNewImage'}) }}
+                        {{ form.hidden('img', {'div': false, 'label': false, 'id':'imageInput'}) }}
+                        <button class="uibutton success" id="imageId">Add new Image</button>
+                    {{ form.end() }}
+                </td>
+                <td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    $('#addNewImage').submit();
+//                    thisBtn.attr('src', '/thumbs/250x' + url);
+                }
+            });
+        });
+    });
+</script>

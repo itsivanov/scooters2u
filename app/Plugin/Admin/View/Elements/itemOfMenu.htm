@@ -1,0 +1,7 @@
+{{ extTree.addItemAttribute('id', 'list_' ~ data.Menu.id ) }}
+<div class="itemOfMenu">{{ data.Menu.name }}
+    <a href="{{ data.Menu.id }}" title="Delete" class="delete-link delete_link" style="float: right; font-size: 1em;"><i class="fa fa-trash"></i></a>
+    <a href="/admin/menus/edit_item/{{ extTree.getdata('menu_id') }}/{{ data.Menu.id }}" class="edit_link" title="Edit" style="float: right; margin-right: 20px; font-size: 1em;">
+        <i class="fa fa-pencil"></i>
+    </a>
+</div>

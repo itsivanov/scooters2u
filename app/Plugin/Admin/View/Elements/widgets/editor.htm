@@ -1,0 +1,49 @@
+{{ _view.start('cssLink') }}
+    <link rel="stylesheet" href="/admin/js/elrte-1.3/css/elrte.min.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/admin/js/elfinder2/css/elfinder.min.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/admin/js/elfinder2/css/theme.css" type="text/css" media="screen" charset="utf-8">
+{{ _view.end() }}
+{{ _view.start('script') }}
+    {{ html.script('/admin/js/elrte-1.3/js/elrte.min') }}
+    {{ html.script('/admin/js/elfinder2/js/elfinder.min') }}
+{{ _view.end() }}
+
+
+<script type="text/javascript">
+
+
+        var opts;
+        $().ready(function() {
+            elRTE.prototype.options.panels.web2pyPanel = [
+                 "bold", "italic", "underline", "forecolor", "justifyleft", "justifyright",
+                 "justifycenter", "justifyfull", "formatblock", "insertorderedlist", "insertunorderedlist",
+                 "link", "image", "flash", 'table', 'tableprops', 'tablerm',  'tbrowbefore', 'tbrowafter', 'tbrowrm', 'tbcolbefore', 'tbcolafter', 'tbcolrm', 'tbcellprops', 'tbcellsmerge', 'tbcellsplit'
+            ];
+            elRTE.prototype.options.toolbars.web2pyToolbar = ["web2pyPanel"];
+            var id = "myelfinder";
+            opts = {
+                 lang         : "en",
+                 styleWithCSS : true,
+                 cssfiles : ["/css/elrte-inner.css"],
+                 height       : 300,
+                 toolbar  : "web2pyToolbar",
+                 fmOpen : function(callback) {
+                   $("<div id=" + id + " />").dialogelfinder({
+                     width: 850,
+                     url: '/js/elfinder2/connector.php',
+                     commandsOptions: {
+                       getfile: {
+                         oncomplete: 'destroy' // destroy elFinder after file selection
+                       }
+                     },
+                     getFileCallback: callback // pass callback to file manager
+                   });
+
+                 }
+
+            };
+
+        });
+
+
+</script>

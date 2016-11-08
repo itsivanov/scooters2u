@@ -1,0 +1,48 @@
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-envelope"></i> List of Feedback </span>
+{{ _view.end() }}
+
+<div class="boxtitle min"><i class="fa fa-list-ol"></i> List of Feedback</div>
+
+    <ul class="uibutton-group">
+        <li><a href="/admin/feedbacks/export" class="uibutton" title="Add claim"><i class="fa fa fa-floppy-o"></i> Export to .csv</a></li>
+    </ul>
+
+    <div class="tableName">
+        <br/>
+        <table class="display static">
+            <thead>
+            <tr>
+                <th>User name</th>
+                <th>Email</th>
+                <th>Created</th>
+                <th>Like</th>
+                <th>Improve</th>
+                <th>Comment</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+                <tr>
+
+                    <td>{{ item.User.UserInfo.first_name ~ ' ' ~ item.User.UserInfo.last_name }}</td>
+                    <td>{{ item.User.email }}</td>
+                    <td>{{ item.Feedback.created|date('d M, Y G:i') }}</td>
+
+                    <td>{{ item.Feedback.like }}</td>
+                    <td>{{ item.Feedback.improve }}</td>
+
+                    <td>{{ item.Feedback.comment }}</td>
+                    <td>
+                        <span class="tip">
+                            <a class="delete_link delete" title="Delete" href="/admin/feedbacks/delete/{{ item.Feedback.id }}"><i class="fa fa-trash"></i></a>
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ _view.element('paginator') }}
+    </div>
+</div>

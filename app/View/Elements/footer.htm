@@ -1,0 +1,74 @@
+<div class="section sixthSection"
+     id="section5"
+     {% if page.key == 'home' %}  style="background-image: url('{{ parts.bottom.HomePart.image }}')"
+        {% else %}
+            style="background: transparent !important;
+    {% endif %}>
+    <div class="intro" {% if page.key != 'home' %} style="margin-top:0px; padding-top: 20px; overflow: initial;" {% endif %}>
+        {{ _view.element('conditionParts/bottom') }}
+        <div class="footer left fullWidth">
+            <div class="item textCenter">
+                <a href="" class="footerLargeLogo">
+                    <img src="/img/footer-logo.png" alt="" title="">
+                </a>
+                <ul class="textLeft middleUl">
+                    {% for item in footerMenu %}
+                    <li>
+                        <a href="{{ item.Menu.url }}">{{ item.Menu.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <p>
+                    Developed by <a href="http://vizualtech.com/" target="_blank"
+                                    original-title="VizualTech admin">Vizualtech<img src="/img/vt.ico"></a><br>and
+                    <a href="http://dsxpress.com/" target="_blank" original-title="DSXpress">DSXpress<img
+                            src="/img/ds_logo.png" style="width: auto;height: 16px;"></a></p>
+                <p class="copy">{{ options.copyright }}</p>
+            </div>
+            <div class="item textLeft">
+                <div class="title">About Scooters2U</div>
+                <p>{{ options.about_scooters }}</p>
+                <div class="title">Follow us on</div>
+                <a href="{{ options.facebook }}" class="socialLink"><i class="fa fa-facebook"></i></a>
+                <a href="{{ options.twitter }}" class="socialLink"><i class="fa fa-twitter"></i></a>
+                <a href="{{ options.google }}" class="socialLink"><i class="fa fa-google-plus"></i></a>
+                <a href="{{ options.instagram }}" class="socialLink"><i class="fa fa-instagram"></i></a>
+                <a href="{{ options.yelp }}" class="socialLink"><i class="fa fa-yelp"></i></a>
+            </div>
+            <div class="item textLeft">
+                <div class="title">RECENT POSTS</div>
+                <ul>
+                    {% for new in lastNews %}
+                    <li>
+                        <a href="/news/{{ new.Tiding.slug }}">{{ new.Tiding.title }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="widget">
+                    <img src="/img/trip.png" alt="" title="">
+                </div>
+                <div class="widget">
+                    <img src="/img/yelp.png" alt="" title="">
+                </div>
+            </div>
+            <div class="item textLeft">
+                <div class="title">AREAS OF SERVICE</div>
+                <ul>
+                    <!--{%for item in footer %}-->
+                    <!--<li>-->
+                        <!--<a href="{{item.Menu.url}}">{{item.Menu.name}}</a>-->
+                    <!--</li>-->
+                    <!--{%endfor%}-->
+                    {%for item in footerMenuRight%}
+                        <li><a href="{{ item.Menu.url }}">{{ item.Menu.name }}</a></li>
+                    {%endfor%}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if showMob %}
+    {{ _view.element('footerMobile') }}
+{% endif %}

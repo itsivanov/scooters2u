@@ -1,0 +1,25 @@
+<style>
+    ul{
+        list-style: inherit;
+    }
+</style>
+{{ _view.assign('hdrPageTitle', page.title) }}
+{{ _view.assign('hdrBgImage', '/img/blog-bg.jpg') }}
+
+<div style="background-image: url({{page.img }}" class="banner-ttl">
+    <div class="table-cell">
+        <div class="wrapper-small wow animated fadeInLeft">
+            <h1>{{ page.title }}</h1>
+        </div>
+    </div>
+</div>
+<div class="aboutSection left fullWidth backgroundImage">
+    <div class="simpleText left fullWidth">
+        <div class="container static">
+            <h3 class="custom-h3 left fullWidth"><span></span></h3>
+            <div class="simpleTextContent left fullWidth">
+                {{ page.content }}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+{{ _view.start('captionHeader') }}
+<div class="header"><span><span class="ico gray document"></span> List of Emails </span></div>
+    {{ _view.end() }}
+
+    <!-- title box -->
+    <div class="boxtitle min">List of emails for notification</div>
+
+    <div class="tableName">
+    <div>
+        <table class="display data_table3 " id="staticposts">
+            <thead>
+            <tr>
+                <th> Email </th>
+                <th> Created </th>
+                <th> Status </th>
+                <th> Management </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for item in list %}
+            <tr>
+                <td><b>{{ item.Email.email }}</b></td>
+                <td>{{ item.Email.created|date('M j, Y') }}</td>
+                <td> {% if item.Email.active %}<strong style="color: green;"> active </strong>{% else %}<strong style="color: red;"> blocked </strong>{% endif %}</td>
+                <td>
+                <span class="tip">
+                    <a title="Activate" href="/admin/contacts/activate_email/{{ item.Email.id }}">
+                        <img src="/admin/images/icon/pass_.png" />
+                    </a>
+                    <a class="Delete" title="Delete" onclick="return removeConfirm();" href="/admin/contacts/delete_email/{{ item.Email.id }}">
+                        <img src="/admin/images/icon/icon_delete.png"/>
+                    </a>
+                </span>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+        {{ form.create({'class' : 'form'}) }}
+        <div class="section">
+        <div>
+            {{ form.input('Email.email', {'div' : false, 'type' : 'text', 'label' : false, 'required' : true, 'placeholder' : 'New email'}) }}</div>
+            {{ form.submit('add email', {'class' : 'uibutton loading'}) }}
+        </div>
+        </div>
+        {{ form.end() }}
+    </div>
+    </div>

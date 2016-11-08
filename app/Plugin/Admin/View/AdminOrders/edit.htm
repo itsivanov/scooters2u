@@ -1,0 +1,192 @@
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-cart-arrow-down"></i> Orders</span>
+    {{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit Order</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/orders" class="uibutton special"><i class="fa fa-list-ol"></i> Orders list</a></li>
+    </ul>
+    <div id="tabs">
+        <ul>
+            <li><a href="#data">Order data</a></li>
+            <li><a href="#access">Accessory</a></li>
+            <li><a href="#billing">Billing info</a></li>
+        </ul>
+
+        {{ form.create({'class' : 'form'}) }}
+        {{ form.hidden('Order.id', {'value': order.Order.id}) }}
+        {{ form.hidden('OrderBillingInfo.id', {'value': order.OrderBillingInfo.id}) }}
+        <div id="data">
+            <h3>Date</h3>
+            <div class="section">
+                <label>From</label>
+                <div>
+                    {{ order.OrderBillingInfo.from_date }}
+                </div>
+
+            </div>
+            <div class="section">
+                <label>To</label>
+                <div>
+                    {{ order.OrderBillingInfo.to_date }}
+                </div>
+            </div>
+            {%if (order.OrderBillingInfo.delivery_time)%}
+            <div class="section">
+                <label>Delivery date</label>
+                <div>
+                    {{ order.OrderBillingInfo.delivery_time }}
+                </div>
+            </div>
+            {%endif%}
+
+
+            <div class="section">
+                <label>Product name</label>
+                <div>{{ form.input('Order.name_product', {'div' : false, 'label' : false, 'value' : order.Order.name_product}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>Order created</label>
+                <div>{{ _view.order.Order.created|date('m-d-Y') }}</div>
+            </div>
+            {%if (order.Order.discount_key)%}
+            <div class="section">
+                <label>Discount key</label>
+                <div>{{ order.Order.discount_key }}</div>
+            </div>
+            {%endif%}
+
+            <div class="section">
+                <label>Order status</label>
+                <div>
+                    <select name="Order[status]">
+                        <option  value="New" {%if(order.Order.status == "New" )%}selected{%endif%} >New</option>
+                        <option value="In rent" {%if(order.Order.status == "In rent")%}selected{%endif%} >In rent</option>
+                        <option value="Completed" {%if(order.Order.status == "Completed")%}selected{%endif%} >Completed</option>
+                    </select>
+                </div>
+            <!--<div>{{ form.input('Order.status', {'div' : false, 'label' : false, 'value' : order.Order.order_status_id}) }}</div>-->
+            </div>
+
+            <div class="section">
+                <label>Amount</label>
+                <div>{{ form.input('Order.amount', {'div' : false, 'label' : false, 'value': order.Order.amount }) }}</div>
+            </div>
+
+            <div class="section">
+                <label>File Document</label>
+                <a href="/{{order.Order.file}}" download>Download PDF</a>
+                <!--<div>{{ form.input('Order.amount', {'div' : false, 'label' : false, 'value': order.Order.amount }) }}</div>-->
+            </div>
+
+        </div>
+        <div id="access">
+            <!--{{access|var_dump}}-->
+            {% set count = 1 %}
+            {%for item in access%}
+            <div class="section">
+                <label>{{count}}</label>
+                <input type="hidden" name="OrderAccessory[{{count}}][id]" value="{{item.OrderAccessory.id}}">
+                <input type="hidden" name="OrderAccessory[{{count}}][accessory_id]" value="{{item.OrderAccessory.accessory_id}}">
+                <input type="hidden" name="OrderAccessory[{{count}}][order_id]" value="{{item.OrderAccessory.order_id}}">
+                <!--Name: {{ form.input('Order.amount', {'div' : false, 'label' : false, 'value': item.Accessory.title }) }}-->
+                <img src="{{item.Accessory.image}}"  class="admin_image_acc" width="40" height="40">
+                <select class="styled floatLabel"  name="OrderAccessory[{{count}}][size]" value="{{item.OrderAccessory.size}}">
+                    <option {%if(item.OrderAccessory.size == "L")%}selected{%endif%} >L</option>
+                    <option {%if(item.OrderAccessory.size == "M")%}selected{%endif%} >M</option>
+                    <option {%if(item.OrderAccessory.size == "XL")%}selected{%endif%} >XL</option>
+                </select>
+                <!--Size: {{ form.input('OrderAccessory.size', {'div' : false, 'label' : false, 'value': item.OrderAccessory.size }) }}-->
+            </div>
+            {% set count = count + 1 %}
+            {%endfor%}
+        </div>
+        <div id="billing">
+            <h3>Billing info</h3>
+
+            <div class="section">
+                <label>First name</label>
+                <div>{{ form.input('OrderBillingInfo.first_name', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.first_name}) }}</div>
+            </div>
+            <div class="section">
+                <label>Last name</label>
+                <div>{{ form.input('OrderBillingInfo.last_name', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.last_name}) }}</div>
+            </div>
+
+            <h3>Rental Information</h3>
+
+            <div class="section">
+                <label>Full name</label>
+                <div>{{ form.input('Order.full_name', {'type':'text', 'label' : false, 'value': order.Order.full_name}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>City</label>
+                <div>{{ form.input('Order.city', {'type':'text', 'label' : false, 'value': order.Order.city}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>address 1</label>
+                <div>{{ form.input('OrderBillingInfo.address_1', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.address_1}) }}</div>
+            </div>
+            <div class="section">
+                <label>address 2</label>
+                <div>{{ form.input('OrderBillingInfo.address_2', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.address_2}) }}</div>
+            </div>
+            <div class="section">
+                <label>zip</label>
+                <div>{{ form.input('OrderBillingInfo.zip', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.zip}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>phone</label>
+                <div>{{ form.input('OrderBillingInfo.phone', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.phone}) }}</div>
+            </div>
+            <div class="section">
+                <label>email</label>
+                <div>{{ form.input('OrderBillingInfo.email', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.email}) }}</div>
+            </div>
+
+            <h3>Billing address</h3>
+
+            <div class="section">
+                <label>Address</label>
+                <div>{{ form.input('OrderBillingInfo.billing_address', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.billing_address}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>country</label>
+                <div>{{ form.input('OrderBillingInfo.country', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.country}) }}</div>
+            </div>
+            <div class="section">
+                <label>state</label>
+                <div>{{ form.input('OrderBillingInfo.state', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.state}) }}</div>
+            </div>
+            <div class="section">
+                <label>city</label>
+                <div>{{ form.input('OrderBillingInfo.city', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.city}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>zip-code</label>
+                <div>{{ form.input('OrderBillingInfo.billing_zip', {'type':'text', 'label' : false, 'value': order.OrderBillingInfo.billing_zip}) }}</div>
+            </div>
+        </div>
+
+
+        <div class="section last">
+            <div>
+                {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+            </div>
+        </div>
+        {{ form.end() }}
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+    });
+
+</script>

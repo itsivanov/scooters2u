@@ -1,0 +1,104 @@
+<div class="modal loginModal">
+    <div class="modalClose modalCloseDiv"></div>
+    <div class="modalContent">
+        <div class="modalClose modalCloseLink"></div>
+        <div class="modalTitle">
+            login
+        </div>
+        {#<a class="loginAS left fullWidth" href=""><i class="fa left fa-facebook"></i>login with facebook</a>#}
+        {#<span class="orBlock left fullWidth"><span>or</span></span>#}
+
+        {{ form.create('User', {'class' : 'form', 'id' : 'loginForm'})}}
+        <div class="palmCustomInput imageInput left fullWidth">
+            <i class="fa fa-envelope"></i>
+            {#<input type="email" placeholder="Email">#}
+            {{ form.input('email', {'div' : false, 'label' : false, 'placeholder':'Email'}) }}
+        </div>
+        <div class="palmCustomInput imageInput left fullWidth">
+            <i class="fa fa-lock"></i>
+            {#<input type="password" placeholder="Password">#}
+            {{ form.input('password', {'div' : false, 'label' : false, 'placeholder':'Password'}) }}
+        </div>
+        <div class="palmCustomCheck left half">
+            {#<input type="checkbox" id="remember">#}
+            {{ form.checkbox('remember', {'div' : false, 'id' : 'remember', 'label' : false}) }}
+            <label for="remember">Remember me</label>
+        </div>
+        <div class="palmCustomCheck forgotLink left half">
+            <a href="#" class="reset">Forgot Password?</a>
+        </div>
+        {#<input type="submit" class="button btnBlack left fullWidth" value="Login">#}
+        {{ form.submit('Login', {'class' : 'button btnBlack left fullWidth'}) }}
+        <div class="accountHaveBlock left fullWidth">
+            Don't have an account
+            <a href="/users/register" class="register">Register</a>
+        </div>
+        {{ form.end() }}
+    </div>
+</div>
+
+<div class="modal resetModal">
+    <div class="modalClose modalCloseDiv"></div>
+    <div class="modalContent">
+        <div class="modalClose modalCloseLink"></div>
+        <div class="modalTitle">
+            Reset password
+        </div>
+        {#<a class="loginAS left fullWidth" href=""><i class="fa left fa-facebook"></i>login with facebook</a>#}
+        {#<span class="orBlock left fullWidth"><span>or</span></span>#}
+
+        {{ form.create('User', {'class' : 'form', 'id' : 'resetForm'})}}
+        <div class="palmCustomInput imageInput left fullWidth">
+            <i class="fa fa-envelope"></i>
+            {#<input type="email" placeholder="Email">#}
+            {{ form.input('email', {'div' : false, 'label' : false, 'placeholder':'Email'}) }}
+        </div>
+        {#<input type="submit" class="button btnBlack left fullWidth" value="Login">#}
+        {{ form.submit('Reset', {'class' : 'button btnBlack left fullWidth'}) }}
+        {{ form.end() }}
+    </div>
+</div>
+
+<div class="modal registerModal">
+    <div class="modalClose modalCloseDiv"></div>
+    <div class="modalContent">
+        <div class="modalClose modalCloseLink"></div>
+        <div class="modalTitle">
+            Register
+        </div>
+        {#<a class="loginAS left fullWidth" href=""><i class="fa left fa-facebook"></i>Register with facebook</a>#}
+        {#<span class="orBlock left fullWidth"><span>or</span></span>#}
+
+        {{ form.create('User', {'class' : 'form', 'id':'registerForm'})}}
+        <div class="palmCustomInput imageInput left fullWidth">
+            <i class="fa fa-user"></i>
+            {#<input type="text" placeholder="Full Name">#}
+            {{ form.input('first_name', {'div' : false, 'label' : false, 'placeholder':'Name'}) }}
+        </div>
+        <div class="palmCustomInput imageInput left fullWidth">
+            <i class="fa fa-envelope"></i>
+            {#<input type="email" placeholder="Email">#}
+            {{ form.input('email', {'div' : false, 'label' : false, 'placeholder':'Email'}) }}
+        </div>
+        <div class="palmCustomInput imageInput left fullWidth">
+            <i class="fa fa-lock"></i>
+            {#<input type="password" placeholder="Password">#}
+            {{ form.input('password', {'div' : false, 'label' : false, 'placeholder':'Password'}) }}
+        </div>
+        <div class="palmCustomCheck left fullWidth forgotLink textLeft">
+            {{ form.checkbox('agree', {'div' : false, 'label' : false, 'id':'agree'}) }}
+            <label for="agree" class="left fullWidth textLeft">Agree to <a href="/terms" target="_blank" class="textLeft">Terms and Conditions</a></label>
+        </div>
+        {#<input type="submit" class="button btnBlack left fullWidth" value="Register">#}
+        <div class="submit">
+            <span class="button btnBlack left fullWidth" id="registerLoading" style="display:none; text-align:center;">Loading...</span>
+            <input class="button btnBlack left fullWidth" id="registerButton" type="submit" value="Register">
+        </div>
+        {# {{ form.submit('Register', {'class' : 'button btnBlack left fullWidth', 'id':'registerButton'}) }} #}
+        <div class="accountHaveBlock left fullWidth">
+            Already have an account?
+            <a href="" class="login">Login</a>
+        </div>
+        {{ form.end() }}
+    </div>
+</div>

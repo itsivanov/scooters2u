@@ -1,0 +1,34 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-cogs"></i> Options </span></div>
+{{ _view.end() }}
+
+<div class="boxtitle min"><i class="fa fa-pencil"></i> Edit option</div>
+<ul class="uibutton-group">
+    <li><a href="/admin/options" class="uibutton special"><i class="fa fa-list-ol"></i> All options</a></li>
+</ul>
+
+{{ form.create('Option', {'class' : 'form'}) }}
+    <div class="section">
+        <label>Key</label>
+        <div>{{ form.input('Option.key', {'div' : false, 'label' : false, 'disabled': 'disabled'}) }}</div>
+    </div>
+
+    <div class="section">
+        <label>Value</label>
+        <div>{{ form.input('Option.value', {'div' : false, 'label' : false}) }}</div>
+    </div>
+
+    {{ form.hidden('Option.id') }}
+
+    <div class="section last">
+        <div>
+            {{ form.submit('Save option', {'class' : 'uibutton loading'}) }}
+        </div>
+    </div
+{{ form.end() }}
+
+<script type="text/javascript">
+    $('#wysiwyg').elrte(opts);
+</script>

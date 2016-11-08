@@ -1,0 +1,17 @@
+<section class="content main-login">
+    <div class="wrapper">
+        <div class="form-holder login forget clearfix">
+            <span class="title-top">Please enter your email address below to reset your password.</span>
+
+            {% if logError %}
+                <center class="errorMsg">{{ logError }}</center>
+            {% endif %}
+
+            {{ form.create({'class' : 'form'})}}
+                {{ form.input('email', {'div' : false, 'class' : 'txt', 'label' : false, 'placeholder':'Email'}) }}
+                {{ form.error('User.email') }}
+                {{ form.submit('Restore password', {'class' : 'sbm'}) }}
+            {{ form.end() }}
+        </div>
+    </div>
+</section>

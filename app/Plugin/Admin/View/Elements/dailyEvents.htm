@@ -1,0 +1,9 @@
+{% for event in confirmedEvents %}
+    <span data-hint="{{ event.location }}: {{ event.explication }}" class="hint event_block {{ event.availability }} {{ event.duration }}"></span>
+    <div class="status_day {{ event.duration }} {% if event.to_delete %}to-delete{% else %}confirmed{% endif %}"></div>
+{% endfor %}
+
+{% for event in unconfirmedEvents %}
+    <span data-hint="{{ event.location }}: {{ event.explication }}" class="hint event_block {{ event.availability }} {{ event.duration }}"></span>
+    <div class="status_day {{ event.duration }} {% if event.to_delete %}to-delete{% else %}unconfirmed{% endif %}"></div>
+{% endfor %}

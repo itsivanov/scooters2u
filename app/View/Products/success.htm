@@ -1,0 +1,183 @@
+{{ _view.assign('hdrPageTitle', success.Static.title) }}
+{{ _view.assign('hdrBgImage', '/img/inner-header.jpg') }}
+
+<div class="cartSection left fullWidth">
+    <div class="containerSmall">
+        <div class="palmPayTabs left fullWidth">
+            <div class="palmPayTabTitle left fullWidth">
+                <a href="javascript:" class="palmPayTabTitleItem upper left">
+                    <div class="tableDiv">
+                        <div class="tableCell">
+                            <strong>shopping cart</strong>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:" class="palmPayTabTitleItem upper left">
+                    <div class="tableDiv">
+                        <div class="tableCell">
+                            <strong>shipping & billing</strong>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:" class="palmPayTabTitleItem upper left active">
+                    <div class="tableDiv">
+                        <div class="tableCell">
+                            <strong>payment</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="palmPayTabContent successTable left fullWidth">
+                <div class="tableDiv">
+                    <div class="tableCell">
+                       {{ success.Static.text }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a id="ButtonFeedback2" class="take-two" href="#take-two" style="position: absolute; left: -9999px"></a>
+
+
+{#<div class="modal feedbackModal" style="display: block">#}
+    {#<div class="modalClose modalCloseDiv"></div>#}
+    {#<div class="modalContent">#}
+        {#<div class="modalClose modalCloseLink"></div>#}
+        {#<div class="modalTitle">#}
+            {#Take survey#}
+        {#</div>#}
+        {#{{ form.create('Feedback', {'class' : 'form', 'id' : 'feedbackForm'})}}#}
+        {#<div class="palmCustomInput imageInput left fullWidth">#}
+            {#<p>Your opinion counts! Your ideas inspire us and your comments helps us improve. Please tell us about your shopping experience…</p>#}
+        {#</div>#}
+        {#<div class="palmCustomInput imageInput left fullWidth">#}
+            {#<label>What do you like best about our products</label><br>#}
+            {#{{ form.select('like', {#}
+                {#'Convenience': 'Convenience',#}
+                {#'Natural Blends': 'Natural Blends',#}
+                {#'Simplicity': 'Simplicity',#}
+                {#'other': 'Other',#}
+            {#}, {#}
+                {#'div' : false, 'label' : false,#}
+                {#'empty': 'Choose',#}
+            {#}) }}#}
+            {#{{ form.input('like_other', {'div' : false, 'label' : false, 'placeholder':'Other', 'style': 'display: none', 'class': 'other'}) }}#}
+        {#</div>#}
+        {#<div class="palmCustomInput imageInput left fullWidth">#}
+            {#<label>What do you want improved?</label><br>#}
+            {#{{ form.select('improve', {#}
+                {#'Service': 'Service',#}
+                {#'Product quality': 'Product quality',#}
+                {#'other': 'Other',#}
+            {#}, {#}
+                {#'div' : false, 'label' : false,#}
+                {#'empty': 'Choose',#}
+            {#}) }}#}
+            {#{{ form.input('improve_other', {'div' : false, 'label' : false, 'placeholder':'Other', 'style': 'display: none', 'class': 'other'}) }}#}
+        {#</div>#}
+        {#<div class="palmCustomInput imageInput left fullWidth">#}
+            {#<label>Any additional comments you’d like to share with us? </label><br>#}
+            {#{{ form.textarea('comment', {'div' : false, 'label' : false, 'placeholder':'Other'}) }}#}
+        {#</div>#}
+        {#{{ form.submit('Send', {'class' : 'button btnBlack left fullWidth'}) }}#}
+        {#{{ form.end() }}#}
+    {#</div>#}
+{#</div><div class="modal feedbackModal2">#}
+    {#<div class="modalClose modalCloseDiv"></div>#}
+    {#<div class="modalContent">#}
+        {#<div class="modalClose modalCloseLink"></div>#}
+        {#<div class="modalTitle">#}
+            {#Thank you for sharing!#}
+        {#</div>#}
+        {#<form>#}
+            {#<div class="palmCustomInput imageInput left fullWidth">#}
+                {#<p>Image</p>#}
+            {#</div>#}
+        {#</form>#}
+    {#</div>#}
+{#</div>#}
+
+<div style="display:none;">
+    <div id="take" class="popup">
+
+        <div class="popup-inner">
+            <div class="wrapp-ttl">
+                <strong>Your opinion counts!</strong>
+                <span>Your ideas inspire us and your comments helps us <br>
+                    improve.Please tell us about your shopping experience…</span>
+            </div>
+            {{ form.create('Feedback', {'class' : 'form-holder feedbackForm', 'id' : 'feedbackForm'})}}
+                <div class="ttl"><strong>What do you like best about our products?</strong></div>
+
+                <div class="radio">
+                    <div class="row">
+                        <div class="col col-xs-4">
+                            <input id="Convenience" type="radio" name="data[Feedback][like]" value="Convenience">
+                            <label for="Convenience">Convenience</label>
+                        </div>
+                        <div class="col col-xs-4">
+                            <input id="Natural Blends" type="radio" name="data[Feedback][like]" value="Natural Blends">
+                            <label for="Natural Blends">Natural Blends</label>
+                        </div>
+                        <div class="col col-xs-4">
+                            <input id="Simplicity" type="radio" name="data[Feedback][like]" value="Simplicity">
+                            <label for="Simplicity">Simplicity</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="margin-top: 8px;" class="col col-xs-2">
+                            <input id="Other" type="radio" name="data[Feedback][like]" value="other">
+                            <label for="Other">Other</label>
+                        </div>
+                        <div class="col col-xs-10">
+                            <input class="txt-input other" type="text" name="data[Feedback][like_other]" placeholder="Type your answer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ttl"><strong>What do you want improved?</strong></div>
+
+                <div class="radio">
+                    <div class="row">
+                        <div class="col col-xs-4">
+                            <input id="Service" type="radio" name="data[Feedback][improve]" value="Service">
+                            <label for="Service">Service</label>
+                        </div>
+                        <div class="col col-xs-8">
+                            <input id="Product quality" type="radio" name="data[Feedback][improve]" value="Product quality">
+                            <label for="Product quality">Product quality</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="margin-top: 8px;" class="col col-xs-2">
+                            <input id="Other2" type="radio" name="data[Feedback][improve]" value="other">
+                            <label for="Other2">Other</label>
+                        </div>
+                        <div class="col col-xs-10">
+                            <input class="txt-input" type="text" name="data[Feedback][improve_other]" placeholder="Type your answer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ttl"><strong>Any additional comments you’d like to share with us</strong></div>
+                <br>
+                <textarea class="txt-input" name="data[Feedback][comment]" rows="6" placeholder="Type your comment"></textarea>
+                <br>
+                {{ form.submit('SUBMIT', {'class' : 'button btnBlack upper right fullWidth textCenter'}) }}
+            {{ form.end() }}
+        </div>
+    </div>
+</div>
+<div style="display:none;">
+    <div id="take-two" class="popup">
+        <div class="popup-inner">
+            <div class="wrapp-ttl">
+                <strong>Thank you for sharing!</strong>
+            </div>
+            <div style="text-align: center;" class="wrapp-img">
+                <img src="/img/img-popup.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>

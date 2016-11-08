@@ -1,0 +1,37 @@
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-newspaper-o"></i> Banners</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-list-ol"></i> Banners list</div>
+
+    <div class="tableName">
+    <br/>
+        <table class="display static">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Title</th>
+                <th width="30%">Text</th>
+                <th>Background</th>
+                <th>Management</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+            <tr>
+                <td>{{ item.Banner.location }}</td>
+                <td>{{ item.Banner.title }}</td>
+                <td>{{ item.Banner.text|striptags }}</td>
+                <td><img src="{{ item.Banner.img|thumb(150)}}"/></td>
+                <td>
+                <span class="tip">
+                    <a class="edit_link" title="Edit" href="/admin/banners/edit/{{ item.Banner.id }}"><i class="fa fa-pencil"></i></a>
+                </span>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ _view.element('paginator') }}
+    </div>
+</div>

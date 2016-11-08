@@ -1,0 +1,13 @@
+<div class="bottom-nav clearfix">
+    {% if _view.Paginator.hasPrev() %}
+        {{ paginator.prev('', {'class':'prev', 'tag':false}) }}
+    {% endif %}
+
+    <div class="center-nav">
+        {{ paginator.numbers({'separator':'', 'tag':'span', 'currentClass':'active'}) }}
+    </div>
+
+    {% if _view.Paginator.hasNext() %}
+        {{ paginator.next('', {'class':'next', 'tag':false}) }}
+    {% endif %}
+</div>

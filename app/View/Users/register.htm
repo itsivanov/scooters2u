@@ -1,0 +1,44 @@
+<div class="clearfix">
+
+    <div class="wrapper">
+        <div class="title title-new">
+            <strong>Join now</strong>
+        </div>
+
+        <section class="form-holder">
+            {{ form.create('User')}}
+            <fieldset>
+                <div class="clearfix">
+                    <div class="col-center">
+                        <div class="row">
+                            {{ form.text('email', {'class':'txt', 'required':'required', 'placeholder': 'Email'}) }}
+                            {{ form.error('User.email') }}
+                        </div>
+                        <div class="row">
+                            {{ form.text('password', {'class':'txt', 'type': 'password', 'required':'required', 'placeholder': 'Password'}) }}
+                            {{ form.error('User.password') }}
+                        </div>
+                        <div class="row">
+                            {{ form.text('confirm_password', {'class':'txt', 'type': 'password', 'required':'required', 'placeholder': 'Confirm password'}) }}
+                            {{ form.error('User.confirm_password') }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-center">
+                        <a class="forgot" href="/users/forget">Forgot password?</a>
+                        <a class="join" href="/users/login">Login</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    {{ form.submit('Join', {'class' : 'sbm'}) }}
+                </div>
+            </fieldset>
+            {{ form.end() }}
+        </section>
+
+    </div>
+
+</div>

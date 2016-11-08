@@ -1,0 +1,55 @@
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-user"></i> Clients</span>
+
+{{ _view.end() }}
+
+    <div class="boxtitle">
+        <a class="uibutton loading" href="/admin/users/add">New user</a>
+    </div>
+
+    <div class="tableName">
+    <br/>
+        {% if list %}
+            <table class="display static">
+            <thead>
+              <tr>
+                 <th class="filter">ID</th>
+                 <th>Name</th>
+                 <th>Email</th>
+                 <th class="filter">Created</th>
+                 <th class="filter">Status</th>
+                 <th>Management</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+            <tr>
+                <td>{{ item.User.id }}</td>
+                <td>{{ item.UserInfo.first_name }} {{ item.UserInfo.last_name }}</td>
+                <td>{{ item.User.email }}</td>
+                <td>{{ item.User.created|date('d M, Y') }}</td>
+                <td style="font-size: 1.2em;">
+                    {% if item.User.active %}
+                        <span class="green hint" data-hint="User is active"><i class="fa fa-check-square"></i></span>
+                    {% else %}
+                        <span class="red hint" data-hint="User is blocked"><i class="fa fa-times"></i></span>
+                    {% endif %}
+                </td>
+                <td>
+                <span class="tip">
+                    <a class="edit_link" title="Edit" href="/admin/users/edit/{{ item.User.id }}"><i class="fa fa-pencil"></i></a>
+                </span>
+                {#<span class="tip">#}
+                    {#<a class="delete_link delete" title="Delete" href="/admin/users/delete/{{ item.User.id }}"><i class="fa fa-trash"></i></a>#}
+                {#</span>#}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            {{ _view.element('paginator') }}
+        {% else %}
+            <h4>By your query artists not found</h4>
+        {% endif %}
+    </div>
+</div>

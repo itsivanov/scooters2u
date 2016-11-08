@@ -1,0 +1,23 @@
+{{ extTree.addItemAttribute('id', 'list_' ~ data.Category.id ) }}
+
+<div class="itemOfCategory">
+    <table width="100%" style="text-align: left;">
+        <tr>
+
+            <td style="width: 15%;"><img src="/thumbs/50x{{ data.Category.icon|default("/img/no_image.jpg") }}"/></td>
+            <td>{{ data.Category.name }}</td>
+
+            <td class="manage-col">
+                <span class="tip tip-r">
+                    <a title="Edit" class="green" href="/admin/categories/edit/{{ data.Category.id }}"><i class="fa fa-pencil"></i></a>
+                </span>
+                <span class="tip tip-l">
+                    <a id="1" class="delete red" title="Delete" href="/admin/categories/delete/{{ data.Category.id }}"><i class="fa fa-trash"></i></a>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+

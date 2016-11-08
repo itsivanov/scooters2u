@@ -1,0 +1,14 @@
+{% extends "/Plugin/Admin/View/Layouts/default.htm" %}
+
+{% block leftMenu %}
+    {% include '/Plugin/Admin/View/Users/leftMenu.htm' %}
+{% endblock %}
+
+{% block content %}
+    <h2 class="title-page">Email change</h2>
+    <div class="top-line">&nbsp;</div>
+    {{ Form.create({'class' : 'form'}) }}
+        {{ Form.input('email',{'value' : email}) }}
+        {{ Form.submit('Save', {'class' : 'submit-btn'}) }}
+    {{ Form.end() }}
+{% endblock %}

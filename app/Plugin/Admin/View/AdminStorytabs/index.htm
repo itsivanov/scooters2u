@@ -1,0 +1,44 @@
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-file-text"></i> Our story: Story tabs</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-list-ol"></i> Story tabs list</div>
+
+        <ul class="uibutton-group">
+            <li><a href="/admin/storytabs/add" class="uibutton" title="Add claim"><i class="fa fa-plus-square"></i> New story tab</a></li>
+        </ul>
+
+    <div class="tableName">
+    <br/>
+        <table class="display static">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Text</th>
+                <th>Management</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+            <tr>
+                <td>{{ item.Storytab.title }}</td>
+                <td><img src="{{ item.Storytab.img }}" width="100" /></td>
+                <td>{{ item.Storytab.text|truncate(70) }}</td>
+                <td>
+                    <span class="tip">
+                        <a class="edit_link" title="Edit" href="/admin/storytabs/edit/{{ item.Storytab.id }}"><i class="fa fa-pencil"></i></a>
+                    </span>
+                    <span class="tip">
+                        <a class="delete_link delete" title="Delete" href="/admin/storytabs/delete/{{ item.Storytab.id }}">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ _view.element('paginator') }}
+    </div>
+</div>

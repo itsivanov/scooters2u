@@ -1,0 +1,79 @@
+<div class="get-started-bl fullWidth">
+        <div style="background-image: url(/img/img-2.jpg)" class="banner-ttl">
+            <div class="table-cell">
+                <div class="wrapper-small wow animated fadeInLeft">
+                    <h1>Get Started</h1>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper-large">
+            <div class="get-started">
+                <div class="clearfix">
+                    <div class="container-fluid">
+                        {%if count != 1 %}
+                        <div class="many_item">
+                        {%else%}
+                            <div class="one_item">
+                        {%endif%}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="ttl">Products</strong>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                            {%if count != 1 %}
+                                {%for item in prodictInfo%}
+                                <div class="col-md-3">
+                                    <div class="products_wrap">
+                                        <div class="products_container">
+                                            <div class="gallery-box">
+                                                <img src="{{item.Product.image}}" alt="">
+                                            </div>
+                                            <div class="hidden_box">
+                                                <div class="row_table">
+                                                    <div class="col_td button_box">
+                                                        <button type="button" class="button btnRed get_start_btn" value="{{item.Product.id}}">Order now</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="info_product">
+                                            <h4>{{item.Product.title}}</h4>
+                                            <div class="price_ttl">From <span>${{item.Product.price}}</span>/day</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                {%for item in prodictInfo%}
+                                <div class="products_container">
+                                    <div class="row_table">
+                                        <div class="col-td-7 col_td">
+                                            <div class="gallery-one">
+                                                <img src="{{item.Product.image}}" alt="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-td-5 col_td">
+                                            <div class="content_box">
+                                                <strong class="">{{item.Product.title}}</strong>
+                                                <div class="price_ttl">
+                                                    From <span>${{item.Product.price}}</span>/day
+                                                </div>
+                                                <div class="button_box">
+                                                    <button type="submit" class="button btnRed get_start_btn" value="{{item.Product.id}}">Order now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

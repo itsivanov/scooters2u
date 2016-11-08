@@ -1,0 +1,208 @@
+{{ _view.assign('hdrBgImage', ' ') }}
+
+{{ _view.assign('additionalHeaderClass', 'shopHeader') }}
+
+<div class="productSingle left fullWidth">
+    <div class="container">
+        <div class="left fullWidth breadCrumbs">
+            <a href="/products/collection/{{ product.Category.key }}#products-list" class="simpleLinkCategory"><i class="fa fa-angle-left"></i>Back to {{ product.Category.name }}</a>
+        </div>
+        <div class="left half productImages">
+            <div class="productSlider flexslider " id="productSlider">
+                <ul class="slides">
+                    {% for item in product.ProductImages %}
+                    {#<li class="slideItem">#}
+                        {#<div class="tableDiv">#}
+                            {#<div class="tableCell">#}
+                                {#<img src="{{ item.img }}" alt="" title="" />#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</li>#}
+
+                    <li class="slideItem">
+                        <div class="tableDiv">
+                            <a href="{{ item.img }}" onclick="return false" class="tableCell slideImage">
+                                <img src="/thumbs/800x600{{ item.img }}" alt="" title="" />
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="productCarousel flexslider" id="productCarousel">
+                <ul class="slides">
+                    {% for item in product.ProductImages %}
+                    <li class="slideItem">
+                        <div class="tableDiv">
+                            <div class="tableCell">
+                                <img src="/thumbs/150x150{{ item.img }}" alt="" title="" />
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="left half productInfo">
+            <h2 class="customH4">{{ product.Product.title }}</h2>
+            <div class="productPrice left fullWidth col-xs-4">
+                <span style="font-family: Arial !important;">$</span>
+                {{ product.Product.price }}</div>
+            {% if isMobile %}
+                <div class="buyProduct left fullWidth col-xs-8">
+                    <a href="/products/addToCart/{{ product.Product.id }}"
+                       class="button btnBlack">{{ inCart ? 'Add one more' : 'add to cart' }}</a>
+                </div>
+            {% endif %}
+            <div class="productText left fullWidth simpleText">
+                {{ product.Product.short_description }}
+            </div>
+            {% if product.Product.sku %}
+            <div class="productText left fullWidth simpleText" style="margin-top:  0">
+                <b>SKU</b> {{ product.Product.sku }}
+            </div>
+            {% endif %}
+            {% if not isMobile %}
+                <div class="buyProduct left fullWidth">
+                    <a href="/products/addToCart/{{ product.Product.id }}"
+                        class="button btnBlack">{{ inCart ? 'Add one more' : 'add to cart' }}</a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="productDescription left fullWidth tabsSection" data-content="tabs">
+            <div class="tabsNavigation">
+                <div class="item active" data-tab="1">
+                    <div class="tabText upper">
+                        <div class="tableDiv">
+                            <div class="tableCell">
+                                Features
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-tab="2">
+                    <div class="tabText upper">
+                        <div class="tableDiv">
+                            <div class="tableCell">
+                                Ingredients
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-tab="3">
+                    <div class="tabText upper">
+                        <div class="tableDiv">
+                            <div class="tableCell">
+                                Reviews
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabsContent left fullWidth">
+                <div class="item open" data-tab="1" style="display: block;">
+                    <div class="tabText textJustify simpleText">
+                        {{ product.Product.featured }}
+                    </div>
+                </div>
+
+                <div class="item open" data-tab="2">
+                    <div class="tabText textJustify simpleText">
+                        {{ product.Product.description }}
+                    </div>
+                </div>
+
+                <div class="item open" data-tab="3">
+                    <div class="reviews responseBlock left fullWidth">
+                        <ul class="response">
+                            {% if product.ProductComments %}
+                            {% for comment in product.ProductComments %}
+                            <li>
+                                <strong class="name">{{ comment.name }}</strong>
+                                <span class="date">{{ comment.created|date('M d, Y') }}</span>
+                                <p>{{ comment.text }}</p>
+                            </li>
+                            {% endfor %}
+                            {% else %}
+                            <li class="noComments">
+                                <i>No comments</i><br><br>
+                            </li>
+                            {% endif %}
+                         </ul>
+                    </div>
+                    <div class="reviewForm left fullWidth">
+                        <form action="/products/addComment" method="Post" id="productComment">
+                            <div class="palmCustomInput left perHalf">
+                                <input type="text" placeholder="Name" class="commentName" required name="data[ProductComments][name]">
+                            </div>
+                            <div class="palmCustomInput right perHalf">
+                                <input type="email" placeholder="Email" class="commentEmail" required name="data[ProductComments][email]">
+                            </div>
+                            <div class="palmCustomTextarea fullWidth left">
+                                <textarea placeholder="Comment" required class="commentText" name="data[ProductComments][text]"></textarea>
+                            </div>
+                            <div class="palmCustomSubmit fullWidth left">
+                                <input type="hidden" name="data[ProductComments][product_id]" value="{{ product.Product.id }}">
+                                <input type="submit" value="Submit" class="button btnBlack">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slideUp"><i class="fa fa-angle-up"></i></div>
+
+<div class="modal imageModal">
+    <div class="tableDiv">
+        <div class="tableCell">
+            <div class="modalClose modalCloseDiv"></div>
+            <div class="modalContent">
+                <div class="modalClose modalCloseLink"></div>
+                <div class="left fullWidth imageBlock">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    jQuery(document).ready(function() {
+
+        var sending = false;
+
+        $('#productComment').submit(function(e){
+            e.preventDefault();
+
+            if (sending) return false;
+            sending  = true;
+
+            if ($('.commentName').val() == ''|| $('.commentEmail').val() == '' || $('.commentText').val() == ''){
+                $.pnotify({ text: 'Please fill out all fields', type: 'warning'});
+                sending = false;
+                return false;
+            }
+
+            $.post('/products/addComment',
+                $('#productComment').serialize(),
+                function(data){
+                    sending = false;
+                    if (!data.error) {
+                        $.pnotify({ text: data.msg, type: 'info'});
+                        $('#productComment input, #productComment textarea').not(':input[type=submit]').not(':hidden').val('');
+                        if(data.content){
+                            $('.response').append(data.content);
+                            $('.noComments').remove();
+                        }
+                    } else {
+                        $.pnotify({ text: data.errorDesc, type: 'error', title: 'Error'});
+                    }
+                },'json');
+        });
+    });
+</script>

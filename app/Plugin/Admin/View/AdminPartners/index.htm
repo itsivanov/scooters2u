@@ -1,0 +1,67 @@
+<style type="text/css">
+    ol li div {
+        background: #E3E5E7;
+        margin-top: 5px;
+        padding: 10px;
+    }
+</style>
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-user"></i> Partners</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-list-ol"></i> Partners list</div>
+
+    <ul class="uibutton-group">
+        <li><a href="/admin/partners/add" class="uibutton"><i class="fa fa-plus-square"></i> New Partner</a></li>
+    </ul>
+
+    <div class="tableName">
+        <br/>
+        <table class="display static">
+            <thead>
+            <tr>
+                <th>Clients tree</th>
+            </tr>
+            </thead>
+        </table>
+
+        {{ extTree.generate(list, {'type': 'ol', 'model': 'Client', 'element': 'itemOfClient', 'class': 'sortable'}) }}
+
+        {{ _view.Html.script('jquery.json-2.3.min') }}
+        {{ _view.Html.script('nestedSortable/jquery.mjs.nestedSortable') }}
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.sortable').nestedSortable({
+            disableNesting: 'no-nest',
+            forcePlaceholderSize: true,
+            handle: 'div',
+            helper:	'clone',
+            items: 'li',
+            maxLevels: 1,
+            opacity: .6,
+            placeholder: 'placeholder',
+            revert: 250,
+            tabSize: 25,
+            tolerance: 'pointer',
+            toleranceElement: '> div',
+            update: function(e){
+                $.post("/admin/partners/saveSorting/Client", {'items' : $.toJSON($('ol.sortable').nestedSortable('toArray', {startDepthCount: 0}))},
+                    function(data) {
+                        if(!data.error) {
+                            showSuccess('Changes saved', 500);
+                        } else {
+                            showError(data.err_desc , 500);
+                        }
+                    },
+                    "json"
+                );
+            }
+        });
+
+    });
+</script>

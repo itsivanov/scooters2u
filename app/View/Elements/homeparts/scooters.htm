@@ -1,0 +1,59 @@
+<div class="section secondSection" id="section1">
+    {% for scooter in products %}
+    <div class="slide" id="slide2_{{ loop.index }}">
+        <div class="intro">
+            <img src="{{ scooter.Product.image  }}" alt="{{ scooter.Product.title }}" title="{{ scooter.Product.title }}">
+
+            <div class="tableContent">
+                <div class="tablesTitle left fullWidth">
+                    <div class="titleScooter left fullWidth">
+                        {{ scooter.Product.title }}
+                    </div>
+                </div>
+                <!--<div class="tables left fullWidth">-->
+                    <!--<div class="tablePrices">-->
+                        <!--<div class="tableDiv">-->
+                            <div class="table_fee">
+
+                                <ul>
+                                    {% for rental in scooter.ProductRental %}
+                                         <li>
+                                             <div>
+                                                 {%if rental.number != 0 and rental.number != 1 %}
+                                                    <span class="number_fee">{{ rental.number }}</span>
+                                                 {% endif %}
+                                                 <span class="title_fee">{{ rental.title }}</span>
+                                                 <span class="right_fee">${{ rental.value }}</span>
+                                             </div>
+                                         </li>
+
+                                    <!--<div class="tableRow">-->
+                                        <!--<div class="tableCell">-->
+                                            <!--{{ rental.number }}-->
+                                        <!--</div>-->
+                                        <!--<div class="tableCell">-->
+                                            <!--{{ rental.title }}:-->
+                                        <!--</div>-->
+                                        <!--<div class="tableCell">-->
+                                            <!--<span>$</span>{{ rental.value }}-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    {% endfor %}
+
+                                </ul>
+
+                            </div>
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+                <div class="buttons left fullWidth">
+                    <a href="tel:{{ options.phone }}" class="right button btnBlack">CALL {{ options.phone }} </a>
+                    <a href="get-started/{{scooter.Product.id}}" class="right button btnRed">book now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

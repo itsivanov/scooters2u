@@ -1,0 +1,41 @@
+
+<div class="how-works-bl fullWidth">
+    <div style="background-image: url({{ page.img }})" class="banner-ttl">
+        <div class="table-cell">
+            <div class="wrapper-small wow animated fadeInLeft">
+                <h1>{{ page.title }}</h1>
+            </div>
+        </div>
+        <div class="tabs-link">
+            {% for slide in howItWorksSlides %}
+            <a data-wow-delay="0.3s" class="{% if loop.index == 1 %}active{% endif %} wow animated fadeInUp" href="#index{{ loop.index }}">
+                       <span class="fix-center">
+                           <span class="center">
+                               <i class="ic"><img src="{{ slide.InnerSlide.image }}" alt="{{ slide.InnerSlide.title }}"></i>
+                               <strong>{{ slide.InnerSlide.title }}</strong>
+                               <span>{{ slide.InnerSlide.subtitle }}</span>
+                           </span>
+                       </span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="wrapp-tabs-content">
+        <div class="wrapper-small">
+            {% for slide in howItWorksSlides %}
+            <div id="index{{ loop.index }}" class="box-tabs-content animated fadeInLeft">
+                <h2 class="ttl">
+                    {{ slide.InnerSlide.title }}
+                </h2>
+                <span class="sub-ttl">{{ slide.InnerSlide.subtitle }}</span>
+                <div class="wrapp-txt">
+                    <p>
+                        {{ slide.InnerSlide.content }}
+                    </p>
+                </div>
+                <a href="/get-started" class="button btnRed">get started</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

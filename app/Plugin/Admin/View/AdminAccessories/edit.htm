@@ -1,0 +1,136 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> Add Question</span>
+    {{ _view.end() }}
+
+    <style>
+        .properties{
+            margin-bottom: 70px;
+        }
+
+        .properties div{
+            width: auto; float: left; margin: 0 20px; border: 0;
+        }
+    </style>
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Add Question</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/accessories" class="uibutton special"><i class="fa fa-arrow-left"></i> Back</a></li>
+    </ul>
+
+    {{ form.create({'class' : 'form'}) }}
+    {{ form.hidden('id',{'value' : product.Accessory.id} ) }}
+    <div class="section">
+        <label>Title</label>
+        <div>{{ form.input('title', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Title', 'value': product.Accessory.title }) }}</div>
+    </div>
+
+    <div class="section">
+        <label>Description</label>
+        <div>{{ form.input('description', {'div' : false, 'label' : false, 'placeholder':'Description', 'value': product.Accessory.description }) }}</div>
+    </div>
+
+    <div class="section">
+        <label>Price ($)</label>
+        <div>{{ form.input('price', {'type':'text', 'label' : false, 'value': product.Accessory.price }) }}</div>
+    </div>
+
+
+    <section class="section">
+        <h4>Images</h4>
+
+        <div id="photosContainer" class="clearfix">
+            <ul class="listPhotos" id="ulListPhotos">
+                <li class="clearfix imageBlock">
+                    <div class="dottedFrame" style="position: relative">
+                        <span><img src="{{ product.Accessory.image |thumb(130,100)}}"></span>
+                        <input type="hidden" name="Accessory[image]" value="{{ product.Accessory.image}}">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="section last">
+        <div><a href="javascript:" class="uibutton upload" id="uploadImage">Upload image</a></div>
+    </div>
+    <div class="section">
+        <div>
+            {{ form.submit('Save', {'class' : 'uibutton loading '}) }}
+        </div>
+    </div>
+
+    {{ form.end() }}
+
+
+
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+
+        $('.wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+
+        var i = '{{ data.ProductImages[(data.ProductImages | length-1)].id }}';
+
+        $('.listPhotos').sortable({
+            update: function(){
+                $('.listPhotos li').each(function(index){
+                    $(this).find('.hidden-priority').val(index);
+                });
+            }
+        });
+
+        $(document).on('click', '#uploadImage', function() {
+            var a = $(this);
+
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+
+                getFileCallback: function (url) {
+
+                    $('.listPhotos').html('' +
+                            '<li class="clearfix imageBlock">' +
+                            '<div class="dottedFrame" style="position: relative">'+
+                            '<span><img src="/thumbs/130x100'+ url +'"></span>' +
+                            '<input type="hidden" name="Accessory[image]" value="'+ url +'">' +
+                            '</div>'+
+                            '</li>');
+
+                    showSuccess('Image uploaded successfully', 500);
+                }
+            });
+        });
+
+        $(document).on('click', '.remove-img', function(e) {
+            e.preventDefault();
+            $(this).parents('.imageBlock').remove();
+        });
+
+    });
+</script>

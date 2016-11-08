@@ -1,0 +1,169 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><span class="ico gray pencil"></span> Content </span>
+{{ _view.end() }}
+<!-- title box -->
+<div class="boxtitle min">{{ title }}</div>
+        <ul class="uibutton-group">
+            <li><a href="/admin/news" class="uibutton special"><i class="fa fa-arrow-left"></i>Back</a></li>
+        </ul>
+<div id="tabs">
+
+    <ul>
+        <li><a href="#tabs-1">News</a></li>
+
+    </ul>
+
+    <div id="tabs-1">
+        {{ form.create({'class' : 'form'}) }}
+        <div class="section">
+            <label>Title</label>
+            <div>{{ form.input('title', {'div' : false, 'label' : false, placeholder: 'Title'}) }}</div>
+        </div>
+        <div class="section">
+            <label>Subtitle</label>
+            <div>{{ form.input('subtitle', {'div' : false, 'label' : false, placeholder: 'Subtitle'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Slug</label>
+            <div>{{ form.input('slug', {'div' : false, 'label' : false, placeholder: 'Slug'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Active</label>
+            {{ form.checkbox('active', {'checked': data.Tiding.active }) }}
+        </div>
+        <!--{% if tidcategories %}-->
+        <!--<div class="section">-->
+            <!--<label>Category</label>-->
+            <!--<div>-->
+                <!--<select name="data[Tiding][tid_category_id]">-->
+                    <!--{% for category in tidcategories %}-->
+                    <!--<option value="{{ category.id }}" {{ _view.data.Tiding.tid_category_id==category.id?'selected':'' }}>{{ category.title }}</option>-->
+                    <!--{% endfor %}-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--{% endif %}-->
+
+        <div class="section">
+            <label>Tags</label>
+            <div class="checkbox">
+                <div class="tag">
+
+                    {% set count = 1 %}
+                    {% for item in tags %}
+                        {%for value in checkedTag%}
+                        {% if item.Tag.id == value.TagTiding.tag_id %}
+                            <input type="hidden" name="tag_tidings[{{count}}][id]" value="{{value.TagTiding.id}}">
+                        {%endif%}
+                        {% endfor%}
+
+                    <input type="checkbox" name="tag_tidings[{{count}}][tag_id]" id="{{item.Tag.id}}" value="{{item.Tag.id}}"
+                        {%for value in checkedTag%}
+                            {% if item.Tag.id == value.TagTiding.tag_id %}checked{%endif%}
+                        {% endfor%}
+                      >{{ item.Tag.title }}
+
+                    <input type="hidden" name="tag_tidings[{{count}}][tiding_id]" value="{{news_id}}">
+                    {% set count = count + 1 %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <label>Categories</label>
+            <div class="checkbox">
+                <div class="tag">
+                    {% set count = 1 %}
+                    {% for category in tidcategories %}
+                        {%for value in checkedCat%}
+                            {% if item.id == value.category_id %}
+                                <input type="hidden" name="tid_on_category[{{count}}][id]" value="{{value.id}}">
+                            {%endif%}
+                        {% endfor%}
+
+                        <input type="checkbox" name="tid_on_category[{{count}}][category_id]" id="{{category.id}}" value="{{category.id}}"
+                               {%for value in checkedCat%}
+                               {% if category.id == value.id %} checked {%endif%}
+                               {% endfor%}
+                        >{{ category.title }}
+
+                        <input type="hidden" name="tid_on_category[{{count}}][tiding_id]" value="{{news_id}}">
+                        {% set count = count + 1 %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="section">
+            <label>Image</label>
+            <div>
+                {{ form.hidden('img', {'div': false, 'label': false, 'id':'imageInput'}) }}
+                <img src="{{ _view.data.Tiding.img|default('/img/no_image/default.png') }}" width="270" id="imageId"/>
+            </div>
+        </div>
+
+        <div class="section">
+            <label>Short content</label>
+            {{ form.input('content', {'type':'textarea', 'id' : 'wysiwyg1', 'label' : false}) }}
+        </div>
+        <div class="section">
+            <label>Full content</label>
+            {{ form.input('full_content', {'type':'textarea', 'id' : 'wysiwyg2', 'label' : false}) }}
+        </div>
+
+        <label>SEO block</label>
+        <div class="section">
+            <label>Meta title</label>
+            <div>{{ form.input('meta_title', {'div' : false, 'label' : false}) }}</div>
+        </div>
+        <div class="section">
+            <label>Meta keywords</label>
+            <div>{{ form.input('meta_keywords', {'div' : false, 'label' : false}) }}</div>
+        </div>
+        <div class="section">
+            <label>Meta description</label>
+            <div>{{ form.input('meta_description', {'div' : false, 'label' : false}) }}</div>
+        </div>
+        <div class="section last">
+          <div>
+              {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+          </div>
+        </div>
+        {{ form.end() }}
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+
+        $('#wysiwyg1, #wysiwyg2').elrte(opts);
+
+        $( "#tabs" ).tabs();
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+    });
+</script>

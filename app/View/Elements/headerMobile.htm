@@ -1,0 +1,19 @@
+<div class="main-page-home headerMobile">
+    <a class="navicon-button x open-nav">
+        <div class="navicon"></div>
+    </a>
+    <div class="headerMob left fullWidth">
+        <a href="" class="logo">
+            <img src="/img/logo.png" alt="" title="">
+        </a>
+    </div>
+    <nav class="nav-holder clearfix">
+        <ul>
+            {%for item in headerMenu%}
+            <li>
+                <a href="{{item.Menu.url}}" class="">{{item.Menu.name}}</a>
+            </li>
+            {%endfor%}
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,33 @@
+<div class="topcolumn">
+    <div class="logo">
+        <img src="{{'/admin/images/logo/logo_login.png'}}" alt="Logo"/>
+    </div>
+    <ul id="shortcut">
+
+        <li>
+            <a href="/admin" title="Content">
+                <img src="/admin/images/icon/shortcut/add_page.png" alt="content"/><strong>New orders</strong>
+            </a>
+            {% if newOrders > 0 %}
+                <div class="notification">{{ newOrders }}</div>
+            {% endif %}
+        </li>
+
+        <li>
+            <a href="/admin/contacts" title="Messages">
+                <img src="/admin/images/icon/shortcut/mail.png" alt="messages"/><strong>Messages</strong>
+            </a>
+            {% if newMsg > 0 %}
+                <div class="notification">{{ newMsg }}</div>
+            {% endif %}
+        </li>
+
+        <li>
+            <a href="/" target="_blank" title="Front end">
+                <img src="/admin/images/icon/shortcut/graph.png" alt="front end"/><strong>Website</strong>
+            </a>
+        </li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>

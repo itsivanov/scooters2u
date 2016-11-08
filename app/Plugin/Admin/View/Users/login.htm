@@ -1,0 +1,31 @@
+{{ form.create('User') }}
+
+    <div class="alertMessage error SE" style="display: none;" id="msgLogin"></div>
+
+    <div class="tip">
+        {{ form.input('username', {'div' : false, 'label' : false, 'title' : 'Username', 'id' : 'username_id'}) }}
+    </div>
+    <div class="tip">
+        {{ form.input('password', {'title' : 'Password', 'div' : false, 'label' : false, 'id' : 'password'}) }}
+    </div>
+
+    <div style="padding:20px 0 0;">
+        <div style="float:left; padding:0 0 2px;">
+            <input type="checkbox" id="on_off" name="remember" class="on_off_checkbox" value="1"/>
+            <span class="f_help">Remember me</span>
+        </div>
+        <div style="float:right;padding:2px 0s ;">
+            <div>
+                <ul class="uibutton-group">
+                    <li>
+                        <input type="submit" class="uibutton normal" value="Login" id="but_login"/>
+                    </li>
+
+                    <li>
+                        <a href="/users/forget" class="uibutton normal"> Forgot password ? </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{{ form.end() }}

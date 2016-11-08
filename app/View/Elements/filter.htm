@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div class="filter-bl">
+        {{ form.create('Product', {'class' : 'form-inline filter-form', 'type':'get'}) }}
+
+            {% for key, select in filter %}
+                {% set selected = filterData[key] ? filterData[key] : 0 %}
+                <div class="form-group">
+                    {{ form.select('Filter.'~key, select, {'class' : 'styled floatLabel filter-selector', 'value' : selected}) }}
+                </div>
+            {% endfor %}
+
+            {{ form.input('start', {'type':'hidden', 'value':0}) }}
+            {{ form.input('product_type', {'type':'hidden', 'value':type}) }}
+
+        {{ form.end() }}
+    </div>
+</div>

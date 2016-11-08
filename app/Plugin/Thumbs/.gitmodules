@@ -1,0 +1,3 @@
+[submodule "Vendor/PHPThumb"]
+	path = Vendor/PHPThumb
+	url = git://github.com/masterexploder/PHPThumb.git

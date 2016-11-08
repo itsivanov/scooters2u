@@ -1,0 +1,68 @@
+#!/bin/bash
+
+cd ~/httpdocs
+
+if [ $1 == 'git' ]; then
+
+    echo '-----------------------------------------------'
+    echo '------------------- GIT -----------------------'
+    echo '-----------------------------------------------'
+
+
+    git reset --hard HEAD
+    if [ $? -eq 0 ]; then
+    echo 'git reset success'
+    fi
+
+    git pull
+    if [ $? -eq 0 ]; then
+    echo 'git pull success'
+    fi
+
+fi
+
+if [ $2 == 'cc' ]; then
+
+    echo '-----------------------------------------------'
+    echo '---------------- CLEAR CACHE ------------------'
+    echo '-----------------------------------------------'
+
+    rm -rf ~/httpdocs/app/tmp/cache/views/* && rm -rf ~/httpdocs/app/tmp/cache/models/* && rm -rf ~/httpdocs/app/tmp/cache/persistent/*
+    if [ $? -eq 0 ]; then
+    echo '-----------------------------------------------'
+    echo 'ALL cache successfully clear'
+    echo '-----------------------------------------------'
+    fi
+
+fi
+
+if [ $3 == 'chmod' ]; then
+
+    find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;
+    if [ $? -eq 0 ]; then
+    echo '-----------------------------------------------'
+    echo 'change permissions success'
+    echo '-----------------------------------------------'
+    fi
+    chmod 777 ~/httpdocs/post-update
+    chmod a+x ~/httpdocs/app/Console/cake
+fi
+
+if [ $4 == 'acl' ]; then
+
+    echo '-----------------------------------------------'
+    echo '------------------- ACL -----------------------'
+    echo '-----------------------------------------------'
+
+    ./app/Console/cake AclExtras.acl_extras aco_sync
+    if [ $? -eq 0 ]; then
+    echo '-----------------------------------------------'
+    echo 'ACO/ARO successfully updated'
+    echo '-----------------------------------------------'
+    fi
+
+fi
+
+echo '-----------------------------------------------'
+echo '------------------- DONE ----------------------'
+echo '-----------------------------------------------'

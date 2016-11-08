@@ -1,0 +1,62 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-file-text"></i> Our story: Video</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit content</div>
+
+    {{ form.create({'class' : 'form'}) }}
+        <div class="section">
+            <label>Title</label>
+            <div>{{ form.input('title', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Title'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label></label>
+            <img style="border: 1px solid #999999" src="/img/instruction.png" width="650">
+        </div>
+
+        <div class="section">
+            <label>Video introduction (iFrame from YouTube)</label>
+            <div>{{ form.input('media', {'div': false, 'label': false, 'required' : 'required', 'placeholder':'iFrame from Youtube'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Text</label>
+            <div>
+                <div>{{ form.input('text', {'type':'textarea', 'id' : 'wysiwyg', 'label' : false}) }}</div>
+            </div>
+        </div>
+
+        <div class="section last">
+            <div>
+              {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+            </div>
+        </div>
+    {{ form.end() }}
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+    });
+</script>

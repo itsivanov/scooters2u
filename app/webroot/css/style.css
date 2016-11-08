@@ -1,0 +1,1600 @@
+@font-face {
+  font-family: 'Oswald';
+  src: url('../fonts/oswald-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/oswald-regular-webfont.woff') format('woff'), url('../fonts/oswald-regular-webfont.ttf') format('truetype'), url('../fonts/oswald-regular-webfont.svg#oswald-regular-webfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OswaldBold';
+  src: url('../fonts/oswald-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/oswald-bold-webfont.woff') format('woff'), url('../fonts/oswald-bold-webfont.ttf') format('truetype'), url('../fonts/oswald-bold-webfont.svg#oswald-bold-webfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OswaldLight';
+  src: url('../fonts/Oswald-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/Oswald-Light.woff') format('woff'), url('../fonts/Oswald-Light.ttf') format('truetype'), url('../fonts/Oswald-Light.svg#Oswald-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../fonts/HelveticaLTStdBold.eot?#iefix') format('embedded-opentype'), url('../fonts/HelveticaLTStdBold.woff') format('woff'), url('../fonts/HelveticaLTStdBold.ttf') format('truetype'), url('../fonts/HelveticaLTStdBold.svg#HelveticaLTStdBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSans';
+  src: url('../fonts/opensans-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/opensans-regular.woff') format('woff'), url('../fonts/opensans-regular.ttf') format('truetype'), url('../fonts/opensans-regular.svg#opensans-regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'OpenSansBold';
+  src: url('../fonts/opensans-bold.eot?#iefix') format('embedded-opentype'), url('../fonts/opensans-bold.woff') format('woff'), url('../fonts/opensans-bold.ttf') format('truetype'), url('../fonts/opensans-bold.svg#opensans-bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  height: 100%;
+}
+html {
+  font-family: 'OswaldLight';
+  /*height: 100%;*/
+  font-size: 1vh;
+}
+html strong {
+  font-family: 'OswaldBold';
+  font-weight: normal;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.fullWidth {
+  width: 100%;
+}
+.textCenter {
+  text-align: center;
+}
+.textJustify {
+  text-align: justify;
+}
+.textRight {
+  text-align: right;
+}
+.textLeft {
+  text-align: left;
+}
+.upper {
+  text-transform: uppercase;
+}
+.half {
+  width: 50%;
+}
+.perHalf {
+  width: 49%;
+}
+.tableDiv {
+  display: table;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.tableCell {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+}
+.tableRow {
+  display: table-row;
+  vertical-align: middle;
+}
+.backgroundImage {
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.blackColor {
+  color: #000000;
+}
+.whiteColor {
+  color: #ffffff;
+}
+.container {
+  width: 1050px;
+  margin: 0 auto;
+  position: relative;
+}
+.containerSmall {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+.nonScroll {
+  overflow: hidden;
+  height: 100%;
+}
+.parallaxBackground {
+  -webkit-background-size: 100% auto;
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.navBurger {
+  display: none;
+}
+.headerSection {
+  position: fixed;
+  height: 135px;
+  display: block;
+  width: 100%;
+  z-index: 9;
+  text-align: center;
+  color: #f2f2f2;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.headerSection .topHeaderSide {
+  height: 28px;
+  background: #000000;
+}
+.headerSection .topHeaderSide .headerSimpleLink {
+  color: #ffffff;
+  padding: 0 35px;
+  font: 13px/28px 'Oswald';
+}
+.headerSection .topHeaderSide .headerSimpleLink i {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px 0 0;
+  line-height: 28px;
+}
+.headerSection.greyHeader {
+  height: 200px;
+  background: -moz-linear-gradient(top, #f2f2f2 1%, #f1f1f1 42%, rgba(239, 239, 239, 0) 100%);
+  background: -webkit-linear-gradient(top, #f2f2f2 1%, #f1f1f1 42%, rgba(239, 239, 239, 0) 100%);
+  background: linear-gradient(to bottom, #f2f2f2 1%, #f1f1f1 42%, rgba(239, 239, 239, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#00efefef', GradientType=0);
+}
+.headerContent .logo {
+  margin: 5px 0 0 70px;
+  display: block;
+  max-width: 21.843em;
+}
+.headerContent .logo img {
+  display: block;
+  max-width: 100%;
+}
+.headerContent ul {
+  float: right;
+  padding-top: 4em;
+  margin: 0 70px 0 0;
+}
+.headerContent ul li {
+  display: inline-block;
+  padding: 0 10px;
+}
+.headerContent ul li a {
+  font: 1.56em/1em 'OswaldBold';
+  color: #000;
+  text-transform: uppercase;
+  position: relative;
+}
+.headerContent ul li a:hover:after,
+.headerContent ul li a.active:after {
+  content: '';
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  bottom: -8px;
+  background: #f2532b;
+  left: 0;
+}
+#fp-nav ul li {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 7px;
+  position: relative;
+}
+#fp-nav ul li a {
+  border: 2px solid #ffffff;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  display: block;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+#fp-nav ul li a.active {
+  background: #ffffff;
+}
+#fp-nav ul li a span {
+  display: none;
+}
+.fp-slidesNav ul li {
+  display: inline-block;
+  width: 60px;
+  height: 5px;
+  margin: 7px;
+  position: relative;
+}
+.fp-slidesNav ul li a {
+  background: #000000;
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+.fp-slidesNav ul li a.active {
+  background: #ffffff;
+}
+.fp-slidesNav ul li a span {
+  display: none;
+}
+.fp-controlArrow {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  cursor: pointer;
+  border-style: solid;
+  margin-top: -25px;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  height: 50px;
+}
+.fp-controlArrow.fp-next {
+  width: 28px;
+  right: 115px;
+  border-width: 0;
+  background: url("../img/arrow.png") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+.fp-controlArrow.fp-prev {
+  width: 28px;
+  left: 115px;
+  border-width: 0;
+  background: url("../img/arrow.png") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.firstSection {
+  background: url("../img/first-section.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.firstSection .slide .fp-tableCell {
+  position: relative;
+}
+.firstSection .slide .intro {
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  width: 80%;
+  height: 70%;
+}
+.firstSection .slide .intro img {
+  max-height: 100%;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  -webkit-transform: translateX(-90%);
+  -moz-transform: translateX(-90%);
+  -ms-transform: translateX(-90%);
+  -o-transform: translateX(-90%);
+  transform: translateX(-90%);
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  opacity: 0;
+}
+.firstSection .slide .flagContent {
+  position: absolute;
+  width: 26.724%;
+  height: 31.16%;
+  border: 5px solid #000000;
+  background: #f2532b;
+  right: 15%;
+  bottom: 40%;
+  -webkit-transform: skew(-20deg) rotateY(-90deg);
+  -moz-transform: skew(-20deg) rotateY(-90deg);
+  -ms-transform: skew(-20deg) rotateY(-90deg);
+  -o-transform: skew(-20deg) rotateY(-90deg);
+  transform: skew(-20deg) rotateY(-90deg);
+  opacity: 0;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.firstSection .slide .flagContent:before {
+  height: 250%;
+  width: 5px;
+  background: #000;
+  position: absolute;
+  left: -5px;
+  top: -70px;
+  content: '';
+}
+.firstSection .slide .flagContent .skewContent {
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -ms-transform: skew(20deg);
+  -o-transform: skew(20deg);
+  transform: skew(20deg);
+  height: 100%;
+  width: 100%;
+  padding: 0 15%;
+  position: relative;
+}
+.firstSection .slide .flagContent .inFlagText {
+  position: absolute;
+  left: 15%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 70%;
+}
+.firstSection .slide .flagContent .inFlagText .firstLine {
+  font: 9.31em/1em 'Helvetica';
+  text-transform: uppercase;
+}
+.firstSection .slide .flagContent .inFlagText .secondLine {
+  font: 2.7em/1em 'OswaldBold';
+  text-transform: uppercase;
+  margin-top: -3%;
+  padding: 0 0 0 2%;
+}
+.firstSection .slide .flagContent .underFlagText {
+  position: absolute;
+  left: 15%;
+  top: 115%;
+  width: 145%;
+  color: #ffffff;
+  text-transform: uppercase;
+  font: 5.5em/1em 'OswaldBold';
+}
+.firstSection .slide.animate .flagContent {
+  opacity: 1;
+  -webkit-transform: skew(-20deg) rotateY(0deg);
+  -moz-transform: skew(-20deg) rotateY(0deg);
+  -ms-transform: skew(-20deg) rotateY(0deg);
+  -o-transform: skew(-20deg) rotateY(0deg);
+  transform: skew(-20deg) rotateY(0deg);
+}
+.firstSection .slide.animate .intro img {
+  opacity: 1;
+}
+.secondSection {
+  background: url("../img/second-section.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.secondSection .slide .fp-tableCell {
+  position: relative;
+}
+.secondSection .slide .tableContent {
+  position: absolute;
+  right: 10%;
+  top: 0;
+  width: 50%;
+  max-width: 550px;
+  /*background: url("../img/table-bg.png") no-repeat center center;*/
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+.secondSection .slide .tableContent .tablesTitle {
+  height: 5.5em;
+}
+.secondSection .slide .tableContent .tablesTitle .titleScooter {
+  font: 5em/1em 'OswaldBold';
+  text-transform: uppercase;
+  text-align: right;
+}
+.secondSection .slide .tableContent .buttons {
+  height: 7em;
+  padding-top: 2.5em;
+}
+.secondSection .slide .tableContent .buttons .button {
+  margin: 0 0 0 0.2em;
+}
+.secondSection .slide .tables {
+  position: relative;
+  height: 50em;
+}
+.secondSection .slide .tables .tablePrices {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow .tableCell {
+  opacity: 0;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  -ms-transform: rotateX(-90deg);
+  -o-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+  border-top: 0.1em solid transparent;
+  color: #ffffff;
+  font: 1.88em/1em 'Oswald';
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow .tableCell span {
+  font-family: 'OswaldBold';
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow .tableCell:nth-child(1) {
+  width: 16%;
+  text-align: center;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow .tableCell:nth-child(2) {
+  width: 42%;
+  text-align: left;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow .tableCell:nth-child(3) {
+  width: 42%;
+  color: #f2532b;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow:nth-child(1) .tableCell {
+  -webkit-transition: all 0.4s ease 0.1s;
+  -moz-transition: all 0.4s ease 0.1s;
+  -ms-transition: all 0.4s ease 0.1s;
+  -o-transition: all 0.4s ease 0.1s;
+  transition: all 0.4s ease 0.1s;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow:nth-child(2) .tableCell {
+  -webkit-transition: all 0.4s ease 0.2s;
+  -moz-transition: all 0.4s ease 0.2s;
+  -ms-transition: all 0.4s ease 0.2s;
+  -o-transition: all 0.4s ease 0.2s;
+  transition: all 0.4s ease 0.2s;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow:nth-child(3) .tableCell {
+  -webkit-transition: all 0.4s ease 0.3s;
+  -moz-transition: all 0.4s ease 0.3s;
+  -ms-transition: all 0.4s ease 0.3s;
+  -o-transition: all 0.4s ease 0.3s;
+  transition: all 0.4s ease 0.3s;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow:nth-child(4) .tableCell {
+  -webkit-transition: all 0.4s ease 0.4s;
+  -moz-transition: all 0.4s ease 0.4s;
+  -ms-transition: all 0.4s ease 0.4s;
+  -o-transition: all 0.4s ease 0.4s;
+  transition: all 0.4s ease 0.4s;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow:nth-child(5) .tableCell {
+  -webkit-transition: all 0.4s ease 0.5s;
+  -moz-transition: all 0.4s ease 0.5s;
+  -ms-transition: all 0.4s ease 0.5s;
+  -o-transition: all 0.4s ease 0.5s;
+  transition: all 0.4s ease 0.5s;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow:nth-child(6) .tableCell {
+  -webkit-transition: all 0.4s ease 0.6s;
+  -moz-transition: all 0.4s ease 0.6s;
+  -ms-transition: all 0.4s ease 0.6s;
+  -o-transition: all 0.4s ease 0.6s;
+  transition: all 0.4s ease 0.6s;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow:nth-child(7) .tableCell {
+  -webkit-transition: all 0.4s ease 0.7s;
+  -moz-transition: all 0.4s ease 0.7s;
+  -ms-transition: all 0.4s ease 0.7s;
+  -o-transition: all 0.4s ease 0.7s;
+  transition: all 0.4s ease 0.7s;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow:nth-child(8) .tableCell {
+  -webkit-transition: all 0.4s ease 0.8s;
+  -moz-transition: all 0.4s ease 0.8s;
+  -ms-transition: all 0.4s ease 0.8s;
+  -o-transition: all 0.4s ease 0.8s;
+  transition: all 0.4s ease 0.8s;
+}
+.secondSection .slide .tables .tablePrices .tableDiv .tableRow:nth-child(9) .tableCell {
+  -webkit-transition: all 0.4s ease 0.9s;
+  -moz-transition: all 0.4s ease 0.9s;
+  -ms-transition: all 0.4s ease 0.9s;
+  -o-transition: all 0.4s ease 0.9s;
+  transition: all 0.4s ease 0.9s;
+}
+.secondSection .slide .fp-scroller{
+  height: 100%;
+}
+.secondSection .slide .intro {
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  width: 80%;
+  height: 70%;
+}
+.secondSection .slide .intro img {
+  max-height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  -ms-transform: scale(0.6);
+  -o-transform: scale(0.6);
+  transform: scale(0.6);
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.secondSection .slide.animate .tables .tablePrices .tableDiv .tableRow .tableCell {
+  opacity: 1;
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  -ms-transform: rotateX(0deg);
+  -o-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.secondSection .slide.animate .intro img {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+.button {
+  height: 2.226em;
+  border: 0.2em solid #ffffff;
+  font: 2em/2em 'OswaldBold';
+  padding: 0 1em;
+  text-transform: uppercase;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  display: inline-block;
+}
+.button.btnRed {
+  background: #f2532b;
+  color: #ffffff;
+}
+.button.btnRed:hover {
+  background: #ffffff;
+  color: #f2532b;
+}
+.button.btnBlack {
+  background: #000000;
+  color: #ffffff;
+}
+.button.btnBlack:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.thirdSection {
+  background: url("../img/third-section.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.thirdSection .fp-tableCell {
+  position: relative;
+}
+.thirdSection .intro {
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  width: 80%;
+  height: 80%;
+}
+.thirdSection .intro img {
+  max-height: 80%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.thirdSection .intro .worksBlock {
+  width: 63.665em;
+}
+.thirdSection .intro .worksBlock .title {
+  font: 4.12em/1em 'OswaldBold';
+  color: #000;
+  margin-bottom: 0.3em;
+}
+.thirdSection .intro .worksBlock .worksContent .item {
+  width: 49.5%;
+  border: 4px solid #000000;
+  margin: 0 0 1em 1%;
+  float: left;
+  position: relative;
+  background: rgba(255, 255, 255, 0.25);
+  opacity: 0;
+}
+.thirdSection .intro .worksBlock .worksContent .item:nth-child(odd) {
+  margin: 0 0 1em 0;
+}
+.thirdSection .intro .worksBlock .worksContent .item img {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemContent {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemContent img {
+  display: block;
+  max-width: 37.112%;
+  margin: 0 auto 1.5em;
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemContent .workTitle {
+  font: 2.1em/1em 'OswaldBold';
+  color: #000;
+  text-align: center;
+  margin-bottom: 0.3em;
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemContent .workText {
+  font: 1.9em/1em 'Oswald';
+  color: #000;
+  text-align: center;
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemText {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  padding: 2em;
+  z-index: 1;
+  text-align: center;
+  color: #ffffff;
+  overflow: hidden;
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemText:after {
+  content: '';
+  width: 100%;
+  height: 50%;
+  background: #f2532b;
+  left: 0;
+  top: 0;
+  position: absolute;
+  z-index: -1;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemText:before {
+  content: '';
+  width: 100%;
+  height: 50%;
+  background: #f2532b;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: -1;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemText .itemTitle {
+  font: 1.56em/1em 'OpenSansBold';
+  margin-bottom: 0.3em;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemText .itemSimpleText {
+  font: 1.56em/1.5em 'OpenSans';
+  opacity: 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.thirdSection .intro .worksBlock .worksContent .item .itemText .smallBtn {
+  opacity: 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  height: 2.4em;
+  border: 2px solid #ffffff;
+  background: #000;
+  color: #ffffff;
+  font: 1.6em/2.3em 'Oswald';
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 0.3em;
+  padding: 0 0.5em;
+  text-transform: uppercase;
+}
+.thirdSection .intro .worksBlock .worksContent .item:hover .itemText:before,
+.thirdSection .intro .worksBlock .worksContent .item:hover .itemText:after {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.thirdSection .intro .worksBlock .worksContent .item:hover .itemText .itemTitle {
+  opacity: 1;
+}
+.thirdSection .intro .worksBlock .worksContent .item:hover .itemText .itemSimpleText {
+  opacity: 1;
+}
+.thirdSection .intro .worksBlock .worksContent .item:hover .itemText .smallBtn {
+  opacity: 1;
+}
+.thirdSection .intro .worksBlock .worksContent .item:nth-child(1) {
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.thirdSection .intro .worksBlock .worksContent .item:nth-child(2) {
+  -webkit-transition: all 0.3s ease 0.2s;
+  -moz-transition: all 0.3s ease 0.2s;
+  -ms-transition: all 0.3s ease 0.2s;
+  -o-transition: all 0.3s ease 0.2s;
+  transition: all 0.3s ease 0.2s;
+}
+.thirdSection .intro .worksBlock .worksContent .item:nth-child(3) {
+  -webkit-transition: all 0.3s ease 0.4s;
+  -moz-transition: all 0.3s ease 0.4s;
+  -ms-transition: all 0.3s ease 0.4s;
+  -o-transition: all 0.3s ease 0.4s;
+  transition: all 0.3s ease 0.4s;
+}
+.thirdSection .intro .worksBlock .worksContent .item:nth-child(4) {
+  -webkit-transition: all 0.3s ease 0.6s;
+  -moz-transition: all 0.3s ease 0.6s;
+  -ms-transition: all 0.3s ease 0.6s;
+  -o-transition: all 0.3s ease 0.6s;
+  transition: all 0.3s ease 0.6s;
+}
+.thirdSection.animateSection .intro .worksBlock .worksContent .item {
+  opacity: 1;
+}
+.fourthSection {
+  background: url("../img/fourth-section.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.fourthSection .fp-tableCell {
+  position: relative;
+}
+.fourthSection .intro {
+  position: absolute;
+  width: 60%;
+  left: 20%;
+  top: 15%;
+  height: 75%;
+}
+.fourthSection .intro .pageTitle {
+  font: 4.12em/1em 'OswaldBold';
+  color: #000;
+  text-align: center;
+  margin-bottom: 0.4em;
+  text-transform: uppercase;
+}
+.fourthSection .intro .pageSubTitle {
+  font: 1.79em/1em 'Oswald';
+  color: #000;
+  text-align: center;
+  margin-bottom: 1.4em;
+}
+.fourthSection .intro .rentItems {
+  height: 75%;
+  margin-bottom: 4em;
+}
+.fourthSection .intro .rentItems .item {
+  width: 23.5%;
+  float: left;
+  margin: 0 0 0 2%;
+  height: 100%;
+  background: #ffffff;
+  border: 0.2em solid #000000;
+  position: relative;
+  -webkit-transform: translateX(600%);
+  -moz-transform: translateX(600%);
+  -ms-transform: translateX(600%);
+  -o-transform: translateX(600%);
+  transform: translateX(600%);
+}
+.fourthSection .intro .rentItems .item:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  content: '';
+  background: #000;
+}
+.fourthSection .intro .rentItems .item:first-child {
+  margin: 0;
+}
+.fourthSection .intro .rentItems .item .greyTitle {
+  height: 2.725em;
+  background: #8a8a8a;
+  font: 1.9em/1em 'Oswald';
+  color: #ffffff;
+  position: relative;
+}
+.fourthSection .intro .rentItems .item .greyTitle span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.fourthSection .intro .rentItems .item .priceTitle {
+  height: 2.465em;
+  background: #000;
+  font: 4.2em/1em 'OswaldBold';
+  color: #ffffff;
+  position: relative;
+  white-space: nowrap;
+}
+.fourthSection .intro .rentItems .item .priceTitle div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.fourthSection .intro .rentItems .item .priceTitle .dollar {
+  font: 0.61em/1em 'Oswald';
+  position: absolute;
+  left: -0.7em;
+  top: -0.4em;
+}
+.fourthSection .intro .rentItems .item .priceTitle .sibPrice,
+.fourthSection .intro .rentItems .item .priceTitle .price {
+  text-align: right;
+  display: inline-block;
+  vertical-align: top;
+}
+.fourthSection .intro .rentItems .item .priceTitle .sibPrice {
+  margin: 0 0 0 0.2em;
+}
+.fourthSection .intro .rentItems .item .priceTitle .subTime {
+  font: 0.4em/1em 'Oswald';
+  margin-bottom: 0.3em;
+  height: 1em;
+  display: block;
+}
+.fourthSection .intro .rentItems .item .priceTitle .time {
+  font: 0.4em/1em 'Oswald';
+  display: block;
+}
+.fourthSection .intro .rentItems .item .rentBtn {
+  border-color: #f2532b;
+  font-size: 1.4em;
+  height: 2.5em;
+  display: block;
+  position: absolute;
+  bottom: 2em;
+  left: 50%;
+  line-height: 2.2em;
+  padding: 0 2em;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.fourthSection .intro .rentItems .item .itemContent {
+  font: 1.54em/1em 'OpenSans';
+  color: #555555;
+}
+.fourthSection .intro .rentItems .item .itemContent .tableCell {
+  padding: 1em;
+}
+.fourthSection .intro .rentItems .item .itemContent .tableCell input{
+  width: 100%;
+}
+.fourthSection .intro .rentItems .item .itemContent .tableCell strong {
+  font-family: 'OpenSansBold';
+}
+.fourthSection .intro .rentItems .item .itemContent .tableRow:nth-child(odd) .tableCell {
+  background: #ededed;
+}
+.fourthSection .intro .rentItems .item.promo .greyTitle {
+  background: #f2532b;
+}
+.fourthSection .intro .rentItems .item.promo .promoType {
+  position: absolute;
+  height: 3.52em;
+  z-index: 2;
+  padding: 0 3em;
+  overflow: hidden;
+  right: -4em;
+  top: 1.5em;
+  -webkit-transform: rotateZ(45deg);
+  -moz-transform: rotateZ(45deg);
+  -ms-transform: rotateZ(45deg);
+  -o-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+.fourthSection .intro .rentItems .item.promo .promoType span {
+  position: relative;
+  background: #ffae00;
+  font: 1.6em/2.5em 'Helvetica';
+  color: #ffffff;
+  text-transform: uppercase;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.fourthSection .intro .rentItems .item.promo .promoType span:after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  border: 3em solid transparent;
+  border-left: 3em solid #ffae00;
+  top: 0;
+  margin: 0 0 0 -0.1em;
+}
+.fourthSection .intro .rentItems .item.promo .promoType span:before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  border: 3em solid transparent;
+  border-right: 3em solid #ffae00;
+  top: 0;
+  margin: 0 -0.1em 0 0;
+}
+.fourthSection .intro .rentItems .item:nth-child(1) {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.fourthSection .intro .rentItems .item:nth-child(2) {
+  -webkit-transition: all 0.3s ease 0.2s;
+  -moz-transition: all 0.3s ease 0.2s;
+  -ms-transition: all 0.3s ease 0.2s;
+  -o-transition: all 0.3s ease 0.2s;
+  transition: all 0.3s ease 0.2s;
+}
+.fourthSection .intro .rentItems .item:nth-child(3) {
+  -webkit-transition: all 0.3s ease 0.4s;
+  -moz-transition: all 0.3s ease 0.4s;
+  -ms-transition: all 0.3s ease 0.4s;
+  -o-transition: all 0.3s ease 0.4s;
+  transition: all 0.3s ease 0.4s;
+}
+.fourthSection .intro .rentItems .item:nth-child(4) {
+  -webkit-transition: all 0.3s ease 0.6s;
+  -moz-transition: all 0.3s ease 0.6s;
+  -ms-transition: all 0.3s ease 0.6s;
+  -o-transition: all 0.3s ease 0.6s;
+  transition: all 0.3s ease 0.6s;
+}
+.fourthSection .intro .subFooter {
+  height: 4.45em;
+}
+.fourthSection .intro .subFooter .addressTitle {
+  width: 23.5%;
+  float: left;
+  height: 100%;
+  background: #000;
+  color: #ffffff;
+  border-bottom: 0.7em solid black;
+  position: relative;
+}
+.fourthSection .intro .subFooter .addressTitle:after {
+  position: absolute;
+  left: 100%;
+  border: 2em solid transparent;
+  border-left: 2em solid black;
+  content: '';
+  top: 0;
+  z-index: 2;
+}
+.fourthSection .intro .subFooter .address {
+  background: #ffffff;
+  height: 100%;
+  float: left;
+  width: 51%;
+  border-bottom: 0.7em solid black;
+}
+.fourthSection .intro .subFooter .addressLine {
+  position: relative;
+}
+.fourthSection .intro .subFooter .addressLine span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 1.56em;
+  line-height: 1em;
+  white-space: nowrap;
+}
+.fourthSection .intro .subFooter .addressLine.addressTitle span {
+  font-family: 'OswaldBold';
+  text-transform: uppercase;
+}
+.fourthSection .intro .subFooter .addressLine.address span {
+  font-family: 'OpenSans';
+}
+.fourthSection .intro .subFooter .addressLine.address span strong {
+  font-family: 'OpenSansBold';
+  font-weight: normal;
+}
+.fourthSection .intro .subFooter .button {
+  width: 23.5%;
+  float: right;
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
+  border-width: 0.3em;
+  line-height: 1.8em;
+}
+.fourthSection.animateSection .intro .rentItems .item {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+.fifthSection {
+  background: url("../img/fifth-section.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.fifthSection .fp-tableCell {
+  position: relative;
+}
+.fifthSection .intro {
+  overflow: hidden;
+  height: 73%;
+  top: 20%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+.fifthSection .intro .gallerySlider {
+  height: 80em;
+}
+.fifthSection .intro .gallerySlider .sliderTitle {
+  font: 4.1em/1em 'OswaldBold';
+  color: #ffffff;
+  max-width: 80%;
+  text-align: center;
+  margin: 0 auto 0.5em;
+  text-transform: uppercase;
+}
+.fifthSection .intro .gallerySlider .slider {
+  max-width: 80%;
+  margin: 0 auto 0.5em;
+  height: 60em;
+}
+.fifthSection .intro .gallerySlider .slider .slick-track,
+.fifthSection .intro .gallerySlider .slider .slick-list {
+  height: 100%;
+}
+.fifthSection .intro .gallerySlider .slider .slick-arrow {
+  display: none !important;
+}
+.fifthSection .intro .gallerySlider .slider .slick-dots {
+  position: absolute;
+  top: 100%;
+  margin-top: 4em;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.fifthSection .intro .gallerySlider .slider .slick-dots li {
+  display: inline-block;
+}
+.fifthSection .intro .gallerySlider .slider .slick-dots li button {
+  text-indent: -9999px;
+  overflow: hidden;
+  width: 20px;
+  height: 3px;
+  background: #FFFFFF;
+  margin: 0 2px;
+}
+.fifthSection .intro .gallerySlider .slider .slick-dots li.slick-active button {
+  background: #f2532b;
+}
+.fifthSection .intro .gallerySlider .slider .gallery_wrap {
+  height: 100%;
+  float: left;
+  width: 20%;
+  margin: 0 10px;
+}
+.fifthSection .intro .gallerySlider .slider .gallery_wrap .item {
+  height: 100%;
+  float: left;
+  width: 100%;
+}
+.fifthSection .intro .gallerySlider .slider .gallery_wrap .item.secondItem {
+  height: 49%;
+  margin: 5% 0 0 0;
+}
+.fifthSection .intro .gallerySlider .slider .gallery_wrap .item.secondItem:first-child {
+  margin: 0;
+}
+.sixthSection {
+  background: url("../img/six-section.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.sixthSection .intro {
+  padding-top: 20em;
+  overflow: hidden;
+}
+.sixthSection .fp-tableCell {
+  position: relative;
+}
+.sixthSection .infoBlock {
+  height: 44em;
+  text-align: center;
+}
+.sixthSection .infoBlock .title {
+  font: 4.12em/1.5em 'OswaldBold';
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  max-width: 80%;
+  margin: 0 auto 0.4em;
+}
+.sixthSection .infoBlock .subTitle {
+  font: 1.79em/1em 'Oswald';
+  color: #000;
+  text-align: center;
+  max-width: 80%;
+  margin: 0 auto 1.4em;
+}
+.sixthSection .infoBlock .callText {
+  font: 1.79em/1em 'Helvetica';
+  color: #000;
+  text-align: center;
+  max-width: 80%;
+  margin: 3em auto 1.4em;
+}
+.sixthSection .infoBlock .button {
+  height: 3em;
+  line-height: 2.8em;
+}
+.sixthSection .preFooter {
+  height: 31.056em;
+  background: url("../img/pre-footer-section-hand.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  position: relative;
+}
+.sixthSection .preFooter .wrapper {
+  height: 100%;
+  max-width: 85%;
+  margin: 0 auto;
+}
+.sixthSection .preFooter .wrapper .half {
+  padding: 6em 10em;
+  position: relative;
+  height: 100%;
+}
+.sixthSection .preFooter .wrapper .half .button {
+  border-color: #000;
+  margin-top: 2em;
+  padding: 0 4em;
+  height: 3em;
+  line-height: 2.8em;
+  margin-right: 12em;
+}
+.sixthSection .preFooter .wrapper .half .title {
+  font: 4.12em/1.5em 'OswaldBold';
+}
+.sixthSection .preFooter .wrapper .half .text {
+  font: 1.79em/1.5em 'OpenSans';
+  text-align: center;
+}
+.sixthSection .preFooter .wrapper .half .text strong {
+  font-family: 'OpenSansBold';
+}
+.sixthSection .preFooter .footerLogo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: 21.843em;
+}
+.sixthSection .preFooter .footerLogo img {
+  display: block;
+  max-width: 100%;
+}
+.sixthSection .footer {
+  height: 38em;
+  font: 1.31em/1.6em 'OpenSans';
+  color: #a5a7a7;
+  padding-top: 5em;
+  background: #373737;
+}
+.sixthSection .footer .item {
+  position: relative;
+  height: 100%;
+  float: left;
+  padding-bottom: 7em;
+}
+.sixthSection .footer .item:nth-child(1),
+.sixthSection .footer .item:nth-child(4) {
+  width: 20%;
+}
+.sixthSection .footer .item:nth-child(2),
+.sixthSection .footer .item:nth-child(3) {
+  width: 30%;
+  padding: 0 12% 0 0;
+}
+.sixthSection .footer a {
+  color: #a5a7a7;
+}
+.sixthSection .footer .title {
+  font: 1.31em/1.6em 'OswaldBold';
+  color: #FFFFFF;
+  margin-bottom: 1em;
+}
+.sixthSection .footer ul {
+  margin-bottom: 2em;
+}
+.sixthSection .footer ul.middleUl {
+  display: inline-block;
+}
+.sixthSection .footer p {
+  margin-bottom: 2em;
+}
+.sixthSection .footer .footerLargeLogo {
+  display: block;
+  text-align: center;
+  margin-bottom: 2em;
+}
+.sixthSection .footer .footerLargeLogo img {
+  max-width: 10em;
+  display: inline-block;
+}
+.sixthSection .socialLink {
+  color: #FFFFFF;
+  font-size: 1.61em;
+  margin: 0 0.4em 0.4em 0;
+}
+.sixthSection .socialLink .fa {
+  color: #FFFFFF;
+}
+.sixthSection img {
+  display: inline-block;
+  vertical-align: baseline;
+  margin: 0 5px;
+}
+.sixthSection .copy {
+  position: absolute;
+  bottom: 2em;
+  width: 100%;
+  left: 0;
+}
+.sixthSection .widget {
+  max-width: 100%;
+  margin-bottom: 2em;
+}
+.sixthSection .widget * {
+  max-width: 100%;
+}
+.preLoader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+  background: #FFFFFF;
+}
+.preLoader .logo {
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  left: 50%;
+  top: 2em;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+.preLoader .loader {
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.fp-section.fp-table,
+.fp-slide.fp-table {
+  display: block;
+  position: relative;
+}
+.fp-tableCell {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+/*
+  search news not found
+*/
+.search_error_content {
+  margin-top: 50px;
+  margin-left: 100px;
+  size: 3vh;
+  font-size: 7vh;
+}
+.button_back {
+  height: 2.226em;
+  border: 0.2em solid #ffffff;
+  padding: 0 1em;
+  text-transform: uppercase;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  display: inline-block;
+}
+.button_back.btnRed {
+  background: #f2532b;
+  color: #ffffff;
+}
+.button_back.btnRed:hover {
+  background: #ffffff;
+  color: #f2532b;
+}
+.button_back.btnBlack {
+  background: #000000;
+  color: #ffffff;
+}
+.button_back.btnBlack:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+/*datepicker*/
+
+.ll-skin-lugo {
+  font-size: 90%;
+}
+
+.ll-skin-lugo .ui-widget {
+  font-family: "Helvetica","Trebuchet MS",Tahoma,Verdana,Arial,sans-serif;
+  background: #1c1c1c;
+  border: none;
+  border-radius: 0;
+  -moz-box-shadow: 0 0 3px #292c32;
+  -webkit-box-shadow: 0 0 3px #292c32;
+  box-shadow: 0 0 3px #292c32;
+
+}
+
+.ll-skin-lugo .ui-datepicker {
+  padding: 0;
+  width: 300px;
+}
+
+.ll-skin-lugo .ui-datepicker-header {
+  margin-top: 5px;
+  font-size: 80%;
+  border:none;
+  border-top: 1px solid #000; /* stroke */
+  border-bottom: 1px solid #000; /* stroke */
+  background: #333; /* layer fill content */
+  color: #fff; /* text color */
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,.7); /* drop shadow */
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -moz-box-shadow: inset 0 0 3px rgba(255,255,255,.1); /* inner glow */
+  -webkit-box-shadow: inset 0 0 3px rgba(255,255,255,.1); /* inner glow */
+  box-shadow: inset 0 0 3px rgba(255,255,255,.1); /* inner glow */
+
+}
+
+.ll-skin-lugo .ui-datepicker-header .ui-state-hover {
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.ll-skin-lugo .ui-datepicker .ui-datepicker-next span {
+  background-image: url(../img/calendar.png);
+  background-position: -32px -16px;
+}
+
+.ll-skin-lugo .ui-datepicker .ui-datepicker-prev span {
+  background-image: url(../img/calendar.png);
+  background-position: -96px -16px;
+}
+
+.ll-skin-lugo .ui-datepicker table {
+  margin: 0;
+}
+
+.ll-skin-lugo .ui-datepicker th {
+  color: #b7b7b7;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.ll-skin-lugo .ui-datepicker td {
+  border-top: 1px solid #2c2c2c;
+  border-right: 1px solid #2c2c2c;
+  padding: 0;
+  background: #eee;
+}
+
+.ll-skin-lugo .ui-datepicker td:last-child {
+  border-right: none;
+}
+
+.ll-skin-lugo td .ui-state-default {
+  border: none;
+  text-align: center;
+  padding: .7em 0;
+  margin:0;
+  font-size: 12px;
+  font-weight: bold;
+  color: #e7e7e7; /* text color */
+  text-shadow: 0 1px 2px #000; /* drop shadow */
+  background-color: #373737; /* layer fill content */
+  -moz-box-shadow: inset 0 0 3px rgba(255,255,255,.2); /* inner glow */
+  -webkit-box-shadow: inset 0 0 3px rgba(255,255,255,.2); /* inner glow */
+  box-shadow: inset 0 0 3px rgba(255,255,255,.2); /* inner glow */
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iaGF0MCIgZ3JhZGllbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHgxPSI1MCUiIHkxPSIxMDAlIiB4Mj0iNTAlIiB5Mj0iLTEuNDIxMDg1NDcxNTIwMmUtMTQlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM3MzczNyIgc3RvcC1vcGFjaXR5PSIxIi8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzQyNDI0MiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgIDwvbGluZWFyR3JhZGllbnQ+Cgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0idXJsKCNoYXQwKSIgLz4KPC9zdmc+); /* gradient overlay */
+  background-image: -moz-linear-gradient(bottom, #373737 0%, #424242 100%); /* gradient overlay */
+  background-image: -o-linear-gradient(bottom, #373737 0%, #424242 100%); /* gradient overlay */
+  background-image: -webkit-linear-gradient(bottom, #373737 0%, #424242 100%); /* gradient overlay */
+  background-image: linear-gradient(bottom, #373737 0%, #424242 100%); /* gradient overlay */
+
+}
+
+.ll-skin-lugo td.ui-state-disabled .ui-state-default {
+  background: #666;
+  color: #ccc;
+  text-shadow: none;
+}
+
+.ll-skin-lugo td .ui-state-hover {
+  background-color: #373737; /* layer fill content */
+  -moz-box-shadow: inset 0 0 4px rgba(0,0,0,.7);  /*inner shadow */
+  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2); /* inner shadow */
+  box-shadow: inset 0 0 4px rgba(0,0,0,.2); /* inner shadow */
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iaGF0MCIgZ3JhZGllbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHgxPSI1MCUiIHkxPSIxMDAlIiB4Mj0iNTAlIiB5Mj0iLTEuNDIxMDg1NDcxNTIwMmUtMTQlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQyNDI0MiIgc3RvcC1vcGFjaXR5PSIxIi8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzM3MzczNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgIDwvbGluZWFyR3JhZGllbnQ+Cgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0idXJsKCNoYXQwKSIgLz4KPC9zdmc+); /* gradient overlay */
+  background-image: -moz-linear-gradient(bottom, #424242 0%, #373737 100%);  /*gradient overlay*/
+  background-image: -o-linear-gradient(bottom, #424242 0%, #373737 100%);  /*gradient overlay */
+  background-image: -webkit-linear-gradient(bottom, #424242 0%, #373737 100%); /* gradient overlay */
+  background-image: linear-gradient(bottom, #424242 0%, #373737 100%); /* gradient overlay */
+}
+
+.ll-skin-lugo td .ui-state-active {
+  background: #3f6b8a; /* layer fill content */
+  -moz-box-shadow: inset 0 0 5px rgba(7,15,21,.9); /* inner shadow */
+  -webkit-box-shadow: inset 0 0 5px rgba(7,15,21,.9); /* inner shadow */
+  box-shadow: inset 0 0 5px rgba(7,15,21,.9); /* inner shadow */
+
+}
+.error {
+  color: #f60002;
+}
+.static {
+  width: 1050px;
+  position: relative;
+  padding: 20px 30px;
+  font-size: 18px;
+  margin: auto;
+}
+
+a.headerSimpleLink.center {
+  margin-left: 20vw;
+}
+.simpleTextContent{
+  padding: 50px 0;
+  font: 14px/20px 'OpenSans';
+  color: #444;
+}
+.simpleTextContent p, .simpleTextContent ul{
+  margin-bottom: 15px;
+}
+.simpleTextContent a{
+  color: #444;
+  text-decoration: underline;
+}
+.simpleTextContent strong, .simpleTextContent strong{
+  font-family: 'OpenSansBold', sans-serif;
+}
+
+
+

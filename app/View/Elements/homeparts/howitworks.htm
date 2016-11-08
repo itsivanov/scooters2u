@@ -1,0 +1,25 @@
+<div class="section thirdSection" id="section2">
+    <div class="intro">
+        <div class="worksBlock">
+            <div class="title left fullWidth">{{ parts.how_it_works.HomePart.title }}</div>
+            <div class="worksContent left fullWidth">
+                {% for slide in howItWorksSlides %}
+                <div class="item">
+                    <img src="/img/works-mask.png" title="{{ slide.InnerSlide.title }}" alt="{{ slide.InnerSlide.title }}">
+                    <div class="itemContent">
+                        <img src="{{ slide.InnerSlide.image }}" alt="{{ slide.InnerSlide.title }}" title="{{ slide.InnerSlide.title }}">
+                        <div class="workTitle">{{ slide.InnerSlide.title }}</div>
+                        <div class="workText">{{ slide.InnerSlide.subtitle }}</div>
+                    </div>
+                    <div class="itemText">
+                        <div class="itemTitle">{{ slide.InnerSlide.content_title }}</div>
+                        <div class="itemSimpleText">{{ slide.InnerSlide.content }}</div>
+                        <a href="/get-started" class="smallBtn">Get Started</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <img src="/img/bike3screen.png" alt="{{ parts.how_it_works.HomePart.title }}" title="{{ parts.how_it_works.HomePart.title }}">
+    </div>
+</div>

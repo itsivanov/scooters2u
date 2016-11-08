@@ -1,0 +1,31 @@
+<div class="wrapp-grid-img">
+    <div class="row">
+        <div class="box col-md-8">
+            <div class="text-right">
+
+                <span data-wow-offset="500" class="bike-img wow animated fadeInLeft">
+                    <?php if(isset($attachments['scooter'])): ?>
+                        <img src="/thumbs/475x510<?php echo $attachments['scooter']['value']; ?>" alt="">
+                    <?php endif; ?>
+                </span>
+                <?php if(isset($attachments['background'])): ?>
+                    <img src="/thumbs/540x365<?php echo $attachments['background']['value']; ?>" alt="">
+                <?php endif; ?>
+                <div class="clearfix">
+                    <a href="/get-started" class="button btnRed">BOOK NOW</a>
+                </div>
+            </div>
+        </div>
+        <div class="box col-md-4">
+            <div class="text-left">
+
+                <?php if(isset($attachments['family_first'])): ?>
+                    <img data-wow-offset="500" class="wow animated fadeInRight" src="/thumbs/275x185<?php echo $attachments['family_first']['value']; ?>" alt="">
+                <?php endif; ?>
+                <?php if(isset($attachments['family_second'])): ?>
+                    <img data-wow-offset="500"  class="wow animated fadeInRight" src="/thumbs/370x250<?php echo $attachments['family_second']['value']; ?>" alt="">
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

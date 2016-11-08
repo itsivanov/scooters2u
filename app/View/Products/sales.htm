@@ -1,0 +1,29 @@
+{{ _view.assign('fullHeightBackground', 'yes') }}
+
+{{ _view.assign('hdrBgImage', sales.Static.media) }}
+
+{{ _view.assign('hdrCustomTitleElement', _view.element('products/icon')) }}
+
+{{ _view.assign('hdrCustomHeaderControl', '<span class="slideDown"><i class="fa fa-angle-down"></i></span>') }}
+<div class="aboutSection left fullWidth backgroundImage" style="background-color:#e0e0e0;">
+    <div class="container">
+        <div class="simpleText textCenter left fullWidth">
+            {{ sales.Static.text }}
+        </div>
+    </div>
+</div>
+<div class="storeItems left fullWidth">
+    {% for item in products %}
+    <a href="/products/view/{{ item.Product.id }}" class="storeItem">
+        <div class="storePhoto left fullWidth backgroundImage"
+             style="background-image:url('/thumbs/300x200{{ item.Product.img }}');">
+            <img src="/img/store-mask.png" alt="" title="">
+            <div class="hoverBlock"></div>
+        </div>
+        <div class="storeDescription left fullWidth textCenter">
+            <div>{{ item.Product.title }}</div>
+            <div class="price">${{ item.Product.price }}</div>
+        </div>
+    </a>
+    {% endfor %}
+</div>

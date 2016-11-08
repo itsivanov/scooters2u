@@ -1,0 +1,83 @@
+<div class="show-mob">
+    <div class="bl-make-reservation">
+        <strong>{{ parts.bottom.HomePart.title }} </strong>
+        <span>{{ parts.bottom.HomePart.content }}</span>
+        <div class="wrapp-btn text-center">
+            <a href="" class="rentBtn button btnRed">make reservation</a>
+        </div>
+    </div>
+
+    <div class="bl-get-started">
+        <strong>
+            RENT A SCOOTER FOR <br>
+            YOUR MIAMI VACATION!
+        </strong>
+        <div class="wrapp-btn text-center">
+            <a href="" class="rentBtn button btnRed">GET STARTED</a>
+        </div>
+    </div>
+
+    <div class="bl-footer">
+        <div class="clearfix text-center logo-img">
+            <img src="/img/logo-3.png" alt="">
+        </div>
+        <strong class="title">About Scooters2U</strong>
+
+        <p>
+            {{ options.about_scooters }}
+        </p>
+
+        <strong class="title">RECENT POSTS</strong>
+
+        <p>
+            {% for new in lastNews %}
+                <a href="/news/{{ new.Tiding.slug }}">{{ new.Tiding.title }}</a>
+            {% endfor %}
+        </p>
+
+        <strong class="title">AREAS OF SERVICE</strong>
+
+        <p>
+            <a href="#">Miami Beach</a>
+            <a href="#">Downtown Miami</a>
+            <a href="#">Brickell</a>
+            <a href="#">Midtown Miami</a>
+            <a href="#">Wynwood</a>
+            <a href="#">Venetian Islands</a>
+            <a href="#">Star Island</a>
+            <a href="#">North Bay Village</a>
+            <a href="#">Key Biscayne</a>
+        </p>
+
+        <div class="soc-footer-bl">
+            <strong class="title">Follow us on</strong>
+            <div class="item">
+                <a href="{{ options.facebook }}" class="socialLink"><i class="fa fa-facebook"></i></a>
+                <a href="{{ options.twitter }}" class="socialLink"><i class="fa fa-twitter"></i></a>
+                <a href="{{ options.google }}" class="socialLink"><i class="fa fa-google-plus"></i></a>
+                <a href="{{ options.instagram }}" class="socialLink"><i class="fa fa-instagram"></i></a>
+                <a href="{{ options.yelp }}" class="socialLink"><i class="fa fa-yelp"></i></a>
+            </div>
+        </div>
+
+        <div class="bl-nav-bottom">
+            <ul>
+                {% for item in footerMenu %}
+                    <li>
+                        <a href="{{ item.Menu.url }}">{{ item.Menu.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="bl-widget">
+            <div class="widget">
+                <img src="/img/trip.png" alt="" title="">
+            </div>
+            <div class="widget">
+                <img src="/img/yelp.png" alt="" title="">
+            </div>
+        </div>
+    </div>
+</div>
+

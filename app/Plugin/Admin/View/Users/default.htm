@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {{ Html.charset() }}
+    <title>{% block title %}{% endblock %}</title>
+	<!--[if IE]>
+		<style type="text/css">
+			BODY { behavior: url("/admin/css/csshover.htc"); }
+		</style>
+	<![endif]-->
+
+	<!--[if IE 6]>
+		<link rel="stylesheet" type="text/css" href="/admin/css/ie.css" />
+
+		<script type="text/javascript" src="/admin/js/dd_belatedpng.js"></script>
+		<script type="text/javascript">
+			dd_belatedpng.fix('.png_bg');
+		</script>
+	<![endif]-->
+
+    {{ Html.css('/admin/css/form') }}
+    {{ Html.css('/admin/css/layout') }}
+    {{ Html.css('/admin/css/style') }}
+    {{ Html.css('/admin/js/jquery/jquery-ui/cupertino/jquery-ui-1.8.6.custom') }}
+    {{ Html.css('/admin/js/jquery/plugins/jgrowl/message_types') }}
+    {{ Html.css('/admin/js/jquery/plugins/jgrowl/jquery.jgrowl') }}
+
+    {{ Html.script('/admin/js/jquery/jquery-1.7.min') }}
+    {{ Html.script('/admin/js/jquery/jquery-ui/jquery-ui-1.8.6.custom.min') }}
+    {{ Html.script('/admin/js/jquery/plugins/jgrowl/jquery.jgrowl_minimized.js') }} {# When I deleted 'js' extension, I got a strange troubles #}
+
+    {{ scripts_for_layout }}
+    {% block scripts %}{% endblock %}
+
+    <script type="text/javascript">
+        $(function() {
+            $("#tabs").tabs();
+            $("#left-menu").accordion({ autoHeight: false });
+
+            $(".submit-btn").button();
+
+            $(".delete-link").click(function(event) {
+                event.preventDefault();
+                var link = $(this).attr("href");
+
+                $("#dialog-confirm").dialog({
+                    resizable: false,
+                    position: "center",
+                    height:140,
+                    modal: true,
+                    buttons: {
+                        "Delete": function() {
+                            $(this).dialog("close");
+                            location.href = link;
+                        },
+                        "Cancel": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+{{ jGrowl.flash() }}
+<div id="dialog-confirm" title="Delete this item?" class="hidden">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This item will be permanently deleted and cannot be recovered. Are you sure?</p>
+</div>
+<div class="main">
+	<div class="head-top">
+		<div class="logo"><img alt="" src="/admin/img/logo.png" class="png_bg" /></div>
+		<div class="clear">&nbsp;</div>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<div class="content-bott">
+                {% block content %}
+                {% endblock %}
+		</div>
+	</div>
+	<div class="footer">
+		<div class="bg-foot-left">
+			<div class="bg-foot-right">
+				<div class="bg-foot-top">
+					<div class="bg-foot-bott">
+						<div class="bg-foot-lt">
+							<div class="bg-foot-rt">
+								<div class="bg-foot-lb">
+									<div class="bg-foot-rb">
+										{% include '/Plugin/Admin/View/Elements/footer.htm' %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

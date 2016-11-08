@@ -1,0 +1,14 @@
+<?php $fade = $counter == 0 || !($counter%2)? 'fadeInLeft': 'fadeInRight'; ?>
+<div class="box animated <?php echo $fade; ?>">
+    <div class="wrapp-img">
+        <div style="background-image: url('/thumbs/550x475<?php echo $item['Tiding']['img'] ;?>')" class="fix-center-img"></div>
+    </div>
+    <div class="text-post">
+        <h2><?php echo $item['Tiding']['title']; ?></h2>
+        <span class="date-post"><?php echo $this->Time->format('M d, Y', $item['Tiding']['created']); ?></span>
+        <div class="wrapp-txt">
+            <?php echo $this->Text->truncate($item['Tiding']['content'], 250); ?>
+        </div>
+        <a class="more-btn" href="/news/<?php echo $item['Tiding']['slug']; ?>">more</a>
+    </div>
+</div>

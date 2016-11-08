@@ -1,0 +1,80 @@
+
+
+{{ _view.start('script') }}
+<script type="text/javascript" src="/admin/components/datatables/dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/components/datatables/ColVis.js"></script>
+{{ _view.end() }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> Rental Fee</span>
+    {{ _view.end() }}
+    <!-- title box -->
+    <div class="boxtitle min">List of Rental Fee</div>
+
+    <div class="tableName">
+
+        <br/>
+        <table class="display static " id="staticPages">
+            <thead>
+            <tr>
+                <th width="" >ID</th>
+                <th width="" >Title</th>
+                <th width="" >Price</th>
+                <th width="" >Is Featured</th>
+                <th width="" >Link name</th>
+                <th width="">Link</th>
+
+                <th width=""></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in listRentFee %}
+            <tr>
+                <td>{{ item.RentalFee.id }}</td>
+                <td>{{ item.RentalFee.title }}</td>
+                <td>{{ item.RentalFee.price }}</td>
+                <td>
+                    {% if item.RentalFee.is_featured == 1 %}
+                    <div style="color:#07b42c">active</div>
+                    {% else %}
+                    <div style="color:#cd0a0a">not active</div>
+
+                    {% endif%}
+                </td>
+                <td>{{ item.RentalFee.link_name }}</td>
+                <td>{{ item.RentalFee.href }}</td>
+
+                <td>
+                            <span class="tip">
+                                <a class="edit_link" title="Edit" href="/admin/rental_fees/edit/{{ item.RentalFee.id }}"><i class="fa fa-pencil"></i></a>
+                            </span>
+
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function() {
+
+        $('#staticPages').dataTable({
+            "sDom": 'fCl<"clear">rtip',
+            "sPaginationType": "full_numbers" ,
+            "aaSorting": [],
+            "aoColumns": [
+                null,
+                null,
+                null,
+                { "bSortable": false }
+            ]
+        });
+
+
+    });
+
+</script>

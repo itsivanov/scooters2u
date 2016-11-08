@@ -1,0 +1,41 @@
+{{error}}
+{% for item in news %}
+<div class="blogListItem left fullWidth">
+    {% set itemImage %}
+    <div class="blogPhoto half backgroundImage" style="background-image:url('{{ item.Tiding.img }}');">
+        <img src="img/blog-mask.png" alt="" title="">
+        <div class="blogDate">
+            <div class="tableDiv">
+                <div class="tableCell">
+                    <div class="date">{{ item.Tiding.created|date("M j") }}</div>
+                    <div class="year">{{ item.Tiding.created|date("Y") }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endset %}
+    {% set itemContent %}
+    <div class="blogContent half">
+        <div class="blogListContent left fullWidth">
+            <div class="blogTitle left textLeft fullWidth">
+                {{ item.Tiding.title }}
+            </div>
+            <div class="blogAuthor left fullWidth textLeft">
+                {{ item.Tiding.subtitle }}
+            </div>
+            <div class="blogText left fullWidth textLeft">
+                {{ item.Tiding.content }}
+            </div>
+        </div>
+        <a href="/one-post/{{ item.Tiding.slug }}" class="button btnBlack transparentBtn upper left">read more</a>
+    </div>
+    {% endset %}
+    {% if loop.index0 is odd %}
+    {{ itemImage }}
+    {{ itemContent }}
+    {% else %}
+    {{ itemContent }}
+    {{ itemImage }}
+    {% endif %}
+</div>
+{% endfor %}

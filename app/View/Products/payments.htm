@@ -1,0 +1,397 @@
+{{ _view.assign('hdrPageTitle', 'Payment') }}
+{{ _view.assign('hdrBgImage', '/img/inner-header.jpg') }}
+
+<div class="cartSection left fullWidth">
+    <div class="containerSmall">
+        <div class="palmPayTabs left fullWidth">
+
+            {{ _view.element('cartMenu') }}
+
+            <div class="palmPayTabContent left fullWidth">
+                <div class="billingField">
+                    <form action="/products/payments" class="paymentForm" method="POST">
+                        <div class="perHalf left">
+                            <div class="fieldTitle left fullWidth">Order Summary</div>
+                            <div class="payProductsList left fullWidth">
+                                <div class="listTitle left fullWidth">
+                                    <div class="listItem left"><strong>Item</strong></div>
+                                    <!--<div class="listQty left textCenter"><strong>SKU</strong></div>-->
+                                    <div class="listQty left textCenter"><strong>QTY</strong></div>
+                                    <div class="listPrice left textCenter"><strong>Price</strong></div>
+                                </div>
+                                <div class="listContent left fullWidth">
+                                    <div class="tableDiv">
+                                        {% for item in order.OrderItem %}
+                                            <div class="tableRow">
+                                                <div class="tableCell">
+                                                    {{ item.Product.title }}
+                                                </div>
+                                                <!--<div class="tableCell">-->
+                                                    <!--{{ item.Product.sku }}-->
+                                                <!--</div>-->
+                                                <div class="tableCell">
+                                                    {{ item.quantity }}
+                                                </div>
+                                                <div class="tableCell">
+                                                    ${{ item.Product.price }}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="listTitle listTotal left fullWidth textRight"><strong>Subtotal: <span style="font-family: Arial;">$</span> {{ order.Order.amount }}</strong></div>
+                                <div class="listPromo left fullWidth">
+
+                                    {% if order.Order.user_id %}
+                                    <div>
+                                        Rewards
+                                    </div>
+                                    {#<div class="textCenter left fullWidth"><span class="left textRight">Your POTG reward dollars:</span><b> {{ rewardPoints }}</b></div>#}
+                                    <div class="textCenter left fullWidth"><span class="left textRight">Your POTG reward dollars:</span><b> ${{ user.User.point_balance }}</b></div>
+                                    <div class="textCenter inputPromo left fullWidth">
+                                        <span class="left textRight">Apply POTG Rewards Dollars</span>
+                                        <div class="palmCustomInput left">
+                                            <input type="text" name="data[Payment][potg]" id="usePotg" value="0" placeholder="0">
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    <div>
+                                        Select Shipping Method
+                                    </div>
+                                    <div class="textCenter left fullWidth">
+                                        <ul>
+                                            {% for key, type in shippingTypes %}
+                                            <li>
+                                                <label for="{{ 'type-'~loop.index }}">{{ key }}</label>
+                                                <input type="radio" id="{{ 'type-'~loop.index }}" name="data[Payment][shipping]" value="{{ type }}">
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
+                                    <div class="textCenter left fullWidth">
+                                        <div style="text-align: left;">
+                                            <input data-shipping-method-change id="PaymentShippingMethodLong" type="radio" name="data[Payment][shipping_method]" value="long">
+                                            <label for="PaymentShippingMethodLong">Standard UPS (4-5 DAYS)</label>
+
+                                            {% set names = {
+                                            '03':{'type':'long', 'label': 'UPS Ground'}
+                                            } %}
+
+                                            <div class="sipping-types-sub" style="display:none;">
+                                            {% for type, rate in shippingInfo %}
+                                                {% if rate.RatedShipment.0.TotalCharges.MonetaryValue > 0 and names[type] %}
+                                                    <div style="display: none; text-align: left;" data-shipping-service-wrap>
+                                                        <input type="radio" value="{{ type }}"
+                                                               data-shipping-method="{{ names[type].type }}"
+                                                               data-shipping-service
+                                                               data-shipping-cost="{{ rate.RatedShipment.0.TotalCharges.MonetaryValue }}"
+                                                               id="PaymentShippingService_{{ type }}"
+                                                               name="data[Payment][shipping_service]">
+                                                        <label for="PaymentShippingService_{{ type }}">
+                                                            ${{ rate.RatedShipment.0.TotalCharges.MonetaryValue }} - {{ names[type].label }}
+                                                        </label>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                            </div>
+
+
+                                        </div>
+                                        <div  style="text-align: left;">
+                                            <input data-shipping-method-change id="PaymentShippingMethodMiddle" type="radio" name="data[Payment][shipping_method]" value="middle">
+                                            <label for="PaymentShippingMethodMiddle">UPS 2 DAY</label>
+
+                                            {% set names = {
+                                            '59':{'type':'middle', 'label': 'UPS Second Day Air AM'},
+                                            '02':{'type':'middle', 'label': 'UPS Second Day Air'}
+                                            } %}
+
+                                            <div class="sipping-types-sub" style="display:none;">
+                                            {% for type, rate in shippingInfo %}
+                                                {% if rate.RatedShipment.0.TotalCharges.MonetaryValue > 0 and names[type] %}
+                                                    <div style="display: none; text-align: left;" data-shipping-service-wrap>
+                                                        <input type="radio" value="{{ type }}"
+                                                               data-shipping-method="{{ names[type].type }}"
+                                                               data-shipping-service
+                                                               data-shipping-cost="{{ rate.RatedShipment.0.TotalCharges.MonetaryValue }}"
+                                                               id="PaymentShippingService_{{ type }}"
+                                                               name="data[Payment][shipping_service]">
+                                                        <label for="PaymentShippingService_{{ type }}">
+                                                            ${{ rate.RatedShipment.0.TotalCharges.MonetaryValue }} - {{ names[type].label }}
+                                                        </label>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                                </div>
+
+                                        </div>
+                                        <div  style="text-align: left;">
+                                            <input data-shipping-method-change id="PaymentShippingMethodFast" type="radio" name="data[Payment][shipping_method]" value="fast">
+                                            <label for="PaymentShippingMethodFast">UPS OR FEDEX OVERNIGHT</label>
+
+                                            {% set names = {
+                                            '14':{'type':'fast', 'label': 'UPS Next Day Air Early AM'},
+                                            '01':{'type':'fast', 'label': 'UPS Next Day Air'},
+                                            '13':{'type':'fast', 'label': 'Next Day Air Saver'}
+                                            } %}
+
+                                            <div class="sipping-types-sub" style="display:none;">
+                                            {% for type, rate in shippingInfo %}
+                                                {% if rate.RatedShipment.0.TotalCharges.MonetaryValue > 0 and names[type] %}
+                                                    <div style="display: none; text-align: left;" data-shipping-service-wrap>
+                                                        <input type="radio" value="{{ type }}"
+                                                               data-shipping-method="{{ names[type].type }}"
+                                                               data-shipping-service
+                                                               data-shipping-cost="{{ rate.RatedShipment.0.TotalCharges.MonetaryValue }}"
+                                                               id="PaymentShippingService_{{ type }}"
+                                                               name="data[Payment][shipping_service]">
+                                                        <label for="PaymentShippingService_{{ type }}">
+                                                            ${{ rate.RatedShipment.0.TotalCharges.MonetaryValue }} - {{ names[type].label }}
+                                                        </label>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                                </div>
+
+                                        </div>
+                                        <div>
+                                            {#{% set names = {#}
+                                                {#'14':{'type':'fast', 'label': 'UPS Next Day Air Early AM'},#}
+                                                {#'01':{'type':'fast', 'label': 'UPS Next Day Air'},#}
+                                                {#'13':{'type':'fast', 'label': 'Next Day Air Saver'},#}
+                                                {#'59':{'type':'middle', 'label': 'UPS Second Day Air AM'},#}
+                                                {#'02':{'type':'middle', 'label': 'UPS Second Day Air'},#}
+                                                {#'03':{'type':'long', 'label': 'UPS Ground'},#}
+                                            {#} %}#}
+                                            {#{% for type, rate in shippingInfo %}#}
+                                                {#{% if rate.RatedShipment.0.TotalCharges.MonetaryValue > 0 %}#}
+                                                {#<div style="display: none; text-align: left;" data-shipping-service-wrap>#}
+                                                    {#<input type="radio" value="{{ type }}"#}
+                                                           {#data-shipping-method="{{ names[type].type }}"#}
+                                                           {#data-shipping-service#}
+                                                           {#data-shipping-cost="{{ rate.RatedShipment.0.TotalCharges.MonetaryValue }}"#}
+                                                           {#id="PaymentShippingService_{{ type }}"#}
+                                                           {#name="data[Payment][shipping_service]">#}
+                                                    {#<label for="PaymentShippingService_{{ type }}">#}
+                                                        {#${{ rate.RatedShipment.0.TotalCharges.MonetaryValue }} - {{ names[type].label }}#}
+                                                    {#</label>#}
+                                                {#</div>#}
+                                                {#{% endif %}#}
+                                            {#{% endfor %}#}
+                                        </div>
+                                        <span class="left textRight">Shipping:</span> <span style="font-family: Arial;">$</span> <span class="shippingAmount">{{ order.Order.shipping|default(0) }}</span>
+                                    </div>
+                                    <div class="textCenter left fullWidth">
+                                        <span class="left textRight">Discount:</span><span class="discountAmount">{{ order.Order.discount|default(0) }}</span>
+                                    </div>
+                                </div>
+                                <div class="listTotal left fullWidth textRight">
+                                    <strong>total: <span style="font-family: Arial;">$</span> <span class="totalCharge">{{ order.Order.amount }}</span></strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="perHalf right">
+                            <div class="fieldTitle left fullWidth">Credit Card Information</div>
+                            <div class="sameInfo left fullWidth">Please enter details exactly as they appear on the card</div>
+                            <!--<div class="sameInfo left fullWidth">Enter card details exactly as they appear</div>-->
+                            <div class="fieldsBlock left fullWidth">
+                                <div class="palmCustomInput left fullWidth require">
+                                    <input type="text" autocomplete="on" name="data[Payment][account_holder]" required placeholder="Name on Card">
+                                </div>
+                                {#<div class="palmCustomInput left fullWidth require">#}
+                                    {#<input type="text" autocomplete="on" name="data[Payment][card_type]" placeholder="Card Type">#}
+                                {#</div>#}
+
+                                <div class="palmCustomInput left fullWidth require">
+                                    <input type="text" autocomplete="on" name="data[Payment][account_number]" required placeholder="Card Number">
+                                </div>
+                                <div class="palmCustomInput left fullWidth require lockInput">
+                                    <input type="text" autocomplete="on" name="data[Payment][security_code]" required placeholder="CVC/Security Code">
+                                </div>
+                                <div class="customLabel left fullWidth">
+                                    Expiration Date:
+                                </div>
+                                <div class="palmCustomSimpleSelect left perHalf require">
+                                    <select name="data[Payment][expiration_month]" required>
+                                        {% for i in 1..12 %}
+                                            <option>{{ i < 10 ? '0'~i : i }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="palmCustomSimpleSelect right perHalf require">
+                                    <select name="data[Payment][expiration_year]" required>
+                                        {% set year = 'now'|date('Y') %}
+                                        {% for i in year..year+10 %}
+                                            <option>{{ i }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!--<div class="totalPrice left fullWidth">Total Charge: $<span class="totalCharge">{{ order.Order.amount }}</span></div>-->
+                                <div class="sameInfo left fullWidth">
+                                    {% if not order.Order.user_id %}
+                                    <div class="palmCustomCheck left half">
+                                        <input type="checkbox" id="ConfirmToAuthorise">
+                                        <label for="ConfirmToAuthorise">Click to Authorize</label>
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="right half" id="PlaceOrderSpan" style="display:none;">
+                                        <span class="button payButton btnBlack upper right fullWidth textCenter" id="">Loading...</span>
+                                    </div>
+
+                                    <div class="right half" id="PlaceOrderButton">
+                                        <input type="submit" value="place order" class="button payButton btnBlack upper right fullWidth textCenter" id="PlaceOrderBtn">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        var sending = false;
+
+        window.callbackManager.push('after-login', function(data) {
+            data.noredirect = true;
+            $('#ConfirmToAuthorise').parent().hide();
+            $('#PlaceOrderBtn').removeClass('login');
+            $('.paymentForm').submit();
+        });
+
+
+        function showLoading() {
+            var button = $('#PlaceOrderButton'),
+                    span = $('#PlaceOrderSpan');
+
+            button.hide();
+            span.show();
+
+        }
+
+        function hideLoading() {
+            var button = $('#PlaceOrderButton'),
+                    span = $('#PlaceOrderSpan');
+
+            button.show();
+            span.hide();
+        }
+
+        $(document).on('change', '#ConfirmToAuthorise', function() {
+            if ($(this).is(':checked')) {
+                $('#PlaceOrderBtn').addClass('login');
+            } else {
+                $('#PlaceOrderBtn').removeClass('login');
+            }
+        });
+
+        $(document).on('submit','.paymentForm', function(e){
+            e.preventDefault();
+            showLoading();
+            sending = true;
+
+            if ($('input[data-shipping-method-change]:checked').length == 0){
+                $.pnotify({ text: 'Please, select shipping method', type: 'error', title: 'Error'});
+                hideLoading();
+                return false;
+            }
+
+            if ($('input[data-shipping-service]:checked').length == 0){
+                $.pnotify({ text: 'Please, select shipping service', type: 'error', title: 'Error'});
+                hideLoading();
+                return false;
+            }
+
+//            if (!$('#ConfirmToAuthorise').is(':checked')){
+//                $.pnotify({ text: 'please confirm Authorise', type: 'warning'});
+//                return false;
+//            }
+
+            var previousTitle = $('.payButton').val();
+//            $('.payButton').val('Loading..');
+
+            $.post('/products/pay',
+                $('.paymentForm').serialize(),
+                function(data){
+                    if (data.success){
+                        window.location.href = '/products/success';
+                    }
+
+                    $('.payButton').val(previousTitle);
+                    $.pnotify({ text: data.msg, type: 'warning'});
+                    sending = false;
+
+                    hideLoading();
+                },'json');
+        });
+
+        $(document).on('keyup','#usePotg', function(e){
+            e.preventDefault();
+
+            var q = parseInt($(this).val());
+
+            if (q == 'NaN'){
+                $.pnotify({ text: 'Incorrect data', type: 'warning'});
+                return false;
+            }
+
+            $.post('/products/usePoints?q='+q,
+                function(data){
+                    if (data.error){
+                        $.pnotify({ text: data.msg, type: 'warning'});
+                    }else{
+                        $('.totalCharge').text(data.cart.total);
+                    }
+                },'json');
+        });
+
+        $(document)
+                .on('change', 'input[data-shipping-method-change]:checked', function (e) {
+                    var $all = $('div[data-shipping-service-wrap]'),
+                            $currentSub = $(this).parent().find('div.sipping-types-sub')
+                            $subs = $('div.sipping-types-sub');
+
+                    $subs.hide();
+                    $all.hide();
+                    $all.find(':radio').prop('checked', false);
+
+                    var $current = $all.filter(':has([data-shipping-method="' + e.currentTarget.value + '"])');
+                    $currentSub.show();
+                    $current.show();
+                    if ($current.length == 1) {
+                        $current.find(':radio').prop('checked', true).trigger('change');
+                    }
+                });
+        $('input[data-shipping-method-change]:checked').trigger('change');
+
+        $(document)
+                .on('change', 'input[data-shipping-cost]:checked', function (e) {
+                    var $this = $(e.currentTarget),
+                        cost = $this.data().shippingCost;
+
+                    var q = $('#usePotg').val();
+
+                    showLoading();
+                    $.post('/products/shippingUpdate?q='+q+'&shipping='+cost+'&service='+e.currentTarget.value,
+                            function(data){
+                                if (data.error){
+                                    $.pnotify({ text: data.msg, type: 'warning'});
+                                }else{
+                                    $('.shippingAmount').text(data.cart.shipping);
+                                    $('.totalCharge').text(data.cart.total);
+                                }
+
+                                hideLoading();
+                            },'json');
+
+                });
+    });
+</script>

@@ -1,0 +1,69 @@
+
+
+{{ _view.start('script') }}
+<script type="text/javascript" src="/admin/components/datatables/dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/components/datatables/ColVis.js"></script>
+{{ _view.end() }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> Edit Home Parts</span>
+    {{ _view.end() }}
+
+    <!-- title box -->
+    <div class="boxtitle min">Edit Home Parts</div>
+
+    <div class="tableName">
+
+        <br/>
+        <table class="display static " id="staticPages">
+            <thead>
+            <tr>
+                <th width="" >Key</th>
+                <th width="" align="left">Title</th>
+                <th width="" align="left">Content</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in AllParts %}
+            <tr>
+                <td align="left">{{ item.HomePart.key }}</td>
+                <td align="left">
+                    {{ item.HomePart.title }}
+                </td>
+                <td align="left">
+                    {{ item.HomePart.content }}
+                </td>
+                <td>
+                    <span class="tip">
+                        <a class="edit_link" title="Edit" href="/admin/home_parts/edit/{{ item.HomePart.id }}"><i class="fa fa-pencil"></i></a>
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function() {
+
+        $('#staticPages').dataTable({
+            "sDom": 'fCl<"clear">rtip',
+            "sPaginationType": "full_numbers" ,
+            "aaSorting": [],
+            "aoColumns": [
+                null,
+                null,
+                null,
+                { "bSortable": false }
+            ]
+        });
+
+
+    });
+
+</script>

@@ -1,0 +1,43 @@
+<div class="preLoader">
+    <img src="/img/logo.png" alt="" title="" class="logo">
+    <img src="/img/loader.gif" alt="" title="" class="loader">
+</div>
+<div class="headerSection desktopHeader">
+    <div class="topHeaderSide left fullWidth">
+
+        <a href="mailto:info@scooters2u.com" class="right headerSimpleLink">
+            <i class="fa fa-envelope-o"></i>{{ options.email }}
+        </a>
+        <a href="tel:3056748338" class="right headerSimpleLink">
+            <i class="fa fa-phone"></i>{{ options.phone }}
+        </a>
+        <a href="" class="headerSimpleLink center">
+            {{ options.top_right_greeting }}
+        </a>
+    </div>
+    <div class="headerContent left fullWidth">
+        <a class="navicon-button x open-nav">
+            <div class="navicon"></div>
+        </a>
+        <a href="/" class="left logo">
+            <img src="/img/logo.png" alt="" title="">
+        </a>
+        <nav class="nav-holder clearfix">
+            <ul class="clearfix">
+                {% for item in headerMenu %}
+                <li>
+                    <a class="{{ item.Menu.key == pageKey ? 'active':'' }}" href="{{ item.Menu.url }}">{{ item.Menu.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="bottom-inf">
+                <span>{{ options.phone }}</span>
+                <span>{{ options.email }}</span>
+                <span>{{ options.top_right_greeting }}</span>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+

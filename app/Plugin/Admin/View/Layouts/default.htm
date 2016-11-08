@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{#<!DOCTYPE html>#}
+<html xmlns="http://www.w3.org/1999/xhtml">
+{#<html>#}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>VizualTech admin version 1.1</title>
+
+    <!-- Link css-->
+    <link rel="stylesheet" type="text/css" href="/admin/css/admin.style.css" />
+    <link rel="stylesheet" type="text/css" href="/admin/css/addon.css" />
+    <link rel="stylesheet" type="text/css" href="/css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/js/datepicker/datepicker.css">
+
+    <script type="text/javascript" src="/admin/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/admin/components/ui/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="/admin/components/ui/jquery.autotab.js"></script>
+    <script type="text/javascript" src="/admin/components/ui/timepicker.js"></script>
+    <script type="text/javascript" src="/admin/components/checkboxes/iphone.check.js"></script>
+    <script type="text/javascript" src="/admin/components/scrolltop/scrolltopcontrol.js"></script>
+    <script type="text/javascript" src="/admin/components/fancybox/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/admin/components/jscrollpane/mousewheel.js"></script>
+    <script type="text/javascript" src="/admin/components/jscrollpane/mwheelIntent.js"></script>
+    <script type="text/javascript" src="/admin/components/jscrollpane/jscrollpane.min.js"></script>
+    <script type="text/javascript" src="/admin/components/tipsy/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="/admin/components/confirm/jquery.confirm.js"></script>
+    <script type="text/javascript" src="/admin/components/validationEngine/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="/admin/components/validationEngine/jquery.validationEngine-en.js"></script>
+    <script type="text/javascript" src="/admin/components/vticker/jquery.vticker-min.js"></script>
+    <script type="text/javascript" src="/admin/components/checkboxes/customInput.jquery.js"></script>
+    <script type="text/javascript" src="/admin/components/effect/jquery-jrumble.js"></script>
+    <script type="text/javascript" src="/admin/components/placeholder/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="/admin/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/admin/js/simple.notify.js"></script>
+    <script type="text/javascript" src="/admin/js/admin.custom.js"></script>
+    <script tdoype="text/javascript" src="/js/datepicker/datepicker.js"></script>
+    <!--<script tdoype="text/javascript" src="/admin/js/fields.js"></script>-->
+
+    {#<script type="text/javascript" src="/js/toolpic.js"></script>#}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.calendar').datepicker({
+                format: "M-dd-yyyy"
+            });
+        });
+    </script>
+
+    {{ _view.fetch('script') }}
+    {{ _view.fetch('cssLink') }}
+
+</head>
+<body class="dashborad">
+    <div id="alertMessage" class="error"></div>
+    <!-- Header -->
+    <div id="header">
+        <div id="account_info">
+            <div class="setting"><b>Welcome,</b> <b class="red">Admin</b><img src="/admin/images/gear.png" class="gear" alt="Profile Setting" />
+                <ul class="subnav ">
+                    <li><a href="/admin">Dashboard</a></li>
+                    <li><a href="/admin/users/password">Reset password</a></li>
+                    <br class="clear" />
+                </ul>
+            </div>
+            <div class="logout" title="logout"><a href="/admin/users/logout"><b>Logout</b></a> <img src="/admin/images/logout.png" name="logout" class="logout" alt="logout" /></div>
+        </div>
+    </div>
+    <!-- End Header -->
+
+	<div id="shadowhead"></div>
+
+    {{ Session.flash() }}
+    {{ _view.element('leftSideBar') }}
+
+    <div id="content">
+        <div class="inner">
+            {{ _view.element('header') }}
+
+            <div class="widget">
+                {{ _view.fetch('captionHeader') }}
+            </div>
+
+            <div class="content">
+                {{ _view.fetch('content') }}
+                {{ simpleNotify.flash() }}
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        {{ _view.element('footer') }}
+    </div>
+    </div>
+</body>
+</html>

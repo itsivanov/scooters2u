@@ -1,0 +1,11 @@
+<div class="paginator-block uibutton-group paginateAdminStyle clearfix">
+    {% if _view.Paginator.hasPrev() %}
+        {{ paginator.prev('Prew', {'class':'prev uibutton normal'}) }}
+    {% endif %}
+
+    {{ paginator.numbers({'separator' : '', 'class' : 'uibutton normal'}) }}
+
+    {% if _view.Paginator.hasNext() %}
+        {{ paginator.next('Next', {'class':'next uibutton normal'}) }}
+    {% endif %}
+</div>

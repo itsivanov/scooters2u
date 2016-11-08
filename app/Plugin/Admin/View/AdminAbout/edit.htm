@@ -1,0 +1,176 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> Edit About</span>
+    {{ _view.end() }}
+
+    <style>
+        .properties{
+            margin-bottom: 70px;
+        }
+
+        .properties div{
+            width: auto; float: left; margin: 0 20px; border: 0;
+        }
+    </style>
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i>Edit About </div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/about" class="uibutton special"><i class="fa fa-arrow-left"></i> Back </a></li>
+    </ul>
+    <!--{{infoAbout.InnerSlideAttachment|var_dump}}-->
+    <div id="tabs">
+        <ul>
+            <li><a href="#data">Product info</a></li>
+            <li><a href="#images">Images</a></li>
+        </ul>
+
+        {{ form.create({'class' : 'form'}) }}
+        {{ form.hidden('id',{'value' : infoAbout.InnerSlide.id} ) }}
+
+        <div id="data">
+
+            <div class="section">
+                <label>Title</label>
+                <div>{{ form.input('title', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Title', 'value': infoAbout.InnerSlide.title}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>Sub Title</label>
+                <div>{{ form.input('subtitle', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Sub Title', 'value': infoAbout.InnerSlide.subtitle}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>Content Title</label>
+                <div>{{ form.input('content_title', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Sub Title', 'value': infoAbout.InnerSlide.content_title}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>Content Sub Title</label>
+                <div>{{ form.input('content_subtitle', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Content Sub Title', 'value': infoAbout.InnerSlide.content_subtitle}) }}</div>
+            </div>
+
+            <div class="section">
+                <label>Content</label>
+                <div>
+                    <div>{{ form.input('content', {'type':'textarea',  'class' : 'wysiwyg', 'label' : false, 'value':  infoAbout.InnerSlide.content}) }}</div>
+                </div>
+            </div>
+
+
+        </div>
+        <div id="images">
+            {% for item in infoAbout.InnerSlideAttachment %}
+            <section class="section">
+                <h4>Image</h4>
+                <div id="photosContainer" class="clearfix">
+                    <ul class="listPhotos_{{ item.id }}" id="ulListPhotos">
+                        <li class="clearfix imageBlock_{{ item.id }}">
+                            <div class="dottedFrame" style="position: relative">
+                                <span><img src="{{ item.value|thumb(130,100) }}"></span>
+                                <input type="hidden" name="InnerSlideAttachment[{{item.id}}][id]" id="hide_slide" value="{{ item.id }}" >
+                                <input type="hidden" name="InnerSlideAttachment[{{item.id}}][inner_slide_id]" id="hide_inner_id" value="{{ item.inner_slide_id }}" >
+                                <input type="hidden" name="InnerSlideAttachment[{{item.id}}][value]" value="{{ item.value }}" >
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="section last">
+                <div><a href="javascript:" class="uibutton loading num_{{item.id}}" id="uploadImage" data-id="{{ item.id }}" data-inner-id="{{item.inner_slide_id}}">Upload image</a></div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+
+
+        <div class="section last">
+            <div>
+                {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+            </div>
+        </div>
+        {{ form.end() }}
+    </div>
+</div>
+
+<style>
+    .dimensions input {
+        width: 10%;
+        min-width: 80px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+
+        $('.wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                    url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+
+        var i = '{{ data.Slider[(data.Slider | length-1)].id }}';
+
+        $('.listPhotos').sortable({
+            update: function(){
+                $('.listPhotos li').each(function(index){
+                    $(this).find('.hidden-priority').val(index);
+                });
+            }
+        });
+
+        $(document).on('click', '#uploadImage', function() {
+            var a = $(this);
+            var id_atr = $(this).attr('data-id');
+            var id_inner = $(this).attr('data-inner-id');
+            console.log(id_inner);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+
+                getFileCallback: function (url) {
+
+                    $('.listPhotos_'+ id_atr).html('' +
+                            '<li class="clearfix imageBlock_' + id_atr + '">' +
+                            '<div class="dottedFrame" style="position: relative">'+
+                            '<span><img src="/thumbs/130x100'+ url +'"></span>' +
+                            '<input type="hidden" name="InnerSlideAttachment['+id_atr+'][id]" value='+id_atr+'>' +
+                                '<input type="hidden" name="InnerSlideAttachment['+id_atr+'][inner_slide_id]" value='+id_inner+'>' +
+                            '<input type="hidden" name="InnerSlideAttachment['+id_atr+'][value]" value="'+ url +'">' +
+                            '</div>'+
+                            '</li>');
+
+                    showSuccess('Image uploaded successfully', 500);
+                }
+            });
+        });
+
+        $(document).on('click', '.remove-img', function(e) {
+            e.preventDefault();
+            $(this).parents('.imageBlock_' + id_atr ).remove();
+        });
+
+    });
+</script>

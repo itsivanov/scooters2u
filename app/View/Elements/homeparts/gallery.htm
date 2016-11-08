@@ -1,0 +1,17 @@
+<div class="section fifthSection" id="section4">
+    <div class="intro">
+        <div class="gallerySlider left fullWidth">
+            <div class="sliderTitle">{{ parts.gallery.HomePart.title }}</div>
+            <div class="slider">
+                {{ isMobile }}
+                {% for photo in photos %}
+                            {% set size = isMobile or (not ((loop.index+1)%3) or (not (loop.index%3)))? '287x274': '287x560' %}
+                    <a class="fancybox item backgroundImage"
+                       rel="group"
+                       href="{{ photo.Gallery.image }}"
+                       style="background-image:url('/thumbs/{{ size ~ photo.Gallery.image }}');"></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

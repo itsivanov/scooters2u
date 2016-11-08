@@ -1,0 +1,291 @@
+<div id="fullPage">
+    <div class="get-started-bl fullWidth">
+        <div style="background-image: url(/img/img-2.jpg)" class="banner-ttl">
+            <div class="table-cell">
+                <div class="wrapper-small wow animated fadeInLeft">
+                    <h1>Get Started</h1>
+                </div>
+            </div>
+        </div>
+<div class="response"></div>
+        <div class="wrapper-large">
+            <div class="get-started payment">
+                <div class="clearfix">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 pad_5">
+                                <ul class="breadcrumbs">
+                                    <li><a href="/get-started">Products</a></li>
+                                    <li><a href="/get-started/{{info.product.id}}">Scooter</a></li>
+                                    <li><a href="/get-started/order">Shopping Cart</a></li>
+                                    <li class="active"><a href="#">Checkout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="row payment-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <strong class="ttl">Checkout</strong>
+                                    </div>
+                                </div>
+                                <div class="box-form">
+                                    <form action="" method="post" id="pay_form_1">
+                                        <fieldset>
+                                            <div class="clearfix">
+                                                <div class="row box_ttl">
+                                                    <div class="col col-md-12">
+                                                        <strong>order information</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="row pad_top row_padding">
+                                                    <div class="col col-md-4">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl height_no">&nbsp;</strong>
+                                                            <strong class="input-ttl uppercase">{{info.product.title}} <span>${{info.sum}}</span></strong>
+                                                            <input type="hidden" value="{{info.product.title}}" name="order[product_name]">
+                                                            <input type="hidden" value="{{info.sum}}" name="order[sum]">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col col-md-8">
+                                                        <div class="row">
+                                                            <div class="col-md-4 block_span">
+                                                                <div class="wrapp-item">
+                                                                    <strong class="input-ttl height_no">&nbsp;</strong>
+                                                                    <span>
+                                                                        <strong>From:</strong>
+                                                                        <span>{{info.from}}</span>
+                                                                    </span>
+                                                                    <span>
+                                                                        <strong>To:</strong>
+                                                                        <span>{{info.to}}</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="wrapp-item">
+                                                                    <strong class="input-ttl">Estimated delivery time</strong>
+                                                                    <select class="styled floatLabel payment_select_time" name="order[delivery_time]">
+                                                                        <option value="9am-10am">9am-10am</option>
+                                                                        <option value="10am-11am">10am-11am</option>
+                                                                        <option value="11am-12am">11am-12am</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="clearfix">
+                                                <div class="row box_ttl">
+                                                    <div class="col col-md-12">
+                                                        <strong>rental information</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_padding">
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Full Name:<span style="color:red">*</span> </strong>
+                                                            <input type="text" name="rental[full_name]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Email:<span style="color:red">*</span></strong>
+                                                            <input type="email" name="rental[email]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_padding">
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Phone:<span style="color:red">*</span></strong>
+                                                            <input type="text" name="rental[phone]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Address:<span style="color:red">*</span></strong>
+                                                            <input type="text" name="rental[address]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_padding">
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Address 2:</strong>
+                                                            <input type="text" name="rental[address2]" class="txt">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="wrapp-item">
+                                                                    <strong class="input-ttl">City:<span style="color:red">*</span></strong>
+                                                                    <!--<select class="styled floatLabel">-->
+                                                                        <!--<option>City</option>-->
+                                                                        <!--<option>City</option>-->
+                                                                        <!--<option>City</option>-->
+                                                                    <!--</select>-->
+                                                                    <input type="text" name="rental[city]" class="styled floatLabel" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="wrapp-item">
+                                                                    <strong class="input-ttl">Zip code:<span style="color:red">*</span></strong>
+                                                                    <input type="text" name="rental[zip_code]" class="txt" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="clearfix">
+                                                <div class="row box_ttl">
+                                                    <div class="col col-md-12">
+                                                        <strong>billing address</strong>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row row_padding">
+                                                    <div class="col-md-12 col-address">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Address:<span style="color:red">*</span></strong>
+                                                            <input type="text" name="billingAddress[address]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row row_padding">
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">City:<span style="color:red">*</span></strong>
+                                                            <!--<select class="styled floatLabel">-->
+                                                                <!--<option>City</option>-->
+                                                                <!--<option>City</option>-->
+                                                                <!--<option>City</option>-->
+                                                            <!--</select>-->
+                                                            <input type="text" name="billingAddress[city]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">State:<span style="color:red">*</span></strong>
+                                                            <input type="text" name="billingAddress[state]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_padding">
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Zip code:<span style="color:red">*</span></strong>
+                                                            <input type="text" name="billingAddress[zip_code]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Country:<span style="color:red">*</span></strong>
+                                                            <!--<select class="styled floatLabel">-->
+                                                                <!--<option>Country</option>-->
+                                                                <!--<option>Country</option>-->
+                                                                <!--<option>Country</option>-->
+                                                            <!--</select>-->
+                                                            <input type="text" name="billingAddress[country]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="clearfix">
+                                                <div class="row box_ttl">
+                                                    <div class="col col-md-12">
+                                                        <strong>billing information</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_padding">
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="wrapp-item">
+                                                                    <strong class="input-ttl">First name:<span style="color:red">*</span></strong>
+                                                                    <input type="text" name="billingInfo[first_name]" class="txt" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="wrapp-item">
+                                                                    <strong class="input-ttl">Last name:<span style="color:red">*</span></strong>
+                                                                    <input type="text" name="billingInfo[last_name]" class="txt" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Security Code:<span style="color:red">*</span></strong>
+                                                            <input type="text" name="billingInfo[security_code]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_padding">
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item">
+                                                            <strong class="input-ttl">Card number:<span style="color:red">*</span></strong>
+                                                            <input type="text" name="billingInfo[card_number]" class="txt" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="wrapp-item">
+                                                                    <strong class="input-ttl">Expiration Date:<span style="color:red">*</span></strong>
+                                                                    <input type="text" name="billingInfo[expiration_date]" class="txt" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="wrapp-item">
+                                                                    <strong class="input-ttl">&nbsp;</strong>
+                                                                    <select class="styled floatLabel payment_select_year" name="billingInfo[year]" required>
+                                                                        <option>2016</option>
+                                                                        <option>2017</option>
+                                                                        <option>2018</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_padding bottom_block">
+
+                                                    <div class="col-md-6">
+                                                        <input type="checkbox" name="billingInfo[i_agree]" id="billingInfo[i_agree]" required >
+                                                        <label for="billingInfo[i_agree]" class="i_agree"><span>I agree to all <a href="#">Terms &amp; Conditions</a> provided by Scooters2u.</span></label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="text-right">
+                                                            <button style="height: 41px; width: 100%;" type="submit" class="btn_order button btnRed" id="getPay">submit
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    </div>

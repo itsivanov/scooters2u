@@ -1,0 +1,127 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-file-text"></i> Services</span>
+    {{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit service</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/services" class="uibutton special"><i class="fa fa-list-ol"></i> Services list</a></li>
+    </ul>
+
+    {{ form.create({'class' : 'form'}) }}
+    <div id="data">
+        <div class="section">
+            <label>Active</label>
+            <div>{{ form.checkbox('active' , {'checked': allSlides.Slider.active}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Title</label>
+            <div>{{ form.input('title', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Title'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Sub Title</label>
+            <div>{{ form.input('subtitle', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Sub Title' }) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Content</label>
+            <div>
+                <div>{{ form.input('content', {'type':'textarea',  'class' : 'wysiwyg', 'label' : false}) }}</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <label>Image</label>
+            <div>
+                {{ form.hidden('img', {'div': false, 'label': false, 'id':'imageInput'}) }}
+                <img src="{{ Slider.image|default('/img/no_image/default.png') }}" width="70" id="imageId"/>
+            </div>
+        </div>
+
+    </div>
+    <div class="section last">
+        <div>
+            {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+        </div>
+    </div>
+
+    {{ form.end() }}
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+
+        $('.wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+
+        var i = '{{ data.ProductImages[(data.ProductImages | length-1)].id }}';
+
+        $('.listPhotos').sortable({
+            update: function(){
+                $('.listPhotos li').each(function(index){
+                    $(this).find('.hidden-priority').val(index);
+                });
+            }
+        });
+
+        $(document).on('click', '#uploadImage', function() {
+            var a = $(this);
+
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+
+                getFileCallback: function (url) {
+
+                    var ii = i++;
+
+                    $('.listPhotos').append('' +
+                            '<li class="clearfix imageBlock">' +
+                            '<div class="dottedFrame" style="position: relative">'+
+                            '<span><img src="/thumbs/130x100'+ url +'"></span>' +
+                            '<input type="hidden" name="data[ProductImages][' +ii+ '][img]" value="'+ url +'">' +
+                            '<input type="hidden" class="hidden-priority" name="data[ProductImages][' +ii+ '][priority]" value="'+ii+'">' +
+                            '</div>'+
+                            '<div class="text-center">'+
+                            '<a href="javascript:" class="uibutton special loading remove-img"><i class="fa fa-trash"></i></a>'+
+                            '</div>' +
+                            '</li>');
+
+                    showSuccess('Image uploaded successfully', 500);
+                }
+            });
+        });
+
+        $(document).on('click', '.remove-img', function(e) {
+            e.preventDefault();
+            $(this).parents('.imageBlock').remove();
+        });
+
+    });
+</script>

@@ -1,0 +1,130 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<iv class="header"><span><i class="fa fa-gift"></i> Edit sliders</span>
+    {{ _view.end() }}
+
+    <style>
+        .properties{
+            margin-bottom: 70px;
+        }
+
+        .properties div{
+            width: auto; float: left; margin: 0 20px; border: 0;
+        }
+    </style>
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i>Edit Slider</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/section_first" class="uibutton special"><i class="fa fa-arrow-left"></i> Sliders list</a></li>
+    </ul>
+    <!--{{img | var_dump}}-->
+
+        {{ form.create({'class' : 'form'}) }}
+            <input type="hidden" name="id" value="{{ img.Gallery.id }}">
+            <section class="section">
+                <h4>Images</h4><span>Please drag-and-drop to change order</span>
+                <div id="photosContainer" class="clearfix">
+                    <ul class="listPhotos" id="ulListPhotos">
+                        <li class="clearfix imageBlock">
+                            <div class="dottedFrame" style="position: relative">
+                                <span><img src="{{ img.Gallery.image|thumb(130,100) }}"></span>
+
+                                <input type="hidden" name="image" value="{{ img.Gallery.image }}">
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </section>
+
+            <div class="section last">
+                <div><a href="javascript:" class="uibutton loading" id="uploadImage">Upload image</a></div>
+            </div>
+
+
+
+
+        <div class="section last">
+            <div>
+                {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+            </div>
+        </div>
+        {{ form.end() }}
+
+
+<style>
+    .dimensions input {
+        width: 10%;
+        min-width: 80px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+
+        $('.wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+
+        var i = '{{ data.Slider[(data.Slider | length-1)].id }}';
+
+        $('.listPhotos').sortable({
+            update: function(){
+                $('.listPhotos li').each(function(index){
+                    $(this).find('.hidden-priority').val(index);
+                });
+            }
+        });
+
+        $(document).on('click', '#uploadImage', function() {
+            var a = $(this);
+
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+
+                getFileCallback: function (url) {
+
+                    $('.listPhotos').html('' +
+                            '<li class="clearfix imageBlock">' +
+                            '<div class="dottedFrame" style="position: relative">'+
+                            '<span><img src="/thumbs/130x100'+ url +'"></span>' +
+                            '<input type="hidden" name="image" value="'+ url +'">' +
+                            '</div>'+
+                            '</li>');
+
+                    showSuccess('Image uploaded successfully', 500);
+                }
+            });
+        });
+
+        $(document).on('click', '.remove-img', function(e) {
+            e.preventDefault();
+            $(this).parents('.imageBlock').remove();
+        });
+
+    });
+</script>

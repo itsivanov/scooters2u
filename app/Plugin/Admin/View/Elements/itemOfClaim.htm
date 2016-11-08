@@ -1,0 +1,27 @@
+{{ extTree.addItemAttribute('id', 'list_' ~ data.Claim.id ) }}
+<div class="itemOfClaim">
+    <table style="width: 100%">
+        <tr>
+            <td> <div class="img" style="float:left"><img src="/thumbs/100x{{ data.Claim.cover }}" alt="" /></div></td>
+            <td> {{ data.Claim.title }}</td>
+
+            <td style="width: 60%"></td>
+            <td><div calss="date"><strong>Created:</strong> {{ data.Claim.created | date('m/d/Y') }}</div></td>
+            <td class="manage-col">
+                <span class="tip tip-r">
+                    <a title="Edit" href="/admin/claims/edit/{{ data.Claim.id }}">
+                        <img src="/admin/images/icon/icon_edit.png"  />
+                    </a>
+                </span>
+                <span class="tip tip-l">
+                    <a id="1" class="Delete" onclick="return confirm('Are you sure want to delete Claim?');" name="Band ring" title="Delete" href="/admin/claims/delete/{{ data.Claim.id }}">
+                        <img src="/admin/images/icon/icon_delete.png" />
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+

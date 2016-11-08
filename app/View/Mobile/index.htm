@@ -1,0 +1,279 @@
+
+<div class="main-page-home mobilePageHome">
+    <!--<div style="background-image: url(img/banner-mob.jpg)" class="banner-carousel-top">-->
+        <!--<div class="headerMob left fullWidth">-->
+            <!--<a class="navicon-button x open-nav">-->
+                <!--<div class="navicon"></div>-->
+            <!--</a>-->
+            <!--<a href="" class="logo">-->
+                <!--<img src="img/logo.png" alt="" title="">-->
+            <!--</a>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Swiper &ndash;&gt;-->
+        <!--<div class="swiper-container">-->
+            <!--<div class="swiper-wrapper">-->
+                <!--{% for slide in slides %}-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<div class="wrapp-item">-->
+
+                            <!--<div class="img-bike"><img src="{{ slide.Slider.image }}" alt=""></div>-->
+                            <!--<div class="wrapp-txt">-->
+                                <!--<div class="flag">-->
+                                    <!--<strong>{{ slide.Slider.title }}</strong>-->
+                                    <!--<span>{{ slide.Slider.subtitle }}</span>-->
+                                <!--</div>-->
+                                <!--<div class="txt-ttl">-->
+                                    <!--<span> {{ slide.Slider.content }}</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--{% endfor %}-->
+            <!--</div>-->
+            <!--&lt;!&ndash; Add Pagination &ndash;&gt;-->
+            <!--<div class="swiper-pagination"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="bl-navoc">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for scooter in products %}
+                <div class="swiper-slide">
+                    <div class="wrapp-item">
+                        <h2 class="ttl"> {{ scooter.Product.title }}</h2>
+                        <div class="wrapp-btn clearfix">
+                            <a href="/get-started" class="btn btn-red">book now</a>
+                            <a href="#" class="btn btn-black">CALL {{phone.Option.value}} </a>
+                        </div>
+                        <div class="img-bike bike_item">
+                            <img class="back" src="img/back.png" alt="">
+                            <img class="front" src="{{ scooter.Product.image  }}" alt="">
+                        </div>
+                        <div class="wrapp-table-inf">
+                            <table>
+                                {% for rental in scooter.ProductRental %}
+                                <tr>
+                                    <td></td>
+                                    <td> {{ rental.title }}:</td>
+                                    <td>${{ rental.value }}</td>
+                                </tr>
+                                {%endfor%}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <div class="bl-how-it-works">
+        <h2 class="ttl">HOW IT WORKS</h2>
+
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for slide in howItWorksSlides %}
+
+                <div class="swiper-slide">
+                    <div class="wrapp-item">
+                        <div class="item">
+                            <img src="/img/works-mask.png" title="{{ slide.InnerSlide.title }}" alt="{{ slide.InnerSlide.title }}">
+                            <div class="itemContent">
+                                <img src="{{ slide.InnerSlide.image }}" alt="{{ slide.InnerSlide.title }}" title="{{ slide.InnerSlide.title }}">
+                                <div class="workTitle">{{ slide.InnerSlide.title }}</div>
+                                <div class="workText">{{ slide.InnerSlide.subtitle }}</div>
+                            </div>
+                            <div class="itemText">
+                                <div class="itemText-info">
+                                    <div class="itemTitle">{{ slide.InnerSlide.content_title }}</div>
+                                    <div class="itemSimpleText">{{ slide.InnerSlide.content }}</div>
+                                    <a href="/get-started" class="smallBtn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <div class="bl-scooter-rental">
+        <h2 class="ttl">{{ parts.rental_fee.HomePart.title }}</h2>
+        <span class="sub-ttl">
+               {{ parts.rental_fee.HomePart.content }}
+            </span>
+
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for fee in rentalFees %}
+                <div class="swiper-slide">
+                    <div class="wrapp-item">
+                        <span class="ttl">{{ fee.RentalFee.title }}</span>
+                        <div class="bl-price">
+                            <div>
+                                <span class="dollar">$</span>
+                                <span class="price">{{ fee.RentalFee.price }}</span>
+                                <span class="sibPrice">
+                                        <span class="subTime">{{ fee.RentalFee.subtime }}</span>
+                                        <span class="time">{{ fee.RentalFee.time }}</span>
+                                    </span>
+                            </div>
+                        </div>
+                        <div class="itemContent">
+                            {% for option in fee.RentalFeeOption %}
+                            <div class="row">
+                                <span> {{ option.value }}</span>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="wrapp-btn text-center">
+                            <a href="{{fee.RentalFee.href}}" class="rentBtn button btnRed">{{fee.RentalFee.link_name}}</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="clearfix">
+            <div class="box-bottom">
+                <div class="box">
+                    <span class="ttl-box">{{ parts.rental_fee_bottom.HomePart.title }}</span>
+                    <div class="content-box">
+                        <span>{{ parts.rental_fee_bottom.HomePart.content }}</span>
+                        <span>& <strong>Monthly</strong> Scooter Rentals Available!</span>
+                    </div>
+                </div>
+                <div class="wrapp-btn text-center">
+                    <a href="/get-started" class="rentBtn button btnRed">rent now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bl-gallery">
+        <h2 class="ttl">{{ parts.gallery.HomePart.title }}</h2>
+        <!-- Swiper -->
+        <div class="swiper-container">
+
+            <div class="swiper-wrapper">
+            {% set counter = 0 %}
+            {%for i in 1..countPhoto %}
+                <div class="swiper-slide">
+                    <div class="wrapp-img-grid">
+                        <div class="col img-left">
+                            <a  style="background-image: url({{photos[counter].Gallery.image}})" href="{{photos[counter].Gallery.image}}" class="fancybox item img img-small" rel="group"></a>
+                            {% set counter = counter + 1 %}
+                            <a  style="background-image: url({{photos[counter].Gallery.image}})" href="{{photos[counter].Gallery.image}}" class="fancybox item img img-small" rel="group"></a>
+                            {% set counter = counter + 1 %}
+                        </div>
+                        <div class="col img-right">
+                            <a  style="background-image: url({{photos[counter].Gallery.image}})" href="{{photos[counter].Gallery.image}}" class="fancybox item img img-large" rel="group"></a>
+                            {% set counter = counter + 1 %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <div class="bl-make-reservation">
+        <strong>{{ parts.bottom.HomePart.title }} </strong>
+        <span>{{ parts.bottom.HomePart.content }}</span>
+        <div class="wrapp-btn text-center">
+            <a href="/get-started" class="rentBtn button btnRed">make reservation</a>
+        </div>
+    </div>
+
+    <div class="bl-get-started">
+        <strong>
+            {{ showPreFooter.0.HomePart.title }}
+            <br>
+            YOUR MIAMI VACATION!
+        </strong>
+        <div class="wrapp-btn text-center">
+            <a href="/get-started" class="rentBtn button btnRed">GET STARTED</a>
+        </div>
+    </div>
+
+    <div class="bl-footer">
+        <div class="clearfix text-center logo-img">
+            <img src="img/logo-3.png" alt="">
+        </div>
+        <strong class="title">About Scooters2U</strong>
+
+        <p>
+            {{ options.about_scooters }}
+        </p>
+
+        <strong class="title">RECENT POSTS</strong>
+
+        <p>
+            {% for new in lastNews %}
+                <a href="/news/{{ new.Tiding.slug }}">{{ new.Tiding.title }}</a>
+            {% endfor %}
+        </p>
+
+        <strong class="title">AREAS OF SERVICE</strong>
+
+        <p>
+            <a href="#">Miami Beach</a>
+            <a href="#">Downtown Miami</a>
+            <a href="#">Brickell</a>
+            <a href="#">Midtown Miami</a>
+            <a href="#">Wynwood</a>
+            <a href="#">Venetian Islands</a>
+            <a href="#">Star Island</a>
+            <a href="#">North Bay Village</a>
+            <a href="#">Key Biscayne</a>
+        </p>
+
+        <div class="soc-footer-bl">
+            <strong class="title">Follow us on</strong>
+            <div class="item">
+                <a href="{{ options.facebook }}" class="socialLink"><i class="fa fa-facebook"></i></a>
+                <a href="{{ options.twitter }}" class="socialLink"><i class="fa fa-twitter"></i></a>
+                <a href="{{ options.google }}" class="socialLink"><i class="fa fa-google-plus"></i></a>
+                <a href="{{ options.instagram }}" class="socialLink"><i class="fa fa-instagram"></i></a>
+                <a href="{{ options.yelp }}" class="socialLink"><i class="fa fa-yelp"></i></a>
+            </div>
+        </div>
+
+        <div class="bl-nav-bottom">
+            <ul>
+                {% for item in footerMenu %}
+                <li>
+                    <a href="{{ item.Menu.url }}">{{ item.Menu.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="bl-widget">
+            <div class="widget">
+                <img src="img/trip.png" alt="" title="">
+            </div>
+            <div class="widget">
+                <img src="img/yelp.png" alt="" title="">
+            </div>
+        </div>
+
+        <p class="copy">© 2015 Scooters2u. All Rights Reserved</p>
+
+    </div>
+</div>

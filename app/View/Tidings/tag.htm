@@ -1,0 +1,37 @@
+{{ html.script(['infinite.helper']) }}
+<div class="news-bl fullWidth">
+
+    <div style="background-image: url({{ page.img }})" class="banner-ttl">
+        <div class="table-cell">
+            <div class="wrapper-small wow animated fadeInLeft">
+                <h1>{{ page.title }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper-list-post">
+        <div class="wrapper-large clearfix">
+            {% if error%}
+            <a href="/news" class="rentBtn button_back btnRed">BACK</a>
+            <div class="search_error_content">
+                {{error}}
+            </div>
+            {%endif%}
+            {% for item in news %}
+            {% set fade = loop.index == 0 or not (loop.index%2)? 'fadeInLeft': 'fadeInRight' %}
+            <div class="box animated {{ fade }}">
+                <div class="wrapp-img">
+                    <div style="background-image: url('/thumbs/550x475{{ item.Tiding.img }}')" class="fix-center-img"></div>
+                </div>
+                <div class="text-post">
+                    <h2>{{ item.Tiding.title }}</h2>
+                    <span class="date-post">{{ item.Tiding.created| date("M d, Y") }}</span>
+                    <div class="wrapp-txt">
+                        {{ item.Tiding.content | truncate(250, '...') }}
+                    </div>
+                    <a class="more-btn" href="/news/{{ item.Tiding.slug }}">more</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

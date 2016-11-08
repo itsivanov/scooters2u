@@ -1,0 +1,53 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-info-circle"></i> Partner</span></div>
+{{ _view.end() }}
+
+<div class="boxtitle min"><i class="fa fa-pencil"></i> Edit Partner</div>
+<ul class="uibutton-group">
+    <li><a href="/admin/partners" class="uibutton special"><i class="fa fa-list-ol"></i> All Partners</a></li>
+</ul>
+
+{{ form.create({'class' : 'form'}) }}
+    <div class="section">
+        <label>Title</label>
+        <div>{{ form.input('title', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Post title'}) }}</div>
+    </div>
+
+    <div class="section">
+        <label>Image</label>
+        <div>
+            {{ form.hidden('img', {'div': false, 'label': false, 'id':'imageInput'}) }}
+            <img src="{{ data.Client.img|default('/img/no_image/default.png') }}" width="315" id="imageId"/>
+        </div>
+    </div>
+
+    <div class="section last">
+        <div>
+          {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+        </div>
+    </div>
+{{ form.end() }}
+
+<script type="text/javascript">
+$(function() {
+    $(document).on('click', '#imageId', function(e) {
+        e.preventDefault();
+        var thisBtn = $(e.currentTarget);
+        $("<div />").dialogelfinder({
+            width: 850,
+            url: '/js/elfinder2/connector.php',
+            commandsOptions: {
+                getfile: {
+                    oncomplete: 'destroy' // destroy elFinder after file selection
+                }
+            },
+            getFileCallback: function (url) {
+                $('#imageInput').val(url);
+                thisBtn.attr('src', '/thumbs/250x' + url);
+            }
+        });
+    });
+});
+</script>

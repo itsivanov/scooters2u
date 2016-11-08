@@ -1,0 +1,79 @@
+
+{{ _view.start('script') }}
+<script type="text/javascript" src="/admin/components/datatables/dataTables.min.js"></script>
+<script type="text/javascript" src="/admin/components/datatables/ColVis.js"></script>
+{{ _view.end() }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> Products</span>
+    {{ _view.end() }}
+
+
+
+    <!--{{product|var_dump}}-->
+    <div id="section1">
+        <ul class="uibutton-group">
+            <li><a href="/admin/section_second/add" class="uibutton icon add" title="Add Slider">Add Slider</a></li>
+        </ul>
+
+        <!-- title box -->
+        <div class="boxtitle min">List of Sliders</div>
+
+        <div class="tableName">
+
+            <br/>
+            <table class="display static " id="staticPages">
+                <thead>
+                <tr>
+                    <th width="" align="left">Image</th>
+                    <th width="">Title</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in product %}
+                <tr>
+                    <td><img src="/thumbs/50x{{ item.Product.img|default("/img/no_image.jpg") }}"/></td>
+                    <td >{{ item.Product.title }}</td>
+
+                    <td>
+                                    <span class="tip">
+                                        <a class="edit_link" title="Edit" href="/admin/section_second/edit/{{ item.Product.id }}"><i class="fa fa-pencil"></i></a>
+                                    </span>
+                        <span class="tip">
+                            <a class="delete_link delete" title="Delete" href="/admin/section_second/delete/{{ item.Product.id }}"><i class="fa fa-trash"></i></a>
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(function() {
+            $("#tabs").tabs();
+
+
+        });
+        $(function() {
+
+            $('#staticPages').dataTable({
+                "sDom": 'fCl<"clear">rtip',
+                "sPaginationType": "full_numbers" ,
+                "aaSorting": [],
+                "aoColumns": [
+                    null,
+                    null,
+                    null,
+                    { "bSortable": false }
+                ]
+            });
+
+
+        });
+
+    </script>

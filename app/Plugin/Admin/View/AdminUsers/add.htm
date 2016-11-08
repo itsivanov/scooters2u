@@ -1,0 +1,54 @@
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-user"></i> Users</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Create user</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/users" class="uibutton special"><i class="fa fa-list-ol"></i> Users list</a></li>
+    </ul>
+
+    {{ form.create({'class' : 'form'}) }}
+        <div class="section">
+            <label>Select user type</label>
+            <div>
+                {{ form.select('User.group_id', userTypes, {'class' : 'styled', 'value' : 2}) }}
+            </div>
+        </div>
+
+        <div class="section">
+            <label>Username (<i class="red">Unique</i>)</label>
+            <div>{{ form.input('User.username', {'div':false, 'label':false, 'type':'text', 'required':'required', 'placeholder':'Username'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Email</label>
+            <div>{{ form.input('User.email', {'div':false, 'label':false, 'type':'email', 'required':'required', 'placeholder':'Email'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Password</label>
+            <div>{{ form.input('User.password', {'div':false, 'label':false, 'type':'text', 'placeholder':'Password'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Act name</label>
+            <div>{{ form.input('UserInfo.act_name', {'div' : false, 'label' : false, 'placeholder':'Act name'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>First name</label>
+            <div>{{ form.input('UserInfo.first_name', {'div' : false, 'label' : false, 'placeholder':'First name'}) }}</div>
+        </div>
+
+        <div class="section">
+            <label>Last name</label>
+            <div>{{ form.input('UserInfo.last_name', {'div' : false, 'label' : false, 'placeholder':'Last name'}) }}</div>
+        </div>
+
+        <div class="section last">
+            <div>
+                {{ form.submit('Create user', {'class' : 'uibutton loading'}) }}
+            </div>
+        </div>
+    {{ form.end() }}
+</div>

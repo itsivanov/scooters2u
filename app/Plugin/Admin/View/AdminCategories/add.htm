@@ -1,0 +1,121 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-newspaper-o"></i> Categories</span>
+{{ _view.end() }}
+
+<!-- title box -->
+<div class="boxtitle min"><i class="fa fa-pencil"></i> Edit category</div>
+<ul class="uibutton-group">
+    <li><a href="/admin/categories" class="uibutton special"><i class="fa fa-list-ol"></i> All categories</a></li>
+</ul>
+
+{{ form.create({'class' : 'form'}) }}
+    <div class="section">
+        <label>Category name</label>
+        <div>{{ form.input('name', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Category name'}) }}</div>
+    </div>
+
+    <div class="section">
+        <label style="height:40px;">Hovered icon on homepage</label>
+        <div>
+            <span>
+                Dimensions of image: <strong>width: 209px && height 418px</strong><br>
+                Please, only .png files with transparent background!
+            </span><br>
+            {{ form.hidden('home_page_icon', {'div': false, 'label': false, 'id' : 'imageIcon2'}) }}
+            <img src="{{ data.Category.home_page_icon|default('/img/no_image/default.png') }}" width="100" style="background: grey;" image-wrapper="#imageIcon2"/>
+        </div>
+    </div>
+
+    <div class="section">
+        <label>Homepage description</label>
+        <div>
+            <div>{{ form.input('description_homepage', {'type':'textarea', 'id' : '', 'label' : false}) }}</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <label>Hovered font color</label>
+        <div>{{ form.input('color', {'type':'color', 'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Category name'}) }}</div>
+    </div>
+
+    <div class="section">
+        <label>Icon</label>
+        <div>
+            {{ form.hidden('icon', {'div': false, 'label': false, 'id' : 'imageIcon'}) }}
+            <img src="{{ data.Category.icon|default('/img/no_image/default.png') }}" width="50" image-wrapper="#imageIcon"/>
+            <a href="javascript:" class="clearIcon"><i class="fa fa-trash"></i> clear</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <label>Background</label>
+        <div>
+            {{ form.hidden('background', {'div': false, 'label': false, 'id' : 'imageBackground'}) }}
+            <img src="{{ data.Category.background|default('/img/no_image/default.png') }}" width="50" image-wrapper="#imageBackground"/>
+        </div>
+    </div>
+
+    <div class="section">
+        <label>Arrow icon</label>
+        <div>
+            {{ form.hidden('arrow_icon', {'div': false, 'label': false, 'id' : 'arrowIcon'}) }}
+            <img src="{{ data.Category.arrow_icon|default('/img/no_image/default.png') }}" width="50" image-wrapper="#arrowIcon"/>
+        </div>
+    </div>
+
+    <div class="section">
+        <label></label>
+        <img style="border: 1px solid #999999" src="/img/instruction.png" width="650">
+    </div>
+
+    <div class="section">
+        <label>Video introduction (iFrame from YouTube)</label>
+        <div>{{ form.input('video', {'div': false, 'label': false, 'placeholder':'iFrame from Youtube'}) }}</div>
+    </div>
+
+    <div class="section">
+        <label>Text</label>
+        <div>
+            <div>{{ form.input('description', {'type':'textarea', 'id' : 'wysiwyg', 'label' : false}) }}</div>
+        </div>
+    </div>
+
+    <div class="section last">
+        <div>
+          {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+        </div>
+    </div>
+{{ form.end() }}
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#wysiwyg').elrte(opts);
+
+        $(document).on('click', '.clearIcon', function(){
+            $('#imageIcon').val('');
+            $('[image-wrapper="#imageIcon"]').attr('src', '/img/no_image/default.png');
+        });
+
+        $(document).on('click', '[image-wrapper]', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            var thisSelector = $(this).attr('image-wrapper');
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $(thisSelector).val(url);
+                    thisBtn.attr('src', '/thumbs/250x' + url);
+                }
+            });
+        });
+    });
+</script>

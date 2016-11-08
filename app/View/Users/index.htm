@@ -1,0 +1,61 @@
+<section class="content main-talent clearfix">
+    <aside class="sidebar">
+        {{ _view.element('leftBlock') }}
+    </aside>
+
+    <div class="content-right">
+        {% if list %}
+            <div class="sort">
+                <span>SORT BY ALPHABETICAL ORDER</span>
+                <a {% if paginator.request.named.direction != 'desc' %} class="active" {% endif %}
+                        href="/users/index/sort:UserInfo.first_name/direction:asc{% if paginator.request.query %}?category={{ paginator.request.query['category'] }}&sub-category={{ paginator.request.query['sub-category'] }}&artist={{ paginator.request.query['artist'] }}&location={{ paginator.request.query['location'] }}{% endif %}{% if query %}&query={{ query }}{% endif %}">
+                    <img src="/img/bg-12.png"/>
+                </a>
+                <a {% if paginator.request.named.direction == 'desc' %} class="active" {% endif %}
+                        href="/users/index/sort:UserInfo.first_name/direction:desc{% if paginator.request.query %}?category={{ paginator.request.query['category'] }}&sub-category={{ paginator.request.query['sub-category'] }}&artist={{ paginator.request.query['artist'] }}&location={{ paginator.request.query['location'] }}{% endif %}{% if query %}&query={{ query }}{% endif %}">
+                    <img src="/img/bg-11.png"/>
+                </a>
+            </div>
+
+            <ul>
+                {% for artist in list %}
+                    <li>
+                        <div class="wrapp-img">
+                            {% if artist.MainImage %}
+                                <img src="{{ artist.MainImage.img|thumb(333,347) }}" alt="{{ artist.UserInfo.act_name }}"/>
+                            {% else %}
+                                <img src="{{ artist.UserImage.0.img|thumb(333,347) }}" alt="{{ artist.UserInfo.act_name }}"/>
+                            {% endif %}
+                        </div>
+                        <div class="bl-hover">
+                            <span class="title-bl"><a href="/users/view-artist/{{ artist.User.id }}">{{ artist.UserInfo.first_name}} {{ artist.UserInfo.last_name}}</a></span>
+                            <div class="txt">
+                                <p>{{ artist.UserInfo.biography|striptags|truncate(120) }}</p>
+                            </div>
+
+                            <div class="infor">
+                                {% if artist.UserLocation %}
+                                    <span><em class="loc"></em><strong>Locations: </strong>
+                                        {% for location in artist.UserLocation %}
+                                            {% if loop.index != 1 %},{% endif %} {{ location.name }}
+                                        {% endfor %}
+                                    </span>
+                                {% endif %}
+                                {% if artist.UserInfo.minutes_of_material %}<span><em class="min"></em><strong>Minutes of Material:</strong>{{ artist.UserInfo.minutes_of_material|striptags|truncate(120) }}</span>{% endif %}
+                            </div>
+
+                            <div class="btn-holder">
+                                <a href="/users/view-artist/{{ artist.User.id }}">read More</a>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            {{ _view.element('paginator') }}
+        {% else %}
+            <br>
+            <br>
+            <h2>No artists by your query</h2>
+        {% endif %}
+    </div>
+</section>

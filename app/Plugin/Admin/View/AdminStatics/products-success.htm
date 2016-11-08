@@ -1,0 +1,29 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-file-text"></i> Our story: Video</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit content</div>
+
+    {{ form.create({'class' : 'form'}) }}
+        <div class="section">
+            <label>Text</label>
+            <div>
+                <div>{{ form.input('text', {'type':'textarea', 'id' : 'wysiwyg', 'label' : false}) }}</div>
+            </div>
+        </div>
+
+        <div class="section last">
+            <div>
+              {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+            </div>
+        </div>
+    {{ form.end() }}
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('#wysiwyg').elrte(opts);
+    });
+</script>

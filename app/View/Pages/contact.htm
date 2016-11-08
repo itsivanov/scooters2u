@@ -1,0 +1,158 @@
+
+
+    <div id="fullPage">
+        <div class="contact-bl fullWidth">
+            <div class="wrapp-map">
+                <div class="open-map">
+                    <a href="javascript:"></a>
+                </div>
+                <div id="map"></div>
+            </div>
+            <div class="contact-form-bl fullWidth">
+                <div class="table-cell">
+                    <div class="box-contact">
+                        <div class="row">
+                                <div class="col-md-3 infor-contact">
+                                <div class="clearfix">
+                                    {%for item in info %}
+                                        <div class="box">
+                                            <p>
+                                               {{ item.Option.value}}
+                                            </p>
+                                        </div>
+                                    {% endfor %}
+                                    <div class="box">
+                                        <p>
+                                            {{ email.Option.value}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9 contact-form-right">
+                                <div class="ttl">
+                                    <h2>contact</h2>
+                                </div>
+                                <div class="box-form">
+                                    {{ form.create('Contact', {'class' : 'contactForm', 'action' : '../contact-us'})}}
+                                        <fieldset>
+                                            <div class="clearfix">
+                                                <div class="container-grid">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="sub-ttl">If you have any question, please fill out this form below.</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="wrapp-item icon-left">
+                                                                <i class="fa fa-user"></i>
+                                                                {{ form.input('first_name', {'div' : false, 'class' : 'txt', 'label' : false, 'required' : 'required', 'placeholder':'* Name'}) }}
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="wrapp-item icon-left">
+                                                                <i class="fa fa-envelope"></i>
+                                                                {{ form.input('email', {'div' : false, 'class' : 'txt', 'label' : false, 'required' : 'required', 'placeholder':'* Email'}) }}
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="wrapp-item icon-left">
+                                                                <i class="fa fa-phone"></i>
+                                                                {{ form.input('phone', {'div' : false, 'class' : 'txt', 'label' : false, 'required' : 'required', 'placeholder':'* Phone'}) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="wrapp-item icon-left">
+                                                                <i class="fa fa-pencil"></i>
+                                                                {{ form.textarea('msg', {'div' : false, 'class' : 'textarea-large', 'type' : 'textarea', 'rows' : 7, 'required' : 'required', 'label' : false, 'placeholder':'* Comment'}) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="text-center">
+                                                                <button type="submit" class="button btnBlack">submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    {{ form.end() }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sixthSection">
+            <div class="intro">
+                <div class="preFooter left fullWidth">
+                    <div class="wrapper">
+                        <a href="" class="footerLogo">
+                            <img src="img/logo.png" alt="" title="">
+                        </a>
+                        <div class="half left">
+                            <div class="title textRight whiteColor">{{ contact.0.HomePart.title }}</div>
+                            <div class="text">
+                                {{ contact.0.HomePart.content }}
+                            </div>
+                        </div>
+                        <div class="half right">
+                            <div class="title textLeft blackColor">YOUR MIAMI VACATION!</div>
+                            <a href="/get-started" class="right button btnRed">get started</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+
+        <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&amp;language=en"></script>-->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo4ikEAf2kjzavy_DuA35sfNm1WCyc8j0&language=en" async="" defer="defer" type="text/javascript"></script>
+
+    <script type="text/javascript">
+    // When the window has finished loading create our google map below
+    google.maps.event.addDomListener(window, 'load', init);
+
+    function init() {
+        // Basic options for a simple Google Map
+        // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+        var mapOptions = {
+            // How zoomed in you want the map to start at (always required)
+            zoom: 14,
+
+            // The latitude and longitude to center the map (always required)
+            center: new google.maps.LatLng(25.8140522, -80.1294441), // New York
+
+            // How you would like to style the map.
+            // This is where you would paste any style found on Snazzy Maps.
+            styles: [{"featureType":"administrative.country","elementType":"geometry","stylers":[{"visibility":"simplified"},{"hue":"#ff0000"}]}]
+        };
+
+
+        // Get the HTML DOM element that will contain your map
+        // We are using a div with id="map" seen below in the <body>
+        var mapElement = document.getElementById('map');
+
+        // Create the Google Map using our element and options defined above
+        var map = new google.maps.Map(mapElement, mapOptions);
+
+        // Let's also add a marker while we're at it
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(25.8140522, -80.1294441),
+            map: map,
+            icon: 'img/popup-map.png'
+        });
+
+    }
+</script>

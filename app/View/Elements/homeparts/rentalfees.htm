@@ -1,0 +1,60 @@
+<div class="section fourthSection" id="section3">
+    <div class="intro">
+        <div class="pageTitle left fullWidth">{{ parts.rental_fee.HomePart.title }}</div>
+        <div class="pageSubTitle left fullWidth">{{ parts.rental_fee.HomePart.content }}</div>
+        <div class="rentItems left fullWidth">
+            {% for fee in rentalFees %}
+            <div class="item {% if fee.RentalFee.is_featured %}promo{% endif %}">
+                {% if fee.RentalFee.is_featured %}
+                <div class="promoType featurePromo">
+                    <span>Featured</span>
+                </div>
+                {% endif %}
+                <div class="greyTitle left fullWidth">
+                    <span>{{ fee.RentalFee.title }}</span>
+                </div>
+                <div class="priceTitle left fullWidth">
+                    <div>
+                        <span class="dollar">$</span>
+                        <span class="price">{{ fee.RentalFee.price }}</span>
+                        <input type="hidden" name="price_{{fee.RentalFee.id}}" value="{{ fee.RentalFee.price }}">
+                            <span class="sibPrice">
+                                <span class="subTime">{{ fee.RentalFee.subtime }}</span>
+                                <span class="time">{{ fee.RentalFee.time }}</span>
+                            </span>
+                    </div>
+                </div>
+                <div class="itemContent left fullWidth">
+                    <div class="tableDiv">
+                        <div class="tableRow">
+                            <div class="tableCell">
+                                <label>Choose a date:</label>
+                                <input type="text" name="rental_calendar_from_{{fee.RentalFee.id}}" class="txt rentalDatepicker" id="rental_calendar_{{fee.RentalFee.id}}" required>
+                                <input type="hidden" name="calendar_to_{{fee.RentalFee.id}}" id="calendar_to_{{fee.RentalFee.id}}" value="0">
+                                <input type="hidden" name="rental_time_{{fee.RentalFee.id}}" value="{{fee.RentalFee.rental_time}}">
+                            </div>
+                        </div>
+                        {% for option in fee.RentalFeeOption %}
+                        <div class="tableRow">
+                            <div class="tableCell">
+                                {{ option.value }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <a href="" class="rentBtn button btnRed btnGet" id="{{fee.RentalFee.id}}">{{fee.RentalFee.link_name}}</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="subFooter left fullWidth">
+            <div class="addressTitle addressLine">
+                <span>{{ parts.rental_fee_bottom.HomePart.title }}</span>
+            </div>
+            <div class="address addressLine">
+                <span>{{ parts.rental_fee_bottom.HomePart.content }}</span>
+            </div>
+            <a href="/get-started" class="right button btnRed">book now</a>
+        </div>
+    </div>
+</div>

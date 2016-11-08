@@ -1,0 +1,83 @@
+{{ html.script(['infinite.helper']) }}
+<div class="news-bl fullWidth">
+
+    <div style="background-image: url({{ page.img }})" class="banner-ttl">
+        <div class="table-cell">
+            <div class="wrapper-small wow animated fadeInLeft">
+                <h1>{{ page.title }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper-list-post">
+        <div class="wrapper-large clearfix">
+            {% if error%}
+            <a href="/news" class="rentBtn button_back btnRed">BACK</a>
+            <div class="search_error_content">
+                {{error}}
+            </div>
+            {%endif%}
+
+            {% for item in news %}
+            {% set fade = loop.index == 0 or not (loop.index%2)? 'fadeInLeft': 'fadeInRight' %}
+            <div class="box animated {{ fade }}">
+                <div class="wrapp-img">
+                    <div style="background-image: url('/thumbs/550x475{{ item.Tiding.img }}')" class="fix-center-img"></div>
+                </div>
+                <div class="text-post">
+                    <h2>{{ item.Tiding.title }}</h2>
+                    <span class="date-post">{{ item.Tiding.created| date("M d, Y") }}</span>
+                    <div class="wrapp-txt">
+                        {{ item.Tiding.content | truncate(250, '...') }}
+                    </div>
+                    <a class="more-btn" href="/news/{{ item.Tiding.slug }}">more</a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div id="showButton">
+            {% if newsCount > news|length %}
+                <div class="clearfix text-center">
+                    <button id="showMoreButton" class="button btnBlack">show more</button>
+                </div>
+            {% endif %}
+                </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+          var showMoreBurron = $('#showMoreButton');
+          var ihelper = new InfiniteHelper();
+                var setted = ihelper.setLoadLink('/news/infiniteLoad/page:2')
+                            .setQuery({
+                                page: 2
+                            })
+                            .onLoadingStart(function(obj) {
+                                showMoreBurron.html('Loading...');
+                            })
+                            .startListen(showMoreBurron, 'click', function(data) {
+                                var data = JSON.parse(data);
+//                                console.log(data);
+                                if(data.news.length) {
+
+                                    data.news.forEach(function(obj) {
+                                        console.log(obj);
+                                        $('#showButton').prepend(obj.Tiding.htmlContent);
+                                    });
+
+                                }
+                                if(data.perPage * data.currenPage > data.count) {
+                                    ihelper.setLoadLink('/news/infiniteLoad')
+                                            .setQuery({
+                                                page: data.currentPage + 1
+                                            });
+                                    ihelper.LOAD_MORE = true;
+                                    showMoreBurron.html('show more');
+                                } else {
+                                    showMoreBurron.remove();
+                                }
+                            });
+
+    });
+</script>

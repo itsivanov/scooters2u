@@ -1,0 +1,194 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+<div class="header"><span><i class="fa fa-gift"></i> Products</span>
+    {{ _view.end() }}
+
+    <style>
+        .properties{
+            margin-bottom: 70px;
+        }
+
+        .properties div{
+            width: auto; float: left; margin: 0 20px; border: 0;
+        }
+    </style>
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> {{ category.Category.name }}: {% if data.Product.id %}Edit{% else %}Add new{% endif %} Product</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/rental_fees/" class="uibutton special"><i class="fa fa-list-ol"></i> Back </a></li>
+    </ul>
+    <!--{{allInfo|var_dump}}-->
+    <div id="tabs">
+
+
+        {{ form.create({'class' : 'form', 'novalidate':'novalidate'}) }}
+
+
+        <div id="first">
+            {{ form.hidden('id',{'value' : allInfo.RentalFee.id, 'class': 'for_js_id'} ) }}
+
+            <div class="section">
+                    <label>Title</label>
+                    {{ form.input('title', {'type':'text','div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Title', 'value':allInfo.RentalFee.title}) }}
+                </div>
+                <br/>
+                <div class="section">
+                    <label>Price</label>
+                    {{ form.input('price', {'type':'text','div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Price', 'value':allInfo.RentalFee.price}) }}
+                </div>
+                <br/>
+                <div class="section">
+                    <label>Rental time</label>
+                    <select name="RentalFee[rental_time]" required>
+                        <option {%if(allInfo.RentalFee.rental_time == 0)%}selected{%endif%} value="0">Daily till 5PM</option>
+                        <option {%if(allInfo.RentalFee.rental_time == 1)%}selected{%endif%} value="1">24 hour</option>
+                        <option {%if(allInfo.RentalFee.rental_time == 2)%}selected{%endif%} value="2">2 days</option>
+                        <option {%if(allInfo.RentalFee.rental_time == 3)%}selected{%endif%} value="3">3 days</option>
+                        <option {%if(allInfo.RentalFee.rental_time == 4)%}selected{%endif%} value="4">4 days</option>
+                        <option {%if(allInfo.RentalFee.rental_time == 5)%}selected{%endif%} value="5">5 days</option>
+                        <option {%if(allInfo.RentalFee.rental_time == 6)%}selected{%endif%} value="6">6 days</option>
+                        <option {%if(allInfo.RentalFee.rental_time == 7)%}selected{%endif%} value="7">7 days</option>
+                        <option {%if(allInfo.RentalFee.rental_time == 15)%}selected{%endif%} value="15">15 days</option>
+                        <option {%if(allInfo.RentalFee.rental_time == 30)%}selected{%endif%} value="30">30 days</option>
+                    </select>
+                    <!--{{ form.input('rental_time', {'type':'number','div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Price', 'value':allInfo.RentalFee.rental_time}) }}-->
+                </div>
+                <br/>
+                <div class="section">
+                    <label>Subtime</label>
+                    {{ form.input('subtime', {'type':'text', 'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Subtime', 'value':allInfo.RentalFee.subtime}) }}
+                </div>
+                <br/>
+                <div class="section">
+                    <label>Time</label>
+                    {{ form.input('time', {'type':'text', 'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Time', 'value':allInfo.RentalFee.time}) }}
+                </div>
+
+                <div class="section">
+                    <label>Is featured</label>
+                    <div>{{ form.checkbox('is_featured', {'checked': allInfo.RentalFee.is_featured})}}</div>
+                </div>
+                <br/>
+                <div class="section">
+                    <label>Href</label>
+                    {{ form.input('href', {'type':'text', 'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Href', 'value':allInfo.RentalFee.href}) }}
+                </div>
+                <br/>
+                <div class="section">
+                    <label>Link name</label>
+                    {{ form.input('link_name', {'type':'text', 'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Link Name', 'value':allInfo.RentalFee.link_name}) }}
+                </div>
+            {% set count = 1 %}
+            {%for item in allInfo.RentalFeeOption %}
+                <div class="section fields">
+                    <label>Text {{count}}</label>
+                    <div class="delete-faq" ><i class="fa fa-times fa-2x remove-special del_but" aria-hidden="true" id="{{item.id}}"></i></div>
+
+                    <input type="hidden" name="RentalFeeOption[{{item.id}}][rental_fee_id]"  value="{{allInfo.RentalFee.id}}"/>
+                    <input type="text" name="RentalFeeOption[{{item.id}}][value]"  placeholder="field {{item.id}}" required value="{{item.value}}"/>
+
+                </div>
+                <br/>
+            {% set count = count + 1 %}
+
+            {% endfor %}
+
+                <div class="block_answer" id="block">
+                    <button class="btn_add_rental_field"><i class="fa fa-plus" aria-hidden="true">New Field TEXT</i></button>
+                </div>
+
+
+        </div>
+
+        <div class="section last">
+            {{ form.submit('Save', {'class' : 'uibutton loading product_button'}) }}
+        </div>
+        {{ form.end() }}
+    </div>
+</div>
+
+<style>
+    .dimensions input {
+        width: 10%;
+        min-width: 80px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+
+        $('.wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+
+        var i = '{{ data.ProductImages[(data.ProductImages | length-1)].id }}';
+
+        $('.listPhotos').sortable({
+            update: function(){
+                $('.listPhotos li').each(function(index){
+                    $(this).find('.hidden-priority').val(index);
+                });
+            }
+        });
+
+        $(document).on('click', '#uploadImage', function() {
+            var a = $(this);
+
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+
+                getFileCallback: function (url) {
+
+                    var ii = i++;
+
+                    $('.listPhotos').append('' +
+                        '<li class="clearfix imageBlock">' +
+                        '<div class="dottedFrame" style="position: relative">'+
+                        '<span><img src="/thumbs/130x100'+ url +'"></span>' +
+                        '<input type="hidden" name="data[ProductImages][' +ii+ '][img]" value="'+ url +'">' +
+                        '<input type="hidden" class="hidden-priority" name="data[ProductImages][' +ii+ '][priority]" value="'+ii+'">' +
+                        '</div>'+
+                        '<div class="text-center">'+
+                        '<a href="javascript:" class="uibutton special loading remove-img"><i class="fa fa-trash"></i></a>'+
+                        '</div>' +
+                        '</li>');
+
+                    showSuccess('Image uploaded successfully', 500);
+                }
+            });
+        });
+
+        $(document).on('click', '.remove-img', function(e) {
+            e.preventDefault();
+            $(this).parents('.imageBlock').remove();
+        });
+
+    });
+</script>
+
+<script type="text/javascript" src="/admin/js/fields_rental_fee.js"></script>
+<script type="text/javascript" src="/admin/js/ajax/rental_fee_options.js"></script>

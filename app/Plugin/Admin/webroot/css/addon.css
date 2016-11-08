@@ -1,0 +1,134 @@
+#wysiwyg{
+    width: 90%;
+    height: 200px;
+}
+
+#listProducts th{
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.wide100{
+    width: 100px;
+}
+.wide150{
+    width: 150px;
+}
+.wide200{
+    width: 200px;
+}
+.imageInFrame{
+    border: 1px solid gray;
+    margin-left: 2%;
+    margin-top: 13px;
+    padding: 5px;
+    text-align: center;
+    width: 210px;
+}
+.bannerInFrame{
+    border: 1px solid gray;
+    margin-left: 2%;
+    margin-top: 13px;
+    padding: 5px;
+    text-align: center;
+    width: 600px;
+    height: 143px;
+}
+
+.paginateAdminStyle {
+    float: right;
+}
+.paginateAdminStyle li.active {
+    background-color: #F4F4F4;
+    margin-left: -4px;
+    padding: 5px 14px 6px 12px;
+}
+.titleCover img{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.slugUrl{
+    font-size: 11px;
+    font-weight: bold;
+    color: #808080;
+}
+.float-r{
+    float: right;
+}
+.float-l{
+    float: left;
+}
+
+.itemTypeMenu{
+    background: silver;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.italicSubCaption{
+    font-size: 10px;
+    font-style: italic;
+    display: block;
+    margin-top: 30px;
+}
+.placeholder{
+    background: none repeat scroll 0 0 #E3E5E7;
+    margin-top: 5px;
+    border: 1px dotted #808080;
+}
+.sortable li div.itemOfMenu {
+    cursor: move;
+}
+.sub-actions-btns li{
+    margin-right: 10px;
+}
+#photosContainer ul.listPhotos li{
+    border-right: 1px solid #8e8e8e;
+    height: 100%;
+   /* width: 240px;*/
+    margin-top: 10px;
+    float: left;
+}
+#photosContainer ul.listPhotos li .dottedFrame {
+    float: left;
+    margin: 5px;
+    border: 1px dotted #CBCBCB;
+    padding: 3px;
+    /*min-height: 183px;*/
+    /*width: 100px;*/
+}
+#photosContainer ul.listPhotos li > div input {
+    width: 82px;
+}
+#photosContainer ul.listPhotos li > div > span {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+}
+#photosContainer ul.listPhotos li > div.actions{
+    width: 150px;
+    text-align: center;
+    margin: 10px auto;
+    height: 181px;
+}
+#photosContainer ul.listPhotos li > div.actions > .addPhoto {
+    margin-top: 58px;
+}
+
+td.beforeAfterSmall img {
+    margin-right: 5px;
+}
+.text-center {
+    text-align: center;
+}
+
+/*.reset-pass input{*/
+    /*margin-left: 50px;*/
+
+/*}*/
+
+/*#UserConfirmPassword{*/
+    /*margin-left: 23px;*/
+/*}*/
+/*#UserNewPassword{*/
+    /*margin-left: 44px;*/
+/*}*/

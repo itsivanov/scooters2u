@@ -1,0 +1,24 @@
+<div class="palmPayTabTitle left fullWidth">
+    <a href="/products/cart" class="palmPayTabTitleItem upper left {{ shoppingCart ? 'active' }}">
+        <div class="tableDiv">
+            <div class="tableCell">
+                <strong>shopping cart</strong>
+            </div>
+        </div>
+    </a>
+    <a href="/products/checkout" class="palmPayTabTitleItem upper left {{ shippingBilling ? 'active' }}">
+        <div class="tableDiv">
+            <div class="tableCell">
+                <strong>shipping & billing</strong>
+            </div>
+        </div>
+    </a>
+    <a href="{{ shippingBilling ? '/products/payments' : 'javascript:' }}"
+       class="palmPayTabTitleItem upper left {{ shippingBilling ? 'sendShippingForm' }} {{ payments ? 'active' }}">
+        <div class="tableDiv">
+            <div class="tableCell">
+                <strong>payment</strong>
+            </div>
+        </div>
+    </a>
+</div>

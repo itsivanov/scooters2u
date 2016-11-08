@@ -1,0 +1,31 @@
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-envelope-o"></i> Agents</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit agent</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/agents" class="uibutton special"><i class="fa fa-list-ol"></i> Agents list</a></li>
+    </ul>
+
+    {{ form.create({'class' : 'form'}) }}
+
+        <div class="section">
+            <label>Active</label>
+            <div>{{ form.checkbox('active') }}</div>
+        </div>
+        <div class="section">
+            <label>Email</label>
+            <div>{{ form.input('email', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Email'}) }}</div>
+        </div>
+        <div class="section">
+            <label>Name</label>
+            <div>{{ form.input('name', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Name'}) }}</div>
+        </div>
+
+        <div class="section last">
+            <div>
+              {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+            </div>
+        </div>
+    {{ form.end() }}
+</div>

@@ -1,0 +1,52 @@
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-diamond" aria-hidden="true"></i> Discounts</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit Discount</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/discounts" class="uibutton special"><i class="fa fa-list-ol"></i> Discounts list</a></li>
+    </ul>
+
+    {{ form.create({'class' : 'form'}) }}
+    {{ form.hidden('Discount.id') }}
+
+    <div class="section">
+        <label>Discount type</label>
+        <div>
+            {#{{ form.select('Discount.order_status_id', couponTypes) }}#}
+             <select name="data[Discount][type]">
+                 {% for key, coupon in couponTypes %}
+                    <option value="{{ coupon }}" {{ _view.data.Discount.type == coupon ? 'selected' }} >{{ coupon }}</option>
+                 {% endfor %}
+             </select>
+        </div>
+    </div>
+    <div class="section">
+        <label>Key</label>
+        <div>{{ form.input('Discount.key_word', {'div' : false, 'label' : false}) }}</div>
+    </div>
+    <div class="section">
+        <label>Value</label>
+        <div>
+            <div>{{ form.input('Discount.value', {'div':false, 'label' : false}) }}</div>
+        </div>
+    </div>
+    <div class="section">
+        <label>From</label>
+        <div>
+            <div>{{ form.input('Discount.from_date', {'type':'text', 'label':false, 'class':'calendar'}) }}</div>
+        </div>
+    </div>
+    <div class="section">
+        <label>To</label>
+        <div>
+            <div>{{ form.input('Discount.to_date', {'type':'text', 'label':false, 'class':'calendar'}) }}</div>
+        </div>
+    </div>
+    <div class="section last">
+        <div>
+            {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+        </div>
+    </div>
+    {{ form.end() }}
+</div>

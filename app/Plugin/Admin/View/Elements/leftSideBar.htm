@@ -1,0 +1,108 @@
+<div id="left_menu">
+
+    <ul id="main_menu" class="main_menu">
+        <li{{ activeItem|checkActiveItem('dashboard') }}>
+            <a href="/admin"><i class="fa fa-home"></i> <b>Dashboard</b></a>
+        </li>
+
+        <li{{ activeItem|checkActiveItem('pages') }}>
+            <a href="/admin/pages/index"><i class="fa fa-font"></i> <b>Pages</b></a>
+        </li>
+
+        <li{{ activeItem|checkActiveItem('content') }}>
+        <a href="javascript:"><i class="fa fa-file-text"></i> <b>Home Page</b></a>
+        <ul>
+
+            {% for item in menuCategories %}
+                <li><a class="{{ item.Category.home_page_class}}" href="/admin/{{item.Category.key}}">{{ item.Category.name }}</a></li>
+            {% endfor %}
+            <li><a class="" href="/admin/home_parts">Home Parts</a></li>
+
+
+            <!--<li><a href="/admin/statics/about-home"> Home page: About</a></li>-->
+            <!--<li><a href="/admin/statics/story-video"> Our story: Video</a></li>-->
+            <!--<li><a href="/admin/storytabs"> Our story: Story tabs</a></li>-->
+            <!--<li><a href="/admin/statics/about-founder"> About the Founder: Founder</a></li>-->
+            <!--<li><a href="/admin/publications"> About the Founder: Publications</a></li>-->
+            <!--<li><a href="/admin/statics/sales-text"> Sales text</a></li>-->
+            <!--<li><a href="/admin/statics/products-success"> Product success payment</a></li>-->
+        </ul>
+        </li>
+
+        <li{{ activeItem|checkActiveItem('blog') }}><a href="#"><span class="ico gray list"></span><b>Blog</b></a>
+        <ul>
+            <li><a href="/admin/how_it_works">How it works </a></li>
+            <li><a href="/admin/faq">FAQ </a></li>
+            <li><a href="/admin/news">News </a></li>
+            <li><a href="/admin/tidcategory">News Categories </a></li>
+            <li><a href="/admin/tags">News Tags </a></li>
+            <li><a href="/admin/gallery">Gallery </a></li>
+            <li><a href="/admin/about">About </a></li>
+        </ul>
+        </li>
+
+        <!--<li{{ activeItem|checkActiveItem('users') }}>-->
+            <!--<a href="/admin/users"><i class="fa fa-newspaper-o"></i> <b>Users</b></a>-->
+            <!--<ul>-->
+                <!--<li><a href="/admin/users">List of users</a></li>-->
+                <!--{#<li><a href="/admin/users/add">New category</a></li>#}-->
+            <!--</ul>-->
+        <!--</li>-->
+
+        <!--<li{{ activeItem|checkActiveItem('categories') }}>-->
+            <!--<a href="/admin/categories"><i class="fa fa-newspaper-o"></i> <b>Categories</b></a>-->
+        <!--</li>-->
+
+        <li{{ activeItem|checkActiveItem('discounts') }}>
+            <a href="/admin/discounts"><i class="fa fa-diamond" aria-hidden="true"></i> <b>Discounts</b></a>
+        </li>
+
+        <li{{ activeItem|checkActiveItem('feedbacks') }}>
+            <a href="/admin/feedbacks"><i class="fa fa-diamond" aria-hidden="true"></i> <b>Feedbacks</b></a>
+            <ul>
+                <li><a href="/admin/contacts">Contacts</a></li>
+                <li><a href="/admin/subscribe">Subscribe by email</a></li>
+            </ul>
+        </li>
+
+        <li{{ activeItem|checkActiveItem('products') }}>
+        <a href="/admin/products"><i class="fa fa-gift "></i> <b>Products</b></a>
+        <ul>
+            <li><a href="/admin/accessories">Accessories </a></li>
+        </ul>
+        </li>
+
+        {#<li{{ activeItem|checkActiveItem('testimonials') }}>
+            <a href="/admin/testimonials"><i class="fa fa-newspaper-o"></i> <b>Testimonials</b></a>
+            <ul>
+                <li><a href="/admin/testimonials">Testimonials list</a></li>
+                <li><a href="/admin/testimonials/add">New Testimonial</a></li>
+            </ul>
+        </li>
+
+
+        <li{{ activeItem|checkActiveItem('companies') }}>
+            <a href="/admin/companies"><i class="fa fa-newspaper-o"></i> <b>Companies</b></a>
+            <ul>
+                <li><a href="/admin/companies">List of Companies</a></li>
+                <li><a href="/admin/companies/add">New Company</a></li>
+            </ul>
+        </li>#}
+
+        <li{{ activeItem|checkActiveItem('orders') }}>
+            <a href="/admin/orders"><i class="fa fa-cart-arrow-down"></i> <b>Orders</b></a>
+        </li>
+
+        <li{{ activeItem|checkActiveItem('menus') }}>
+            <a href="#"><i class="fa fa-bars"></i> <b>Menu</b></a>
+            <ul>
+                <li><a href="/admin/footer"><b>Footer Left</b></a></li>
+                <li><a href="/admin/footer_right"><b>Footer Right</b></a></li>
+            </ul>
+        </li>
+
+        <li{{ activeItem|checkActiveItem('options') }}>
+            <a href="/admin/options"><i class="fa fa-wrench"></i> </span><b>Settings</b></a>
+        </li>
+    </ul>
+</div>

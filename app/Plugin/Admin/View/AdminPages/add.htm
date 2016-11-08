@@ -1,0 +1,160 @@
+{{ _view.element('widgets/editor') }}
+
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-font"></i> Static pages</span></div>
+{{ _view.end() }}
+
+<div class="boxtitle min"><i class="fa fa-pencil"></i> Edit page</div>
+
+<ul class="uibutton-group">
+    <li><a href="/admin/pages/index" class="uibutton special" title="Add claim"><i class="fa fa-list-ol"></i> All pages</a></li>
+</ul>
+<!--{{add|var_dump}}-->
+{{ form.create({'class' : 'form'}) }}
+    <div class="section">
+        <label>Title</label>
+        <div>{{ form.input('title', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Page title'}) }}</div>
+    </div>
+    <div class="section">
+        <label>page Key</label>
+        <div>{{ form.input('key', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Page key'}) }}</div>
+    </div>
+    {#<div class="section">
+        <label>Background</label>
+        <div>
+            {{ form.hidden('img', {'div': false, 'label': false, 'id':'imageInput'}) }}
+            <img src="{{ _view.data.AdminPage.img|default('/img/no_image/default.png') }}" width="315" id="imageID"/>
+        </div>
+    </div>#}
+    <div class="section">
+        <label>Content</label>
+        <div>{{ form.input('content', {'type':'textarea', 'id' : 'wysiwyg', 'label' : false}) }}</div>
+    </div>
+    <div class="section banner-section">
+        <label>Meta title</label>
+        <div>{{ form.input('meta_title', {'div' : false, 'label' : false}) }}</div>
+    </div>
+
+    <div class="section">
+        <label>Images</label>
+        <div id="photosContainer" class="clearfix">
+            <ul class="listPhotos" id="ulListPhotos">
+                <span><img src="{{ page.Page.img |thumb(130,100)}}"></span>
+            </ul>
+        </div>
+        <div class="section last">
+            <div><a href="javascript:" class="uibutton upload" id="uploadImage">Upload image</a></div>
+        </div>
+    </div>
+
+
+
+    <div class="section">
+        <label>Meta keywords</label>
+        <div>{{ form.input('meta_keywords', {'div' : false, 'label' : false}) }}</div>
+    </div>
+    <div class="section">
+        <label>Meta description</label>
+        <div>{{ form.input('meta_description', {'div' : false, 'label' : false}) }}</div>
+    </div>
+
+    <div class="section last">
+        <div>
+            {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+        </div>
+    </div>
+{{ form.end() }}
+
+<!--<script type="text/javascript">-->
+    <!--$('#wysiwyg').elrte(opts);-->
+
+    <!--$(function() {-->
+        <!--$(document).on('click', '#imageID', function(e) {-->
+            <!--e.preventDefault();-->
+            <!--var thisBtn = $(e.currentTarget);-->
+            <!--$("<div />").dialogelfinder({-->
+                <!--width: 850,-->
+                <!--url: '/js/elfinder2/connector.php',-->
+                <!--commandsOptions: {-->
+                    <!--getfile: {-->
+                        <!--oncomplete: 'destroy' // destroy elFinder after file selection-->
+                    <!--}-->
+                <!--},-->
+                <!--getFileCallback: function (url) {-->
+                    <!--$('#imageInput').val(url);-->
+                    <!--thisBtn.attr('src', '/thumbs/300x' + url);-->
+                <!--}-->
+            <!--});-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->
+
+<script type="text/javascript">
+    $(function() {
+        $("#tabs").tabs();
+
+        $('#wysiwyg').elrte(opts);
+
+        $(document).on('click', '#imageId', function(e) {
+            e.preventDefault();
+            var thisBtn = $(e.currentTarget);
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+                getFileCallback: function (url) {
+                    $('#imageInput').val(url);
+                    thisBtn.attr('src', url);
+                }
+            });
+        });
+
+        var i = '{{ data.ProductImages[(data.ProductImages | length-1)].id }}';
+
+        $('.listPhotos').sortable({
+            update: function(){
+                $('.listPhotos li').each(function(index){
+                    $(this).find('.hidden-priority').val(index);
+                });
+            }
+        });
+
+        $(document).on('click', '#uploadImage', function() {
+            var a = $(this);
+
+            $("<div />").dialogelfinder({
+                width: 850,
+                url: '/js/elfinder2/connector.php',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // destroy elFinder after file selection
+                    }
+                },
+
+                getFileCallback: function (url) {
+
+                    $('.listPhotos').html('' +
+                            '<li class="clearfix imageBlock">' +
+                            '<div class="dottedFrame" style="position: relative">'+
+                            '<span><img src="/thumbs/130x100'+ url +'"></span>' +
+                            '<input type="hidden" name="AdminPage[img]" value="'+ url +'">' +
+                            '</div>'+
+                            '</li>');
+
+                    showSuccess('Image uploaded successfully', 500);
+                }
+            });
+        });
+
+        $(document).on('click', '.remove-img', function(e) {
+            e.preventDefault();
+            $(this).parents('.imageBlock').remove();
+        });
+
+
+    });
+</script>

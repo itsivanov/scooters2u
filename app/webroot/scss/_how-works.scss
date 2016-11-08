@@ -1,0 +1,106 @@
+.tabs-link {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  overflow: hidden;
+  a {
+    background: rgba(255,255,255,.7);
+    display: inline-block;
+    vertical-align: bottom;
+    border: 4px solid #000;
+    border-bottom: 0;
+    margin: 0 7px;
+    width: 218px;
+    height: 145px;
+    transition: 0.3s;
+    &:hover,&.active {
+      background: #f2532b;
+      span {
+        color: #fff;
+      }
+    }
+    .ic {
+      width: 100%;
+      height: 58px;
+      display: table;
+      img {
+        vertical-align: middle;
+      }
+    }
+    .fix-center {
+      display: table;
+      width: 100%;
+      height: 100%;
+      .center {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+    strong {
+      font: 18px/21px 'OswaldBold', sans-serif;
+      color: #000;
+      text-transform: uppercase;
+      display: block;
+    }
+    span {
+      font: 15px/18px 'Oswald', sans-serif;
+      color: #000;
+      display: block;
+      margin-top: 5px;
+    }
+  }
+}
+.how-works-bl {
+  font: 15px/25px 'OpenSans', sans-serif;
+  color: #555;
+  .banner-ttl {
+    position: relative;
+    h1 {
+      margin-top: -9.5%;
+    }
+  }
+  .wrapp-tabs-content {
+    padding: 73px 0 145px;
+
+    .box-tabs-content {
+      text-align: center;
+      display: none;
+      &:first-child {
+        display: block;
+      }
+      h2.ttl {
+        font: 40px/43px 'OswaldBold', sans-serif;
+        color: #000;
+        text-transform: uppercase;
+      }
+      span.sub-ttl {
+        font: 18px/21px 'Oswald', sans-serif;
+        color: #000;
+        display: block;
+        margin-bottom: 30px;
+      }
+      .wrapp-txt {
+        margin-bottom: 40px;
+      }
+      .button {
+        font-size: 15px;
+        height: 38px;
+        padding: 2px 22px 0;
+        border: 2px solid #f2532b;
+        &:hover {
+          border: 2px solid #000;
+        }
+      }
+    }
+  }
+}
+
+.bottom-inf {
+  display: none;
+}
+
+.show-mob {
+  display: none;
+}

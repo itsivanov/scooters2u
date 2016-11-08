@@ -1,0 +1,23 @@
+{{ _view.start('captionHeader') }}
+    <div class="header"><span><i class="fa fa-globe"></i> Locations</span>
+{{ _view.end() }}
+
+    <div class="boxtitle min"><i class="fa fa-pencil"></i> Edit team</div>
+    <ul class="uibutton-group">
+        <li><a href="/admin/team" class="uibutton special"><i class="fa fa-list-ol"></i> Team list</a></li>
+    </ul>
+
+    {{ form.create({'class' : 'form'}) }}
+
+        <div class="section">
+            <label>Location</label>
+            <div>{{ form.input('name', {'div' : false, 'label' : false, 'required' : 'required', 'placeholder':'Location'}) }}</div>
+        </div>
+
+        <div class="section last">
+            <div>
+              {{ form.submit('Save', {'class' : 'uibutton loading'}) }}
+            </div>
+        </div>
+    {{ form.end() }}
+</div>

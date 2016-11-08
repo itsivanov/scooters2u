@@ -1,0 +1,11 @@
+<div id="sidebar-meta">
+    <div id="sidebar-meta-inner">
+        <div>
+            <p class="left">Space</p>
+            <p class="right">{{ usedSpace.total.number - usedSpace.free.number }} {{ usedSpace.total.nameSize }} / {{ usedSpace.total.number }} {{ usedSpace.total.nameSize }}</p>
+        </div>
+        <div class="pbar">
+           <span style="width:{{ usedSpace.percentUsed }}%"></span>
+        </div>
+    </div>
+</div>

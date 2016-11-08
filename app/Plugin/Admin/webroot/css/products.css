@@ -1,0 +1,11 @@
+.imgInProduct{
+    padding: 10px;
+    position: absolute;
+}
+
+.imgInProduct .coverActions{
+    padding: 5px;
+}
+.imgInProduct .coverActions > .float-r {
+    float: right;
+}

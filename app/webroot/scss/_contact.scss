@@ -1,0 +1,193 @@
+/*map*/
+.wrapp-map {
+  width: 100%;
+  height: 375px;
+  position: relative;
+  transition: 0.3s;
+  -moz-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  overflow: hidden;
+}
+.wrapp-map #map {
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid #bbbbbb;
+  border-bottom: 4px solid #000;
+}
+
+/*end map*/
+.wrapp-inside {
+  height: 100%;
+  overflow: auto;
+  padding-top: 115px;
+  .sixthSection {
+    .intro {
+      padding-top: 0;
+      overflow: initial;
+    }
+  }
+  #fullPage {
+    .contact-bl {
+      font: 15px/18px 'OpenSans', sans-serif;
+      color: #555;
+      form, fieldset {
+        margin: 0;
+        padding: 0;
+        border-style: none;
+      }
+      input.txt,
+      textarea {
+        font: 15px/18px 'OpenSans', sans-serif;
+        color: #333;
+        width: 100%;
+        height: 40px;
+        padding: 0 15px;
+        box-sizing: border-box;
+        background: #fff;
+        border: 1px solid #e1e1e1;
+      }
+      textarea {
+        padding: 15px 15px;
+        resize: none;
+        height: 165px;
+      }
+      form .row {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  .headerSection {
+    position: fixed !important;
+    height: 114px;
+    left: 0;
+    top: 0;
+    background: rgba(255,255,255,.9);
+    box-shadow: 0 2px 15px -5px rgba(0, 0, 0, 0.75);
+    .headerContent {
+      ul {
+        padding-top: 35px;
+        li {
+          a {
+            font: 15px/18px 'OswaldBold';
+          }
+        }
+      }
+    }
+  }
+  .fullpage-wrapper{
+    transform: none !important;
+    .sixthSection {
+      height: auto !important;
+      background: transparent;
+      .intro {
+        padding-top: 0;
+        overflow: initial;
+      }
+      .fp-tableCell {
+        height: auto !important;
+        .fp-scrollable {
+          height: auto !important;
+        }
+      }
+    }
+  }
+}
+
+.contact-form-bl {
+  background: url("../img/img-1.jpg") no-repeat center;
+  background-size: cover;
+  display: table;
+  width: 100%;
+  .ttl {
+    h2 {
+      font: 40px/43px 'OswaldBold', sans-serif;
+      color: #000;
+      text-transform: uppercase;
+    }
+  }
+  .table-cell {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .box-contact {
+    max-width: 890px;
+    min-width: 890px;
+    float: right;
+    position: relative;
+    margin: 135px 263px 135px 0;
+    .box-form {
+      background: #f2532b;
+      padding: 57px 40px 42px;
+      position: relative;
+      &:after {
+        content: '';
+        background: url("../img/contact-form-logo.png") no-repeat center;
+        width: 103px;
+        background-size: 100%;
+        height: 93px;
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        margin-left: -51.5px;
+      }
+      .wrapp-item {
+        position: relative;
+        i {
+          position: absolute;
+          left: 10px;
+          top: 12px;
+          color: #000;
+        }
+        .txt,textarea {
+          padding-left: 27px !important;
+        }
+      }
+      span.sub-ttl {
+        font: 15px/18px 'OpenSans', sans-serif;
+        color: #333;
+        display: block;
+        text-align: center;
+      }
+      .button {
+        background: #000;
+        color: #fff;
+        font-size: 17px;
+        height: auto;
+        padding: 2px 28px 0;
+        &:hover {
+          background: #fff;
+          border: 0.2em solid #000;
+          color: #000;
+        }
+      }
+    }
+    .contact-form-right {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .infor-contact {
+      padding-left: 0;
+      padding-right: 0;
+      margin-top: 15%;
+      .box {
+        font: 13px/16px 'OpenSans', sans-serif;
+        color: #fff;
+        background: rgba(0,0,0,.7);
+        margin-bottom: 5px;
+        padding: 20px 18px;
+        box-sizing: border-box;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        span {
+          display: block;
+        }
+        a {
+          font: 13px/16px 'OpenSans', sans-serif;
+          color: #f2532b;
+        }
+      }
+    }
+  }
+}
+

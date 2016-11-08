@@ -1,0 +1,20 @@
+<section id="content" class="content main">
+    <div class="wrapper">
+        <div class="bl-tabs">
+            <ul class="link-tabs">
+                {% for service in list %}
+                    <li class="{{ loop.first ? 'active' }}"><a class="{{ loop.first ? 'active' }}" href="{{ '#tabs-'~loop.index }}">
+                        <span class="wrapp-img"><img src="{{ service.Service.img }}" /></span></a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            {% for service in list %}
+                <div style="display: {{ loop.first ? 'block' : 'none' }};" id="{{ 'tabs-'~loop.index }}" class="wrapp-txt text-center">
+                    <strong>{{ service.Service.title }}</strong><br>
+                    {{ service.Service.text }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

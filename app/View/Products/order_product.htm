@@ -1,0 +1,366 @@
+
+    <div id="fullPage">
+        <div class="get-started-bl fullWidth">
+            <div style="background-image: url(/img/img-2.jpg)" class="banner-ttl">
+                <div class="table-cell">
+                    <div class="wrapper-small wow animated fadeInLeft">
+                        <h1>Get Started</h1>
+                    </div>
+                </div>
+            </div>
+            <!--{{infoOrder|var_dump}}-->
+            <div class="wrapper-large">
+                <div class="get-started">
+                    <div class="clearfix">
+                        <div class="container-fluid shopping_wrap">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="breadcrumbs">
+                                        <li><a href="/get-started">Products</a></li>
+                                        <li><a href="/get-started/{{infoProduct.Product.id}}">Scooter</a></li>
+                                        <li class="active"><a href="#">Shopping Cart</a></li>
+                                    </ul>
+                                    <a href="/get-started" class="back_to">
+                                        <i class="fa fa-angle-left"></i>
+                                        Back
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="ttl">Shopping cart</strong>
+                                </div>
+                            </div>
+                            <div class="row shoping-cart-content">
+                                <div class="col-md-12">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <td width="92"></td>
+                                            <td class="text-left">item</td>
+                                            <td width="90"></td>
+                                            <td width="80">qty</td>
+                                            <td width="160">from</td>
+                                            <td width="160">to</td>
+                                            <td class="text-left">per a day</td>
+                                            <td class="text-left">total price</td>
+                                            <td></td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {%if infoProduct %}
+                                        <input type="hidden" name="product_id" value="{{infoProduct.Product.id}}">
+
+                                        <tr class="scooter_box">
+                                            <td>
+                                                <div class="wrapp-img">
+                                                    <img src="{{infoProduct.Product.image}}" alt="">
+                                                </div>
+                                            </td>
+                                            <td class="text-left ellipsis">
+                                                <strong>{{infoProduct.Product.title}}</strong>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <div class="select_bl_table">
+                                                    <select class="styled floatLabel numberScooters"  name="num" value="{{infoOrder.num}}">
+                                                        <option {%if(info.num == 1)%}selected{%endif%} >1</option>
+                                                        <option {%if(info.num == 2)%}selected{%endif%} >2</option>
+                                                        <option {%if(info.num == 3)%}selected{%endif%} >3</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="table_inp wrapp-item icon-right">
+                                                    <i class="fa fa-calendar"></i>
+                                                    <input type="text" name="name" class="txt cal_order_1" value="{{info.cal1}}" id="cal_order_1">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="table_inp wrapp-item icon-right">
+                                                    <i class="fa fa-calendar"></i>
+                                                    <input type="text" name="name" class="txt cal_order_2" value="{{info.cal2}}" id="cal_order_2">
+                                                </div>
+                                            </td>
+                                            <td class="text-left">
+                                                <span id="per_a_day_view">{{infoProduct.Product.price}}</span>
+                                                <input type="hidden" class="per_a_day" value="{{infoProduct.Product.price}}">
+                                            </td>
+                                            <td class="text-left">
+                                                    <strong >$<span id="result_total_price">{{info.item_sum}}</span></strong>
+                                            </td>
+                                            <td class="icon_td">
+                                                <a class="btn-delete main_del">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {%endif%}
+                                        {% set count = 1 %}
+                                        {% set count_for = 0 %}
+                                        {%for key, access in infoOrder %}
+                                        <tr class="accessories_box border_top bluud for_del_{{count_for}}">
+                                            <td width="75">
+                                                <div class="wrapp-img">
+                                                    <img src="{{access.Accessory.image}}" alt="">
+                                                </div>
+                                            </td>
+                                            <td class="text-left ellipsis">
+                                                <strong>{{access.Accessory.title}}</strong>
+                                            </td>
+                                            <td>
+                                                <div class="select_bl_table">
+                                                    <select class="styled floatLabel">
+                                                        <option {% if access.Accessory.size == "M" %} selected {% endif %} >M</option>
+                                                        <option {% if access.Accessory.size == "L" %} selected {% endif %} >L</option>
+                                                        <option {% if access.Accessory.size == "XL" %} selected {% endif %} >XL</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-left">
+                                                <span>{{access.Accessory.price}}</span>
+                                                    <input type="hidden" id="a_price_{{count}}" class="" value="{{access.Accessory.price}}">
+                                            </td>
+                                            <td class="text-left">
+                                                <strong class="a_total_{{count}}">$
+                                                    <span class="scrin result_total_acc_{{count_for}}">
+                                                        {{access.Accessory.total}}
+                                                    </span>
+                                                </strong>
+                                                <input type="hidden" id="a_total_{{count}}" class="" value="{{access.Accessory.total}}">
+                                            </td>
+
+                                            <td class="icon_td">
+                                                <a href="" class="btn-delete del_{{count_for}}" id="{{count_for}}" data-del="{{key}}">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% set count = count + 1 %}
+                                        {% set count_for = count_for + 1 %}
+                                        {% endfor %}
+
+
+                                        <tr class="total_wrap">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="bl-subtotal text-left">
+                                                <strong>Subtotal: </strong>
+                                            </td>
+                                            <td class="text-left">
+                                                <strong>$<span id="sub_total">{{info.subtotal}}</span></strong>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td colspan="2">
+                                                <div class="wrapp-item">
+                                                    <input type="text" name="name" class="txt" id="discount" placeholder="Coupon Code">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="button btnBlack go_pay">
+                                                    submit
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="bl-discount text-left">
+                                                <strong>Discount:</strong>
+                                            </td>
+                                            <td class="text-left">
+                                                <strong><span id="show_discount">$00.00</span></strong></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="bl-total">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="bl-subtotal text-left"><strong>total: </strong></td>
+                                            <td class="text-left"><strong>$<span class="super_total">{{info.subtotal}}</span> </strong></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="no_item">No item</div>
+
+
+                            <!--** Mobile version **************-->
+
+                            <!--<div class="row mobile_shopping_cart">-->
+                                <!--<div class="col-md-12 no_pad">-->
+                                    <!--<div class="mobile_cart">-->
+                                        <!--<div class="ttl_cart">-->
+                                            <!--<div class="row_table">-->
+                                                <!--{%if infoProduct %}-->
+                                                    <!--<div class="col_td">-->
+                                                        <!--<div class="wrapp-img">-->
+                                                            <!--<img src="{{infoProduct.Product.image}}" alt="">-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col_td full-width">-->
+                                                        <!--<strong class="item_name">{{infoProduct.Product.title}}</strong>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col_td">-->
+                                                        <!--<div class="price_box">-->
+                                                            <!--<input type="hidden" class="per_a_day" value="{{infoProduct.Product.price}}">-->
+                                                            <!--<strong >{{infoProduct.Product.price}}</strong>-->
+                                                            <!--<span>per day</span>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col_td">-->
+                                                        <!--<span class="icon-plus"></span>-->
+                                                    <!--</div>-->
+                                                    <!--<span class="delete_item main_del">-->
+                                                        <!--<i class="fa fa-times"></i>-->
+                                                    <!--</span>-->
+                                                <!--{% endif %}-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="content_cart">-->
+                                            <!--<ul>-->
+                                                <!--<li>-->
+                                                    <!--<strong>QTY</strong>-->
+                                                    <!--<div class="select_bl_table">-->
+                                                        <!--<select class="styled floatLabel numberScooters" id="mobNumberScooters" value="{{infoOrder.num}}">-->
+                                                            <!--<option {%if(info.num == 1)%}selected{%endif%} >1</option>-->
+                                                            <!--<option {%if(info.num == 2)%}selected{%endif%} >2</option>-->
+                                                            <!--<option {%if(info.num == 3)%}selected{%endif%} >3</option>-->
+                                                        <!--</select>-->
+                                                    <!--</div>-->
+                                                <!--</li>-->
+                                                <!--<li>-->
+                                                    <!--<strong>From</strong>-->
+                                                    <!--<div class="table_inp wrapp-item icon-right">-->
+                                                        <!--<i class="fa fa-calendar"></i>-->
+                                                        <!--<input type="text" name="cal1" class="txt cal_order_1" value="{{info.cal1}}" id="mob_cal_order_1">-->
+                                                    <!--</div>-->
+                                                <!--</li>-->
+                                                <!--<li>-->
+                                                    <!--<strong>to</strong>-->
+                                                    <!--<div class="table_inp wrapp-item icon-right">-->
+                                                        <!--<i class="fa fa-calendar"></i>-->
+                                                        <!--<input type="text" name="cal1" class="txt cal_order_2" value="{{info.cal2}}" id="mob_cal_order_2">-->
+                                                    <!--</div>-->
+                                                <!--</li>-->
+                                                <!--<li class="total_box">-->
+                                                    <!--<strong>total price</strong>-->
+                                                    <!--<div class="price_box">-->
+                                                        <!--&lt;!&ndash;<strong >$20.99</strong>&ndash;&gt;-->
+                                                        <!--<strong >$<span id="mob_total_price">{{info.item_sum}}</span></strong>-->
+                                                    <!--</div>-->
+                                                <!--</li>-->
+                                                <!--&lt;!&ndash;accessory&ndash;&gt;-->
+
+                                                <!--{% set count_m = 1 %}-->
+                                                <!--{% set count_for = 0 %}-->
+                                                <!--{%for key_m, access in infoOrder %}-->
+                                                <!--<li class="child_item for_del_{{count_for}}">-->
+                                                    <!--<div class="ttl_cart">-->
+                                                        <!--<div class="row_table">-->
+                                                            <!--<div class="col_td">-->
+                                                                <!--<div class="wrapp-img">-->
+                                                                    <!--<img src="{{access.Accessory.image}}" alt="">-->
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col_td full-width">-->
+                                                                <!--<strong class="item_name">{{access.Accessory.title}}</strong>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col_td">-->
+                                                                <!--<div class="price_box">-->
+                                                                    <!--<strong>{{access.Accessory.price}}</strong>-->
+                                                                    <!--<span>per day</span>-->
+                                                                    <!--<input type="hidden" id="a_price_{{count_m}}" class="" value="{{access.Accessory.price}}">-->
+                                                                <!--</div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="col_td">-->
+                                                                <!--<span class="icon-plus-access" data-id="{{key_m}}"></span>-->
+                                                            <!--</div>-->
+                                                            <!--<span class="delete_item btn-delete del_{{count_for}}" id="{{key_m}}">-->
+                                                                <!--<i class="fa fa-times"></i>-->
+                                                            <!--</span>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+
+                                                    <!--<div class="content_cart_child mob_access_{{key_m}} ">-->
+                                                        <!--<ul>-->
+                                                            <!--<li>-->
+                                                                <!--<strong>size</strong>-->
+                                                                <!--<div class="select_bl_table">-->
+                                                                    <!--<select class="styled floatLabel">-->
+                                                                        <!--<option {% if access.Accessory.size == "M" %} selected {% endif %} >M</option>-->
+                                                                        <!--<option {% if access.Accessory.size == "L" %} selected {% endif %} >L</option>-->
+                                                                        <!--<option {% if access.Accessory.size == "XL" %} selected {% endif %} >XL</option>-->
+                                                                    <!--</select>-->
+                                                                <!--</div>-->
+                                                            <!--</li>-->
+                                                            <!--<li class="total_box">-->
+                                                                <!--<strong>total price</strong>-->
+                                                                <!--<div class="price_box">-->
+                                                                    <!--&lt;!&ndash;<strong >{{info.subtotal}}</strong>&ndash;&gt;-->
+                                                                    <!--&lt;!&ndash;<strong class="a_total_{{count}}">$<span id="result_total_acc_{{count_for1}}">{{access.Accessory.total}}</span></strong>&ndash;&gt;-->
+                                                                <!--</div>-->
+                                                            <!--</li>-->
+                                                        <!--</ul>-->
+                                                    <!--</div>-->
+                                                <!--</li>-->
+
+                                                <!--{% set count_m = count_m + 1 %}-->
+                                                <!--{% set count_for = count_for + 1 %}-->
+                                                <!--{% endfor %}-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="coupone_mobile_wr">-->
+                                        <!--<div class="wrapp-item">-->
+                                            <!--&lt;!&ndash;<input type="text" name="name" class="txt" placeholder="Coupon Code">&ndash;&gt;-->
+                                            <!--<input type="text" name="name" class="txt" id="mob_discount" placeholder="Coupon Code">-->
+                                        <!--</div>-->
+                                        <!--<button type="submit" class="button btnBlack go_pay">-->
+                                            <!--submit-->
+                                        <!--</button>-->
+                                    <!--</div>-->
+                                    <!--<div class="total_wrapper">-->
+                                        <!--<strong>total:</strong>-->
+                                        <!--<div class="price_box">-->
+                                            <!--<strong class="super_total">{{info.subtotal}}</strong>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    <!--<script src="/js/details2.js"></script>-->
+
+    {%if isMobile %}
+    {{ _view.element('footerMobile') }}
+    {%endif%}

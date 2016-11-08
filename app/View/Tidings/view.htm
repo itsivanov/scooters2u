@@ -1,0 +1,158 @@
+        <div class="news-inside-bl fullWidth">
+    <div style="background-image: url({{ news.Tiding.img }})" class="banner-ttl">
+        <div class="table-cell">
+            <div class="wrapper-small wow animated fadeInLeft">
+                <h1>{{ news.Tiding.title }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="wrapp-news-post">
+        <div class="wrapper-large">
+            <div class="row">
+                <div class="col-md-3 bl-right">
+                    <div class="box-form">
+                            <fieldset>
+                                <div class="clearfix">
+                                    <div class="container-grid">
+                                        <form action="/search" method="get">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="wrapp-item">
+                                                        <input type="text" name="searchWord" class="txt" placeholder="Search" required>
+                                                        <button type="submit" class="button btnBlack"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    <strong>Subscribe by email</strong>
+                                        <form action="" method="post">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="wrapp-item">
+                                                        <input type="email" name="Contact[email]" class="txt" placeholder="Enter your email address" required >
+                                                        <button type="submit" class="button btnBlack"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </fieldset>
+                    </div>
+                    <div class="recent-list">
+                        <strong class="ttl">Recent Articles</strong>
+                        <ul>
+                            {%for item in last_articles %}
+                            <li><a href="/news/{{item.Tiding.slug}}">{{item.Tiding.title}}</a>
+                                <span class="date-post">{{item.Tiding.create}}</span>
+                            </li>
+                           {%endfor%}
+                        </ul>
+                        <div class="clearfix text-center">
+                            <a href="/news" class="right button btnRed">view all</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 bl-left">
+                    <div data-wow-delay="1s" class="ttl wow animated fadeInLeft">
+                        <div class="count-comments"><i class="fa fa-comment"></i>2</div>
+                        <h2>{{news.Tiding.title}}</h2>
+                        <span>{{news.Tiding.created | date}}</span>
+                        <p>{{news.Tiding.subtitle}}</p>
+                    </div>
+                    <div class="wrapp-content">
+                        <div class="wrapp-txt">
+                            <div class="wrappp-img clearfix text-center">
+                                <img class="wow animated fadeInLeft" src="{{news.Tiding.img}}" alt="">
+                            </div>
+                            <p>
+                               {{news.Tiding.full_content}}
+                            </p>
+                        </div>
+                        <div class="tags-categories">
+                            <strong class="">Tags:
+                                {%for item in tags%}
+                                <a href="/tag?tag={{item.title}}" >{{item.title}}</a>
+                                {% endfor %}
+                            </strong>
+                            <strong class="category_news">Categories:
+                                {%for item in category%}
+                                <a href="/category?cat={{item.title}}" >{{item.title}}</a>
+                                {% endfor %}
+                            </strong>
+                        </div>
+                        <div class="share-link">
+                            <a href="javascript:" class="show-link"><i class="fa fa-share-alt"></i></a>
+                            <div class="link-soc a2a_kit a2a_kit_size_32 a2a_default_style">
+                                <a class="a2a_button_facebook animated fadeIn"><i class="fa fa-facebook"></i></a>
+                                <a data-wow-delay="0.3s" class="a2a_button_twitter wow animated fadeIn"><i class="fa fa-twitter"></i></a>
+                                <a data-wow-delay="0.5s" class="a2a_button_google_plus wow animated fadeIn"><i class="fa fa-google-plus"></i></a>
+                                <a data-wow-delay="0.7s" class="a2a_button_linkedin wow animated fadeIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="comments">
+                            <strong class="ttl">Comments</strong>
+
+                                {%for item in news.TidComment %}
+                            <div class="box-comment">
+                                <strong class="name-autor-comment">{{item.name}}</strong>
+                                <span class="date-comment">{{item.created |date}}</span>
+                                <div class="wrapp-txt">
+                                    <p>
+                                       {{item.content}}
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="new-comment">
+                            <strong class="ttl">Leave a Comment</strong>
+                            <div class="box-form">
+                                <form action="" method="post">
+                                    <fieldset>
+                                        <div class="clearfix">
+                                            <div class="container-grid">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item icon-left">
+                                                            <i class="fa fa-user"></i>
+                                                            <input type="text" name="comment[name]" class="txt" placeholder="Name" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrapp-item icon-left">
+                                                            <i class="fa fa-envelope"></i>
+                                                            <input type="text" name="comment[email]" class="txt" placeholder="Email" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="wrapp-item icon-left">
+                                                            <i class="fa fa-pencil"></i>
+                                                            <textarea class="textarea-large" name="comment[content]" placeholder="Message" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="text-right">
+                                                            <input type="hidden" name="comment[tiding_id]" value="{{news.Tiding.id}}">
+                                                            <button type="submit" class="button btnRed">post comment</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

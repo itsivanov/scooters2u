@@ -1,0 +1,12 @@
+{% for item in products %}
+<a href="{% if item.Product.url %}/product{{ item.Product.url }}{% else %}/products/view/{{ item.Product.id }}{% endif %}" class="storeItem">
+    <div class="storePhoto left fullWidth backgroundImage" style="background-image:url('{{ item.Product.img }}');">
+        <img src="/img/store-mask.png" alt="" title="">
+        <div class="hoverBlock"></div>
+    </div>
+    <div class="storeDescription left fullWidth textCenter">
+        <div>{{ item.Product.title }}</div>
+        <div class="price">${{ item.Product.price }}</div>
+    </div>
+</a>
+{% endfor %}
